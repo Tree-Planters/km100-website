@@ -48,8 +48,14 @@ export function Hero() {
           </div>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <ButtonLink href="/programs">Explore our programs</ButtonLink>
-            <ButtonLink href="/pre-registration" variant="secondary">
+            <ButtonLink href="/programs" shape="pill">
+              Explore our programs
+            </ButtonLink>
+            <ButtonLink
+              href="/pre-registration"
+              variant="secondary"
+              shape="pill"
+            >
               Pre-register now
             </ButtonLink>
           </div>

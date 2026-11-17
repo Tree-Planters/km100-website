@@ -13,17 +13,21 @@ const variants = {
 
 type ButtonLinkProps = ComponentProps<typeof Link> & {
   variant?: keyof typeof variants;
+  /** `pill` matches the rounded navigation buttons. */
+  shape?: "default" | "pill";
 };
 
 export function ButtonLink({
   variant = "primary",
+  shape = "default",
   className,
   ...props
 }: ButtonLinkProps) {
   return (
     <Link
       className={cn(
-        "inline-flex items-center justify-center rounded-md px-6 py-3 text-sm font-semibold transition-colors",
+        "inline-flex items-center justify-center px-6 py-3 text-sm font-semibold transition-colors",
+        shape === "pill" ? "rounded-full" : "rounded-md",
         variants[variant],
         className,
       )}
