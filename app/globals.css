@@ -5,6 +5,8 @@
   --color-km-charcoal: #252525;
   --color-km-warm-white: #f5f3ef;
 
-  --font-heading: "Playfair Display", "DM Serif Display", Georgia, serif;
-  --font-body: "Inter", "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* Variables come from next/font in app/layout.tsx (self-hosted, no install needed). */
+  --font-heading: var(--font-playfair), "DM Serif Display", Georgia, serif;
+  --font-body: var(--font-inter), "Nunito Sans", system-ui, -apple-system,
+    "Segoe UI", sans-serif;
 }

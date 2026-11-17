@@ -1,7 +1,20 @@
 import type { Metadata } from "next";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/navigation/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -17,7 +30,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <body className="flex min-h-screen flex-col bg-white font-body text-km-charcoal">
         <SiteHeader />
         <main className="flex-1">{children}</main>
