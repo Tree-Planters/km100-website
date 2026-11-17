@@ -1,0 +1,51 @@
+// Switch provider to "mysql" to use MySQL instead of PostgreSQL.
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum PreRegistrationStatus {
+  PENDING
+  CONTACTED
+  ENROLLED
+  ARCHIVED
+}
+
+model PreRegistration {
+  id String @id @default(cuid())
+
+  referenceNumber String @unique
+  status          PreRegistrationStatus @default(PENDING)
+
+  firstName   String
+  middleName  String?
+  lastName    String
+  suffix      String?
+  dateOfBirth DateTime?
+  sex         String?
+  civilStatus String?
+
+  email      String
+  mobile     String
+  address    String?
+  barangay   String?
+  municipality String?
+  province   String?
+
+  highestAttainment String?
+  lastSchool        String?
+  yearGraduated     String?
+
+  // Program slug, e.g. "computer-engineering-technology".
+  program String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([email])
+  @@index([program])
+}

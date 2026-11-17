@@ -1,0 +1,93 @@
+import Link from "next/link";
+import { programs } from "@/lib/programs";
+
+const quickLinks = [
+  { href: "/about", label: "About KM100" },
+  { href: "/admissions", label: "Admissions" },
+  { href: "/scholarships", label: "Scholarships" },
+  { href: "/campus-life", label: "Campus Life" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/contact", label: "Contact Us" },
+];
+
+export function SiteFooter() {
+  const portalUrl = process.env.NEXT_PUBLIC_STUDENT_PORTAL_URL;
+  const year = new Date().getFullYear();
+
+  return (
+    <footer className="bg-km-charcoal text-sm text-white/70">
+      <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4">
+        <div className="md:col-span-1">
+          <p className="font-heading text-xl text-white">KM100</p>
+          <p className="mt-3 leading-relaxed">
+            KM100 Skills and Training Center, Inc. — committed to quality
+            technical education, skills training and social service.
+          </p>
+        </div>
+
+        <div>
+          <p className="font-semibold text-white">Quick Links</p>
+          <ul className="mt-3 space-y-2">
+            {quickLinks.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className="hover:text-km-orange">
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <p className="font-semibold text-white">Diploma Programs</p>
+          <ul className="mt-3 space-y-2">
+            {programs.map((program) => (
+              <li key={program.slug}>
+                <Link
+                  href={`/programs/${program.slug}`}
+                  className="hover:text-km-orange"
+                >
+                  {program.name.replace("Diploma in ", "")}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <p className="font-semibold text-white">Contact</p>
+          <ul className="mt-3 space-y-2">
+            <li>
+              KM Building, Jamoral Ville, Purok 13, Barangay Cogon, Bogo City,
+              Cebu 6010
+            </li>
+            <li>0967 093 5811</li>
+            <li>km100skillsandtrainingcenter@gmail.com</li>
+            <li>
+              <a
+                href="https://www.facebook.com/profile.php?id=100090317439588"
+                className="hover:text-km-orange"
+              >
+                Facebook
+              </a>
+            </li>
+            {portalUrl ? (
+              <li>
+                <a href={portalUrl} className="hover:text-km-orange">
+                  Student Portal
+                </a>
+              </li>
+            ) : null}
+          </ul>
+        </div>
+      </div>
+
+      <div className="border-t border-white/10 py-6 text-center text-xs">
+        © {year} KM100 Skills and Training Center, Inc. ·{" "}
+        <Link href="/privacy-policy" className="hover:text-km-orange">
+          Privacy Policy
+        </Link>
+      </div>
+    </footer>
+  );
+}
