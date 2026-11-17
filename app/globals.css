@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@theme {
+  --color-km-orange: #f47721;
+  --color-km-charcoal: #252525;
+  --color-km-warm-white: #f5f3ef;
+
+  --font-heading: "Playfair Display", "DM Serif Display", Georgia, serif;
+  --font-body: "Inter", "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
