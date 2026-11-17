@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+/*
+  Whole-site 110% scale. Tailwind sizes are rem-based, so type, spacing and
+  containers all grow together - the page reads like the browser at 110% zoom.
+*/
+html {
+  font-size: 110%;
+}
+
 @theme {
   --color-km-orange: #f47721;
   --color-km-charcoal: #252525;
@@ -9,4 +17,7 @@
   --font-heading: var(--font-playfair), "DM Serif Display", Georgia, serif;
   --font-body: var(--font-inter), "Nunito Sans", system-ui, -apple-system,
     "Segoe UI", sans-serif;
+  /* Heavy geometric sans matching the KM100 logo wordmark. */
+  --font-brand: var(--font-poppins), "Poppins", "Segoe UI", system-ui,
+    sans-serif;
 }

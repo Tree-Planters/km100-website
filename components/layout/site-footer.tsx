@@ -18,7 +18,21 @@ export function SiteFooter() {
     <footer className="bg-km-charcoal text-sm text-white/70">
       <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4">
         <div className="md:col-span-1">
-          <p className="font-heading text-xl text-white">KM100</p>
+          <div className="flex items-center gap-3">
+            <img
+              src="/logo/km100_logo-transparent.png"
+              alt="KM100 Skills and Training Center, Inc. logo"
+              className="h-12 w-12 object-contain"
+            />
+            <div>
+              <p className="font-brand text-lg font-extrabold tracking-tight text-white">
+                <span className="text-km-orange">KM</span>100
+              </p>
+              <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-white/50">
+                Skills and Training Center, Inc.
+              </p>
+            </div>
+          </div>
           <p className="mt-3 leading-relaxed">
             KM100 Skills and Training Center, Inc. — committed to quality
             technical education, skills training and social service.
