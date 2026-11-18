@@ -31,6 +31,7 @@ export function ProgramsPreview() {
           </p>
           <h2 className="mt-3 font-heading text-3xl sm:text-4xl">
             Five programs. Three years.
+           
           </h2>
           <p className="mt-4 text-[15px] leading-relaxed text-km-charcoal/55 sm:text-base">
             Five TESDA-registered, PQF Level 5 diploma tracks — same three-year
@@ -64,7 +65,14 @@ export function ProgramsPreview() {
                 />
               </div>
 
-              <div className="flex flex-1 flex-wrap items-center gap-x-2.5 gap-y-2 border-t border-km-charcoal/10 px-4 py-3.5 lg:gap-x-3 lg:px-5 lg:py-4">
+              <div className="flex flex-1 flex-col gap-2.5 bg-km-warm-white/60 px-4 pt-4 pb-4 lg:gap-3 lg:px-5 lg:pt-5 lg:pb-5">
+               
+                <p className="text-pretty text-[13px] leading-[1.65] text-km-charcoal/70 lg:text-[13.5px]">
+                  {program.shortDescription}
+                </p>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-x-2.5 gap-y-2 border-t border-km-charcoal/10 px-4 py-3.5 lg:gap-x-3 lg:px-5 lg:py-4">
                 <Image
                   src="/logo/tesda_logo.svg"
                   alt="TESDA"
