@@ -16,8 +16,8 @@ export function SiteFooter() {
 
   return (
     <footer className="bg-km-charcoal text-sm text-white/70">
-      <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4">
-        <div className="md:col-span-1">
+      <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="min-w-0 md:col-span-1">
           <div className="flex items-center gap-3">
             <img
               src="/logo/km100_logo-transparent.png"
@@ -39,7 +39,7 @@ export function SiteFooter() {
           </p>
         </div>
 
-        <div>
+        <div className="min-w-0">
           <p className="font-semibold text-white">Quick Links</p>
           <ul className="mt-3 space-y-2">
             {quickLinks.map((link) => (
@@ -52,7 +52,7 @@ export function SiteFooter() {
           </ul>
         </div>
 
-        <div>
+        <div className="min-w-0">
           <p className="font-semibold text-white">Diploma Programs</p>
           <ul className="mt-3 space-y-2">
             {programs.map((program) => (
@@ -68,9 +68,9 @@ export function SiteFooter() {
           </ul>
         </div>
 
-        <div>
+        <div className="min-w-0">
           <p className="font-semibold text-white">Contact</p>
-          <ul className="mt-3 space-y-2">
+          <ul className="mt-3 space-y-2 break-words">
             <li>
               KM Building, Jamoral Ville, Purok 13, Barangay Cogon, Bogo City,
               Cebu 6010

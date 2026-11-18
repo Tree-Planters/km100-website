@@ -33,14 +33,14 @@ export function SiteHeader() {
 
       <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:h-[84px] xl:gap-6">
         {/* Brand */}
-        <Link href="/" className="flex shrink-0 items-center gap-2.5">
+        <Link href="/" className="flex shrink-0 items-center gap-2 sm:gap-2.5">
           <img
             src="/logo/km100_logo-transparent.png"
             alt="KM100 Skills and Training Center, Inc. logo"
             className="h-11 w-11 object-contain transition-transform duration-300 hover:scale-105 xl:h-12 xl:w-12"
           />
           <span className="flex flex-col leading-none">
-            <span className="font-brand text-[24px] font-extrabold tracking-tight text-km-charcoal">
+            <span className="font-brand text-[22px] font-extrabold tracking-tight text-km-charcoal sm:text-[24px]">
               <span className="text-km-orange">KM</span>100
             </span>
             <span className="mt-1 hidden text-[10px] font-semibold uppercase tracking-[0.16em] text-km-charcoal/50 2xl:block">
@@ -69,7 +69,7 @@ export function SiteHeader() {
         </nav>
 
         {/* Actions */}
-        <div className="flex shrink-0 items-center gap-2.5">
+        <div className="flex shrink-0 items-center gap-2 sm:gap-2.5">
           <span
             aria-hidden="true"
             className="mx-1 hidden h-6 w-px bg-km-charcoal/10 xl:block"
@@ -84,7 +84,7 @@ export function SiteHeader() {
 
           <Link
             href="/pre-registration"
-            className="group relative inline-flex items-center overflow-hidden whitespace-nowrap rounded-full bg-linear-to-r from-km-orange to-[#ff9345] px-5 py-2.5 text-[13px] font-semibold text-white shadow-md shadow-km-orange/25 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-lg hover:shadow-km-orange/40 active:translate-y-0 active:scale-[0.98]"
+            className="group relative inline-flex items-center overflow-hidden whitespace-nowrap rounded-full bg-linear-to-r from-km-orange to-[#ff9345] px-3.5 py-2 text-[12px] font-semibold text-white shadow-md shadow-km-orange/25 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-lg hover:shadow-km-orange/40 active:translate-y-0 active:scale-[0.98] sm:px-5 sm:py-2.5 sm:text-[13px]"
           >
             <span className="relative z-10">Pre-Register Now</span>
             <span
@@ -99,7 +99,7 @@ export function SiteHeader() {
             aria-expanded={open}
             aria-controls="mobile-nav"
             onClick={() => setOpen((value) => !value)}
-            className="ml-1 inline-flex h-10 w-10 items-center justify-center rounded-full border border-km-charcoal/15 text-km-charcoal transition-all duration-200 hover:border-km-orange hover:text-km-orange xl:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-km-charcoal/15 text-km-charcoal transition-all duration-200 hover:border-km-orange hover:text-km-orange sm:ml-1 xl:hidden"
           >
             <svg
               viewBox="0 0 24 24"
