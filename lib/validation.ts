@@ -17,3 +17,12 @@ export const preRegistrationSchema = z.object({
 });
 
 export type PreRegistrationInput = z.infer<typeof preRegistrationSchema>;
+
+export const contactInquirySchema = z.object({
+  name: z.string().trim().min(2, "Please enter your full name"),
+  email: z.string().trim().email("Enter a valid email address"),
+  subject: z.string().trim().min(3, "Subject is required"),
+  message: z.string().trim().min(10, "Message must be at least 10 characters"),
+});
+
+export type ContactInquiryInput = z.infer<typeof contactInquirySchema>;

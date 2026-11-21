@@ -1,0 +1,188 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" aria-labelledby="cl-community-title">
+  <title id="cl-community-title">KM100 students handing out supplies at a barangay outreach</title>
+  <defs>
+    <linearGradient id="c-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eef4ee"/>
+      <stop offset="1" stop-color="#fbf2e1"/>
+    </linearGradient>
+    <linearGradient id="c-ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e9dcc2"/>
+      <stop offset="1" stop-color="#dfcdae"/>
+    </linearGradient>
+    <radialGradient id="c-glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffdca8" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#ffdca8" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="c-roof">
+      <path d="M742 436 L940 344 L1138 436 Z"/>
+    </clipPath>
+    <filter id="c-grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="900" fill="url(#c-sky)"/>
+  <circle cx="948" cy="172" r="250" fill="url(#c-glow)"/>
+  <circle cx="948" cy="172" r="62" fill="#f8c894"/>
+  <g fill="#ffffff" opacity="0.6">
+    <ellipse cx="250" cy="150" rx="96" ry="25"/>
+    <ellipse cx="316" cy="136" rx="58" ry="21"/>
+    <ellipse cx="700" cy="100" rx="70" ry="18"/>
+  </g>
+
+  <!-- Birds -->
+  <g stroke="#8d7c67" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7">
+    <path d="M520 176 q10 -8 20 0 q10 -8 20 0"/>
+    <path d="M590 146 q8 -7 16 0 q8 -7 16 0"/>
+  </g>
+
+  <!-- Hills -->
+  <path d="M0 470 Q140 380 300 458 Q430 396 560 462 Q700 386 860 458 Q1000 398 1200 470 V620 H0 Z" fill="#c2cfb1"/>
+  <path d="M0 520 Q180 450 360 512 Q520 452 700 516 Q880 456 1200 524 V640 H0 Z" fill="#a8b995"/>
+
+  <!-- Ground -->
+  <rect y="566" width="1200" height="334" fill="url(#c-ground)"/>
+  <ellipse cx="520" cy="780" rx="470" ry="120" fill="#f1e6d2" opacity="0.5"/>
+
+  <!-- Tree left -->
+  <g>
+    <path d="M148 620 q-6 -110 -22 -160 q-10 -34 4 -40 q12 -6 20 26 q12 48 16 174 Z" fill="#a98f6d"/>
+    <circle cx="120" cy="380" r="72" fill="#93a681"/>
+    <circle cx="196" cy="404" r="58" fill="#a3b48f"/>
+    <circle cx="152" cy="330" r="64" fill="#a9ba96"/>
+    <circle cx="86" cy="446" r="44" fill="#8b9e79"/>
+  </g>
+
+  <!-- Tent -->
+  <g>
+    <g clip-path="url(#c-roof)">
+      <rect x="742" y="344" width="396" height="92" fill="#f7efe1"/>
+      <rect x="742" y="344" width="50" height="92" fill="#f47721"/>
+      <rect x="842" y="344" width="50" height="92" fill="#f47721"/>
+      <rect x="942" y="344" width="50" height="92" fill="#f47721"/>
+      <rect x="1042" y="344" width="50" height="92" fill="#f47721"/>
+      <rect x="1142" y="344" width="50" height="92" fill="#f47721"/>
+    </g>
+    <path d="M742 436 L940 344 L1138 436" fill="none" stroke="#d95f12" stroke-width="4"/>
+    <rect x="754" y="436" width="10" height="196" fill="#b99a72"/>
+    <rect x="1118" y="436" width="10" height="196" fill="#b99a72"/>
+    <rect x="742" y="432" width="396" height="12" rx="4" fill="#e0641a"/>
+
+    <!-- Table under tent -->
+    <rect x="800" y="556" width="300" height="20" rx="4" fill="#c9a97c"/>
+    <rect x="812" y="576" width="12" height="80" fill="#ab8a60"/>
+    <rect x="1076" y="576" width="12" height="80" fill="#ab8a60"/>
+
+    <!-- Boxes -->
+    <rect x="826" y="500" width="76" height="56" rx="4" fill="#d9b183"/>
+    <rect x="858" y="500" width="12" height="56" fill="#c49a6a"/>
+    <rect x="826" y="524" width="76" height="8" fill="#f4ecdd" opacity="0.8"/>
+    <rect x="918" y="512" width="64" height="44" rx="4" fill="#e2c39b"/>
+    <rect x="946" y="512" width="10" height="44" fill="#c9a475"/>
+    <rect x="996" y="504" width="80" height="52" rx="4" fill="#d9b183"/>
+    <rect x="1032" y="504" width="10" height="52" fill="#c49a6a"/>
+    <g fill="#f47721">
+      <circle cx="1014" cy="520" r="8"/>
+      <circle cx="1030" cy="532" r="8"/>
+      <circle cx="1046" cy="518" r="8"/>
+      <circle cx="1062" cy="534" r="8"/>
+    </g>
+  </g>
+
+  <!-- Volunteer handing a box (orange) -->
+  <g transform="translate(556 464)">
+    <ellipse cx="0" cy="248" rx="54" ry="12" fill="#c2ae8b" opacity="0.6"/>
+    <rect x="-24" y="160" width="20" height="84" rx="10" fill="#2f3a44"/>
+    <rect x="4" y="160" width="20" height="84" rx="10" fill="#2f3a44"/>
+    <rect x="-28" y="238" width="26" height="13" rx="6" fill="#1f262c"/>
+    <rect x="2" y="238" width="26" height="13" rx="6" fill="#1f262c"/>
+    <path d="M-34 96 q34 -16 68 0 l8 78 q-42 14 -84 0Z" fill="#f47721"/>
+    <path d="M-34 102 q-20 26 -30 18" stroke="#f47721" stroke-width="17" stroke-linecap="round" fill="none"/>
+    <path d="M34 102 q16 22 22 16" stroke="#f47721" stroke-width="17" stroke-linecap="round" fill="none"/>
+    <circle cx="-66" cy="114" r="9" fill="#c98d63"/>
+    <circle cx="58" cy="112" r="9" fill="#c98d63"/>
+    <rect x="-108" y="84" width="62" height="46" rx="4" fill="#d9b183"/>
+    <rect x="-82" y="84" width="8" height="46" fill="#c49a6a"/>
+    <rect x="-108" y="104" width="62" height="7" fill="#f4ecdd" opacity="0.85"/>
+    <rect x="-9" y="76" width="18" height="20" rx="6" fill="#c98d63"/>
+    <circle cx="0" cy="56" r="28" fill="#dc9f70"/>
+    <path d="M-28 50 q-2 -36 28 -36 q30 0 28 36 q-10 -14 -28 -14 q-18 0 -28 14Z" fill="#2b2622"/>
+    <circle cx="-10" cy="64" r="2.4" fill="#7a4f30"/>
+    <circle cx="10" cy="64" r="2.4" fill="#7a4f30"/>
+    <path d="M-12 76 q12 8 24 0" stroke="#8a5a35" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Resident receiving the box -->
+  <g transform="translate(398 476)">
+    <ellipse cx="0" cy="246" rx="50" ry="11" fill="#c2ae8b" opacity="0.6"/>
+    <rect x="-22" y="164" width="18" height="80" rx="9" fill="#6c7364"/>
+    <rect x="4" y="164" width="18" height="80" rx="9" fill="#6c7364"/>
+    <rect x="-26" y="240" width="24" height="12" rx="6" fill="#4f5548"/>
+    <rect x="2" y="240" width="24" height="12" rx="6" fill="#4f5548"/>
+    <path d="M-32 100 q32 -18 64 0 l6 74 q-38 14 -76 0Z" fill="#8a9b83"/>
+    <path d="M-32 106 q-16 22 -30 18" stroke="#8a9b83" stroke-width="16" stroke-linecap="round" fill="none"/>
+    <path d="M32 106 q16 20 30 16" stroke="#8a9b83" stroke-width="16" stroke-linecap="round" fill="none"/>
+    <circle cx="-64" cy="130" r="8" fill="#a4693f"/>
+    <circle cx="64" cy="128" r="8" fill="#a4693f"/>
+    <rect x="-9" y="80" width="18" height="20" rx="6" fill="#a4693f"/>
+    <circle cx="0" cy="60" r="27" fill="#b97b4e"/>
+    <path d="M-27 54 q-2 -34 27 -34 q29 0 27 34 q-8 -12 -27 -12 q-19 0 -27 12Z" fill="#30261f"/>
+    <circle cx="0" cy="32" r="12" fill="#30261f"/>
+  </g>
+
+  <!-- Child -->
+  <g transform="translate(300 566) scale(0.72)">
+    <ellipse cx="0" cy="248" rx="50" ry="11" fill="#c2ae8b" opacity="0.55"/>
+    <rect x="-22" y="166" width="18" height="78" rx="9" fill="#6d5b48"/>
+    <rect x="4" y="166" width="18" height="78" rx="9" fill="#6d5b48"/>
+    <rect x="-26" y="240" width="24" height="12" rx="6" fill="#4a3d30"/>
+    <rect x="2" y="240" width="24" height="12" rx="6" fill="#4a3d30"/>
+    <path d="M-32 100 q32 -18 64 0 l6 76 q-38 12 -76 0Z" fill="#e8dfcd"/>
+    <path d="M-32 106 q-14 24 -6 48" stroke="#e8dfcd" stroke-width="16" stroke-linecap="round" fill="none"/>
+    <path d="M32 106 q14 24 6 48" stroke="#e8dfcd" stroke-width="16" stroke-linecap="round" fill="none"/>
+    <rect x="-9" y="80" width="18" height="20" rx="6" fill="#c98d63"/>
+    <circle cx="0" cy="60" r="26" fill="#dc9f70"/>
+    <path d="M-26 54 q-2 -34 26 -34 q28 0 26 34 q-10 -14 -26 -14 q-16 0 -26 14Z" fill="#252525"/>
+  </g>
+
+  <!-- Volunteer with clipboard (right edge of the group) -->
+  <g transform="translate(720 470)">
+    <ellipse cx="0" cy="248" rx="50" ry="11" fill="#c2ae8b" opacity="0.6"/>
+    <rect x="-22" y="162" width="20" height="84" rx="10" fill="#33372f"/>
+    <rect x="4" y="162" width="20" height="84" rx="10" fill="#33372f"/>
+    <rect x="-26" y="240" width="26" height="12" rx="6" fill="#22251f"/>
+    <rect x="2" y="240" width="26" height="12" rx="6" fill="#22251f"/>
+    <path d="M-34 98 q34 -16 68 0 l8 76 q-42 14 -84 0Z" fill="#3b423a"/>
+    <path d="M-18 98 h12 l4 74 h-16 Z" fill="#f47721"/>
+    <path d="M16 98 h10 l6 74 h-16 Z" fill="#f47721"/>
+    <path d="M-34 104 q-14 32 -2 54" stroke="#3b423a" stroke-width="16" stroke-linecap="round" fill="none"/>
+    <path d="M34 104 q16 26 8 50" stroke="#3b423a" stroke-width="16" stroke-linecap="round" fill="none"/>
+    <circle cx="-36" cy="160" r="8" fill="#c98d63"/>
+    <circle cx="42" cy="156" r="8" fill="#c98d63"/>
+    <rect x="26" y="130" width="50" height="64" rx="5" fill="#e8dfcd" transform="rotate(8 51 162)"/>
+    <rect x="34" y="144" width="32" height="4" rx="2" fill="#a99c86" transform="rotate(8 51 162)"/>
+    <rect x="34" y="156" width="28" height="4" rx="2" fill="#a99c86" transform="rotate(8 51 162)"/>
+    <rect x="-9" y="78" width="18" height="20" rx="6" fill="#c98d63"/>
+    <circle cx="0" cy="58" r="27" fill="#dc9f70"/>
+    <path d="M-27 52 q-2 -36 27 -36 q29 0 27 36 q-10 -16 -27 -16 q-17 0 -27 16Z" fill="#1f1c19"/>
+    <circle cx="0" cy="26" r="11" fill="#1f1c19"/>
+  </g>
+
+  <!-- Grass tufts and shadows -->
+  <g stroke="#b7c2a0" stroke-width="4" stroke-linecap="round" fill="none">
+    <path d="M240 800 q-4 -18 -14 -26"/>
+    <path d="M248 802 q2 -20 12 -28"/>
+    <path d="M640 816 q-4 -18 -14 -26"/>
+    <path d="M648 818 q2 -20 12 -28"/>
+    <path d="M1160 792 q-4 -18 -14 -26"/>
+    <path d="M1168 794 q2 -20 12 -28"/>
+  </g>
+  <g fill="#cbb897" opacity="0.45">
+    <ellipse cx="398" cy="738" rx="60" ry="12"/>
+    <ellipse cx="556" cy="728" rx="62" ry="12"/>
+    <ellipse cx="720" cy="732" rx="58" ry="12"/>
+  </g>
+
+  <rect width="1200" height="900" filter="url(#c-grain)" opacity="0.2"/>
+</svg>

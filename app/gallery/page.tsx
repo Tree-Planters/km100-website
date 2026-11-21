@@ -17,7 +17,15 @@ export default function GalleryPage() {
         description="Campus, facilities, classrooms, laboratories and activities."
       />
       <Section>
-        <GalleryGrid />
+        <div className="border-t-2 border-km-orange pt-4">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-km-charcoal">
+            The school, in pictures
+          </p>
+        </div>
+
+        <div className="mt-10 lg:mt-12">
+          <GalleryGrid />
+        </div>
       </Section>
     </>
   );

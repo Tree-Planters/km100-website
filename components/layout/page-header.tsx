@@ -1,3 +1,7 @@
+/**
+ * Inner-page header: full-bleed campus photo with the title set over it.
+ * Sits in normal flow, directly below the site navigation.
+ */
 export function PageHeader({
   title,
   description,
@@ -6,44 +10,35 @@ export function PageHeader({
   description?: string;
 }) {
   return (
-    <div className="relative overflow-hidden border-b border-km-charcoal/10 bg-km-warm-white">
-      {/* Campus facade - small screens: full-bleed under a warm veil */}
-      <div aria-hidden="true" className="absolute inset-0 sm:hidden">
-        <img
-          src="/images/km100-facade.webp"
-          alt=""
-          className="h-full w-full object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-km-warm-white/75" />
-        <div className="absolute inset-0 bg-linear-to-b from-km-warm-white/30 to-km-warm-white/80" />
-      </div>
+    <div className="relative isolate overflow-hidden bg-km-charcoal">
+      <img
+        src="/images/km100-building.png?v=1"
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full scale-[1.07] translate-x-[2.5%] object-cover object-[50%_100%]"
+      />
 
-      {/* Campus facade - sm and up: right-hand band, faded into the warm white */}
+      {/* Scrims kept light so the building and banner stay visible. */}
       <div
         aria-hidden="true"
-        className="absolute inset-y-0 right-0 hidden w-[46%] sm:block"
-      >
-        <img
-          src="/images/km100-facade.webp"
-          alt=""
-          className="h-full w-full object-cover object-center [mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.3)_38%,#000_80%)]"
-        />
-      </div>
-
-      {/* Blend - opaque warm white behind the copy, clearing toward the photo */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-linear-to-r from-km-warm-white from-26% via-km-warm-white/82 via-50% to-km-warm-white/0"
+        className="absolute inset-0 bg-linear-to-r from-km-charcoal/80 via-km-charcoal/45 to-km-charcoal/10"
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-linear-to-b from-km-warm-white/30 via-transparent to-km-warm-white/50"
+        className="absolute inset-0 bg-linear-to-t from-km-charcoal/85 via-km-charcoal/20 via-32% to-transparent"
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:py-20">
-        <h1 className="font-heading text-3xl sm:text-4xl">{title}</h1>
+      <div className="relative z-10 mx-auto flex min-h-[20rem] w-full max-w-7xl flex-col justify-end px-4 pb-12 pt-24 sm:min-h-[26rem] sm:px-6 sm:pb-16 sm:pt-28 lg:min-h-[32rem] lg:pb-20 lg:pt-32">
+        
+
+        <h1 className="mt-3 max-w-4xl font-heading text-[2.6rem] leading-[1.02] tracking-tight text-balance text-white sm:text-6xl lg:text-[4rem]">
+          {title}
+        </h1>
+
         {description ? (
-          <p className="mt-3 max-w-2xl text-km-charcoal/70">{description}</p>
+          <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-white/70">
+            {description}
+          </p>
         ) : null}
       </div>
     </div>

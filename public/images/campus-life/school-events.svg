@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" aria-labelledby="cl-events-title">
+  <title id="cl-events-title">The KM100 foundation day program on the campus stage</title>
+  <defs>
+    <linearGradient id="e-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#221b17"/>
+      <stop offset="1" stop-color="#3a2b21"/>
+    </linearGradient>
+    <linearGradient id="e-banner" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8832f"/>
+      <stop offset="1" stop-color="#e2640f"/>
+    </linearGradient>
+    <linearGradient id="e-beam" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd7a0" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#ffd7a0" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="e-glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffc17d" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#ffc17d" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="e-grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="900" fill="url(#e-bg)"/>
+  <ellipse cx="600" cy="330" rx="620" ry="420" fill="url(#e-glow)"/>
+
+  <!-- Light beams -->
+  <path d="M40 0 L200 0 L470 560 L250 560 Z" fill="url(#e-beam)" opacity="0.55"/>
+  <path d="M1160 0 L1010 0 L760 560 L960 560 Z" fill="url(#e-beam)" opacity="0.55"/>
+  <path d="M600 0 L680 0 L820 560 L640 560 Z" fill="url(#e-beam)" opacity="0.25"/>
+
+  <!-- Stage backdrop -->
+  <rect x="196" y="118" width="808" height="462" rx="14" fill="#402e23"/>
+  <rect x="196" y="118" width="808" height="462" rx="14" fill="none" stroke="#553d2e" stroke-width="10"/>
+
+  <!-- Banner -->
+  <rect x="262" y="176" width="676" height="326" rx="6" fill="url(#e-banner)"/>
+  <rect x="262" y="176" width="676" height="326" rx="6" fill="none" stroke="#ffb27a" stroke-width="3" opacity="0.5"/>
+  <path d="M262 470 q169 26 338 0 q169 -26 338 0 v32 h-676 Z" fill="#c9530a" opacity="0.35"/>
+  <text x="600" y="330" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="132" font-weight="800" letter-spacing="8" fill="#fff7ec">KM100</text>
+  <rect x="470" y="366" width="260" height="5" rx="2.5" fill="#fff7ec" opacity="0.75"/>
+  <text x="600" y="418" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" letter-spacing="9" fill="#fff7ec" opacity="0.92">FOUNDATION DAY</text>
+  <text x="600" y="456" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" letter-spacing="6" fill="#ffe3cd" opacity="0.8">BOGO CITY · CEBU</text>
+
+  <!-- Stage floor and skirt -->
+  <rect x="166" y="580" width="868" height="44" rx="4" fill="#5a4231"/>
+  <rect x="166" y="580" width="868" height="10" rx="4" fill="#75573f"/>
+  <rect x="150" y="624" width="900" height="92" fill="#2c211a"/>
+  <g stroke="#3a2c22" stroke-width="6">
+    <line x1="260" y1="624" x2="260" y2="716"/>
+    <line x1="370" y1="624" x2="370" y2="716"/>
+    <line x1="480" y1="624" x2="480" y2="716"/>
+    <line x1="590" y1="624" x2="590" y2="716"/>
+    <line x1="700" y1="624" x2="700" y2="716"/>
+    <line x1="810" y1="624" x2="810" y2="716"/>
+    <line x1="920" y1="624" x2="920" y2="716"/>
+  </g>
+
+  <!-- Bunting -->
+  <g>
+    <path d="M0 92 Q300 150 600 108 T1200 132" fill="none" stroke="#7a5a40" stroke-width="3"/>
+    <path d="M120 104 L164 113 L141 160 Z" fill="#f47721"/>
+    <path d="M230 118 L274 126 L251 172 Z" fill="#f7ecdc"/>
+    <path d="M340 126 L384 132 L361 178 Z" fill="#f47721"/>
+    <path d="M452 124 L496 128 L473 174 Z" fill="#f7ecdc"/>
+    <path d="M562 114 L606 118 L583 164 Z" fill="#f47721"/>
+    <path d="M674 108 L718 112 L695 158 Z" fill="#f7ecdc"/>
+    <path d="M786 112 L830 116 L807 162 Z" fill="#f47721"/>
+    <path d="M898 118 L942 122 L919 168 Z" fill="#f7ecdc"/>
+    <path d="M1010 122 L1054 126 L1031 172 Z" fill="#f47721"/>
+    <path d="M1122 126 L1166 130 L1143 176 Z" fill="#f7ecdc"/>
+  </g>
+
+  <!-- Confetti -->
+  <g>
+    <rect x="150" y="220" width="12" height="6" rx="2" fill="#f47721" transform="rotate(24 156 223)"/>
+    <rect x="240" y="160" width="10" height="5" rx="2" fill="#f7ecdc" transform="rotate(-18 245 162)"/>
+    <rect x="330" y="240" width="12" height="6" rx="2" fill="#ffc98f" transform="rotate(48 336 243)"/>
+    <rect x="430" y="140" width="10" height="5" rx="2" fill="#f7ecdc" transform="rotate(12 435 142)"/>
+    <rect x="520" y="250" width="12" height="6" rx="2" fill="#f47721" transform="rotate(-34 526 253)"/>
+    <rect x="700" y="146" width="12" height="6" rx="2" fill="#ffc98f" transform="rotate(62 706 149)"/>
+    <rect x="790" y="236" width="10" height="5" rx="2" fill="#f7ecdc" transform="rotate(-22 795 238)"/>
+    <rect x="880" y="152" width="12" height="6" rx="2" fill="#f47721" transform="rotate(18 886 155)"/>
+    <rect x="980" y="248" width="10" height="5" rx="2" fill="#f7ecdc" transform="rotate(40 985 250)"/>
+    <rect x="1070" y="186" width="12" height="6" rx="2" fill="#ffc98f" transform="rotate(-12 1076 189)"/>
+    <circle cx="200" cy="300" r="4" fill="#f7ecdc" opacity="0.8"/>
+    <circle cx="380" cy="120" r="5" fill="#f47721" opacity="0.85"/>
+    <circle cx="620" cy="128" r="4" fill="#f7ecdc" opacity="0.8"/>
+    <circle cx="840" cy="124" r="5" fill="#ffc98f" opacity="0.85"/>
+    <circle cx="1040" cy="296" r="4" fill="#f7ecdc" opacity="0.8"/>
+    <circle cx="140" cy="420" r="4" fill="#f47721" opacity="0.7"/>
+    <circle cx="1100" cy="420" r="5" fill="#ffc98f" opacity="0.7"/>
+  </g>
+
+  <!-- Crowd -->
+  <g fill="#181310">
+    <g>
+      <circle cx="80" cy="706" r="34"/>
+      <path d="M16 900 q0 -140 64 -140 q64 0 64 140 Z"/>
+      <path d="M52 780 q-16 -56 -34 -70" stroke="#181310" stroke-width="20" stroke-linecap="round" fill="none"/>
+    </g>
+    <g>
+      <circle cx="215" cy="736" r="38"/>
+      <path d="M140 900 q0 -146 75 -146 q75 0 75 146 Z"/>
+    </g>
+    <g>
+      <circle cx="345" cy="700" r="32"/>
+      <path d="M288 900 q0 -136 57 -136 q57 0 57 136 Z"/>
+      <path d="M310 776 q-4 -60 18 -86" stroke="#181310" stroke-width="18" stroke-linecap="round" fill="none"/>
+    </g>
+    <g>
+      <circle cx="470" cy="744" r="40"/>
+      <path d="M390 900 q0 -152 80 -152 q80 0 80 152 Z"/>
+    </g>
+    <g>
+      <circle cx="610" cy="710" r="34"/>
+      <path d="M548 900 q0 -140 62 -140 q62 0 62 140 Z"/>
+    </g>
+    <g>
+      <circle cx="740" cy="742" r="42"/>
+      <path d="M656 900 q0 -156 84 -156 q84 0 84 156 Z"/>
+    </g>
+    <g>
+      <circle cx="875" cy="702" r="33"/>
+      <path d="M816 900 q0 -138 59 -138 q59 0 59 138 Z"/>
+      <path d="M910 786 q10 -62 -8 -92" stroke="#181310" stroke-width="18" stroke-linecap="round" fill="none"/>
+    </g>
+    <g>
+      <circle cx="1000" cy="736" r="38"/>
+      <path d="M926 900 q0 -146 74 -146 q74 0 74 146 Z"/>
+    </g>
+    <g>
+      <circle cx="1125" cy="700" r="34"/>
+      <path d="M1064 900 q0 -140 61 -140 q61 0 61 140 Z"/>
+      <path d="M1096 780 q-18 -58 -38 -74" stroke="#181310" stroke-width="20" stroke-linecap="round" fill="none"/>
+    </g>
+  </g>
+
+  <!-- Rim light on the crowd -->
+  <g stroke="#f4a259" stroke-width="3" fill="none" opacity="0.35">
+    <path d="M167 762 q-8 46 -4 90"/>
+    <path d="M420 764 q-8 50 -2 96"/>
+    <path d="M694 762 q-8 52 0 100"/>
+    <path d="M1102 762 q-6 50 0 96"/>
+  </g>
+
+  <!-- Stage edge lights -->
+  <g fill="#ffd9a8">
+    <circle cx="230" cy="594" r="5"/>
+    <circle cx="330" cy="594" r="5"/>
+    <circle cx="430" cy="594" r="5"/>
+    <circle cx="530" cy="594" r="5"/>
+    <circle cx="630" cy="594" r="5"/>
+    <circle cx="730" cy="594" r="5"/>
+    <circle cx="830" cy="594" r="5"/>
+    <circle cx="930" cy="594" r="5"/>
+  </g>
+
+  <rect width="1200" height="900" filter="url(#e-grain)" opacity="0.18"/>
+</svg>

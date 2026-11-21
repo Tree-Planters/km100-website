@@ -1,0 +1,225 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" aria-labelledby="cl-activities-title">
+  <title id="cl-activities-title">Students gathered around organization booths in the campus courtyard</title>
+  <defs>
+    <linearGradient id="a-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fdf9f1"/>
+      <stop offset="1" stop-color="#f7e8d3"/>
+    </linearGradient>
+    <linearGradient id="a-ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eee2cc"/>
+      <stop offset="1" stop-color="#e3d3b6"/>
+    </linearGradient>
+    <linearGradient id="a-wall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4e9d7"/>
+      <stop offset="1" stop-color="#e9dbc4"/>
+    </linearGradient>
+    <radialGradient id="a-glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffd7a6" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#ffd7a6" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="a-grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="900" fill="url(#a-sky)"/>
+  <circle cx="1005" cy="185" r="265" fill="url(#a-glow)"/>
+  <circle cx="1005" cy="185" r="64" fill="#f8c896"/>
+  <g fill="#ffffff" opacity="0.55">
+    <ellipse cx="240" cy="165" rx="92" ry="24"/>
+    <ellipse cx="300" cy="152" rx="58" ry="20"/>
+    <ellipse cx="820" cy="105" rx="76" ry="19"/>
+  </g>
+
+  <!-- Distant treeline -->
+  <path d="M0 468 Q60 428 120 460 T250 448 Q320 416 390 454 T520 450 Q600 422 670 456 T800 448 Q890 418 960 454 T1100 446 Q1160 428 1200 456 V580 H0 Z" fill="#dbcaae" opacity="0.85"/>
+
+  <!-- Main building -->
+  <g>
+    <rect x="108" y="248" width="524" height="292" fill="url(#a-wall)"/>
+    <rect x="92" y="224" width="556" height="30" rx="4" fill="#d7c3a7"/>
+    <rect x="108" y="248" width="524" height="12" fill="#e6d8c2"/>
+    <rect x="126" y="474" width="488" height="10" fill="#dfcfb8"/>
+
+    <g fill="#cbb79c">
+      <rect x="146" y="286" width="62" height="50" rx="3"/>
+      <rect x="232" y="286" width="62" height="50" rx="3"/>
+      <rect x="318" y="286" width="62" height="50" rx="3"/>
+      <rect x="404" y="286" width="62" height="50" rx="3"/>
+      <rect x="490" y="286" width="62" height="50" rx="3"/>
+      <rect x="146" y="366" width="62" height="50" rx="3"/>
+      <rect x="232" y="366" width="62" height="50" rx="3"/>
+      <rect x="404" y="366" width="62" height="50" rx="3"/>
+      <rect x="490" y="366" width="62" height="50" rx="3"/>
+    </g>
+    <g fill="#e7d9c3">
+      <rect x="152" y="292" width="50" height="16" rx="2"/>
+      <rect x="238" y="292" width="50" height="16" rx="2"/>
+      <rect x="324" y="292" width="50" height="16" rx="2"/>
+      <rect x="410" y="292" width="50" height="16" rx="2"/>
+      <rect x="496" y="292" width="50" height="16" rx="2"/>
+    </g>
+
+    <!-- Door and banner -->
+    <rect x="318" y="396" width="104" height="144" rx="4" fill="#b7a184"/>
+    <rect x="330" y="410" width="80" height="120" rx="2" fill="#cbb79c"/>
+    <line x1="370" y1="410" x2="370" y2="530" stroke="#b7a184" stroke-width="3"/>
+    <rect x="440" y="410" width="112" height="46" rx="3" fill="#f47721"/>
+    <rect x="452" y="422" width="88" height="7" rx="3" fill="#fff4e8" opacity="0.9"/>
+    <rect x="452" y="436" width="56" height="7" rx="3" fill="#fff4e8" opacity="0.7"/>
+  </g>
+
+  <!-- Right annex -->
+  <g>
+    <rect x="762" y="312" width="330" height="228" fill="#efe2cf"/>
+    <rect x="748" y="292" width="358" height="24" rx="4" fill="#d7c3a7"/>
+    <g fill="#cbb79c">
+      <rect x="796" y="348" width="58" height="46" rx="3"/>
+      <rect x="880" y="348" width="58" height="46" rx="3"/>
+      <rect x="964" y="348" width="58" height="46" rx="3"/>
+      <rect x="796" y="424" width="58" height="46" rx="3"/>
+      <rect x="964" y="424" width="58" height="46" rx="3"/>
+    </g>
+    <rect x="880" y="424" width="58" height="116" rx="3" fill="#b7a184"/>
+  </g>
+
+  <!-- Trees -->
+  <g>
+    <rect x="700" y="400" width="16" height="104" rx="6" fill="#a98f6d"/>
+    <circle cx="676" cy="380" r="46" fill="#a9b592"/>
+    <circle cx="736" cy="386" r="40" fill="#9dab86"/>
+    <circle cx="708" cy="340" r="50" fill="#b3bf9c"/>
+    <rect x="1144" y="418" width="14" height="86" rx="6" fill="#a98f6d"/>
+    <circle cx="1150" cy="392" r="46" fill="#a9b592"/>
+    <circle cx="1116" cy="414" r="33" fill="#b3bf9c"/>
+  </g>
+
+  <!-- Ground -->
+  <rect y="508" width="1200" height="392" fill="url(#a-ground)"/>
+  <ellipse cx="600" cy="760" rx="560" ry="180" fill="#f2e7d5" opacity="0.65"/>
+
+  <!-- Planters -->
+  <g>
+    <rect x="60" y="700" width="120" height="46" rx="6" fill="#c9a87d"/>
+    <path d="M78 700 q6 -34 24 -48 q4 24 -6 48Z" fill="#8e9d7d"/>
+    <path d="M104 700 q14 -40 36 -50 q-2 30 -22 50Z" fill="#a3b18f"/>
+    <path d="M92 700 q-4 -28 -22 -38 q0 22 10 38Z" fill="#7f8f70"/>
+    <rect x="1040" y="716" width="104" height="38" rx="6" fill="#c9a87d"/>
+    <path d="M1058 716 q8 -30 26 -42 q2 22 -10 42Z" fill="#8e9d7d"/>
+    <path d="M1084 716 q10 -34 30 -42 q-2 26 -18 42Z" fill="#a3b18f"/>
+  </g>
+
+  <!-- Bunting -->
+  <g>
+    <path d="M0 118 Q300 204 600 150 T1200 176" fill="none" stroke="#c3ad8e" stroke-width="3"/>
+    <path d="M110 140 L156 151 L131 202 Z" fill="#f47721"/>
+    <path d="M210 160 L256 171 L231 222 Z" fill="#3a332c"/>
+    <path d="M312 177 L358 186 L333 238 Z" fill="#f5efe3"/>
+    <path d="M430 172 L476 179 L451 230 Z" fill="#f47721"/>
+    <path d="M540 160 L586 165 L561 216 Z" fill="#3a332c"/>
+    <path d="M650 155 L696 160 L671 211 Z" fill="#f5efe3"/>
+    <path d="M758 160 L804 166 L779 217 Z" fill="#f47721"/>
+    <path d="M868 170 L914 176 L889 227 Z" fill="#3a332c"/>
+    <path d="M978 173 L1024 178 L999 229 Z" fill="#f5efe3"/>
+    <path d="M1088 175 L1134 180 L1109 231 Z" fill="#f47721"/>
+  </g>
+
+  <!-- Back student -->
+  <g transform="translate(575 430) scale(0.92)">
+    <ellipse cx="0" cy="248" rx="50" ry="11" fill="#c9b795" opacity="0.5"/>
+    <rect x="-24" y="160" width="20" height="84" rx="10" fill="#33302c"/>
+    <rect x="4" y="160" width="20" height="84" rx="10" fill="#33302c"/>
+    <rect x="-28" y="238" width="26" height="13" rx="6" fill="#211f1c"/>
+    <rect x="2" y="238" width="26" height="13" rx="6" fill="#211f1c"/>
+    <path d="M-34 96 q34 -16 68 0 l8 78 q-42 14 -84 0Z" fill="#7f9180"/>
+    <path d="M-34 102 q-14 34 -8 64" stroke="#7f9180" stroke-width="17" stroke-linecap="round" fill="none"/>
+    <path d="M34 102 q14 34 8 64" stroke="#7f9180" stroke-width="17" stroke-linecap="round" fill="none"/>
+    <circle cx="-43" cy="170" r="8" fill="#c98d63"/>
+    <circle cx="43" cy="170" r="8" fill="#c98d63"/>
+    <rect x="-9" y="76" width="18" height="20" rx="6" fill="#c98d63"/>
+    <circle cx="0" cy="56" r="28" fill="#dc9f70"/>
+    <path d="M-28 50 q2 -34 28 -34 q26 0 28 34 q-14 -12 -28 -12 q-14 0 -28 12Z" fill="#2b2622"/>
+  </g>
+
+  <!-- Front group: student in orange -->
+  <g transform="translate(505 468)">
+    <ellipse cx="0" cy="248" rx="52" ry="11" fill="#c9b795" opacity="0.55"/>
+    <rect x="-24" y="160" width="20" height="84" rx="10" fill="#2f3a44"/>
+    <rect x="4" y="160" width="20" height="84" rx="10" fill="#2f3a44"/>
+    <rect x="-28" y="238" width="26" height="13" rx="6" fill="#1f262c"/>
+    <rect x="2" y="238" width="26" height="13" rx="6" fill="#1f262c"/>
+    <path d="M-34 96 q34 -16 68 0 l8 78 q-42 14 -84 0Z" fill="#f47721"/>
+    <path d="M-34 102 q-14 34 -8 64" stroke="#f47721" stroke-width="17" stroke-linecap="round" fill="none"/>
+    <path d="M34 96 q16 -52 2 -78" stroke="#f47721" stroke-width="17" stroke-linecap="round" fill="none"/>
+    <circle cx="-43" cy="170" r="8" fill="#c98d63"/>
+    <circle cx="35" cy="14" r="9" fill="#e0a97a"/>
+    <rect x="-9" y="76" width="18" height="20" rx="6" fill="#c98d63"/>
+    <circle cx="0" cy="56" r="28" fill="#e0a97a"/>
+    <path d="M-28 48 q-2 -36 28 -36 q30 0 28 36 q-6 -14 -28 -14 q-22 0 -28 14Z" fill="#252525"/>
+    <path d="M-20 60 q4 -6 8 0 q6 -8 12 0" fill="none" stroke="#8a5a35" stroke-width="2.4" stroke-linecap="round"/>
+    <circle cx="-10" cy="66" r="2.4" fill="#7a4f30"/>
+    <circle cx="10" cy="66" r="2.4" fill="#7a4f30"/>
+  </g>
+
+  <!-- Front group: student in charcoal -->
+  <g transform="translate(630 478)">
+    <ellipse cx="0" cy="248" rx="52" ry="11" fill="#c9b795" opacity="0.55"/>
+    <rect x="-24" y="160" width="20" height="84" rx="10" fill="#8c9186"/>
+    <rect x="4" y="160" width="20" height="84" rx="10" fill="#8c9186"/>
+    <rect x="-28" y="238" width="26" height="13" rx="6" fill="#5f6459"/>
+    <rect x="2" y="238" width="26" height="13" rx="6" fill="#5f6459"/>
+    <path d="M-34 96 q34 -16 68 0 l8 78 q-42 14 -84 0Z" fill="#2f3430"/>
+    <path d="M-34 102 q-14 34 -8 64" stroke="#2f3430" stroke-width="17" stroke-linecap="round" fill="none"/>
+    <path d="M34 102 q14 34 8 64" stroke="#2f3430" stroke-width="17" stroke-linecap="round" fill="none"/>
+    <circle cx="-43" cy="170" r="8" fill="#a4693f"/>
+    <circle cx="43" cy="170" r="8" fill="#a4693f"/>
+    <path d="M-10 96 q10 34 0 70" stroke="#f47721" stroke-width="4" fill="none"/>
+    <rect x="-9" y="76" width="18" height="20" rx="6" fill="#a4693f"/>
+    <circle cx="0" cy="56" r="28" fill="#b97b4e"/>
+    <path d="M-28 50 q-2 -38 28 -38 q30 0 28 38 q-16 -16 -28 -16 q-12 0 -28 16Z" fill="#1f1c19"/>
+    <circle cx="0" cy="26" r="12" fill="#1f1c19"/>
+  </g>
+
+  <!-- Foreground: student walking left (back view) -->
+  <g transform="translate(132 612) scale(1.62)">
+    <ellipse cx="0" cy="250" rx="54" ry="12" fill="#c2ae8b" opacity="0.6"/>
+    <rect x="-26" y="164" width="22" height="82" rx="11" fill="#2b3138"/>
+    <rect x="4" y="164" width="22" height="82" rx="11" fill="#2b3138"/>
+    <path d="M-38 98 q38 -18 76 0 l10 88 q-48 16 -96 0Z" fill="#e9e1d2"/>
+    <rect x="-46" y="112" width="26" height="62" rx="10" fill="#d8cfbe"/>
+    <path d="M-30 104 q-52 30 -54 84" stroke="#e9e1d2" stroke-width="18" stroke-linecap="round" fill="none"/>
+    <path d="M34 104 q20 34 12 70" stroke="#e9e1d2" stroke-width="18" stroke-linecap="round" fill="none"/>
+    <circle cx="-86" cy="192" r="9" fill="#c98d63"/>
+    <rect x="28" y="150" width="34" height="76" rx="12" fill="#f47721"/>
+    <rect x="36" y="120" width="12" height="40" rx="6" fill="#d95f12"/>
+    <circle cx="0" cy="48" r="34" fill="#3a2a20"/>
+    <path d="M-34 48 q-4 -46 34 -46 q38 0 34 46 q-10 -22 -34 -22 q-24 0 -34 22Z" fill="#1e1a17"/>
+    <path d="M-30 188 q30 10 60 0" stroke="#d8cfbe" stroke-width="6" fill="none" opacity="0.6"/>
+  </g>
+
+  <!-- Foreground: student walking right (back view) -->
+  <g transform="translate(1088 626) scale(1.5)">
+    <ellipse cx="0" cy="250" rx="54" ry="12" fill="#c2ae8b" opacity="0.6"/>
+    <rect x="-26" y="164" width="22" height="82" rx="11" fill="#33372f"/>
+    <rect x="4" y="164" width="22" height="82" rx="11" fill="#33372f"/>
+    <path d="M-38 98 q38 -18 76 0 l10 88 q-48 16 -96 0Z" fill="#f47721"/>
+    <rect x="-52" y="120" width="30" height="66" rx="12" fill="#2f3430"/>
+    <path d="M-34 100 q-18 36 -10 72" stroke="#f47721" stroke-width="18" stroke-linecap="round" fill="none"/>
+    <path d="M34 100 q24 32 18 68" stroke="#f47721" stroke-width="18" stroke-linecap="round" fill="none"/>
+    <circle cx="54" cy="178" r="9" fill="#dc9f70"/>
+    <circle cx="0" cy="48" r="34" fill="#2b2622"/>
+    <path d="M-34 46 q-4 -44 34 -44 q38 0 34 44 q-12 -20 -34 -20 q-22 0 -34 20Z" fill="#171412"/>
+    <circle cx="0" cy="18" r="13" fill="#171412"/>
+  </g>
+
+  <!-- Grass tufts -->
+  <g stroke="#b7c2a0" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.9">
+    <path d="M250 800 q-4 -18 -14 -26"/>
+    <path d="M258 802 q2 -20 12 -28"/>
+    <path d="M900 812 q-4 -18 -14 -26"/>
+    <path d="M908 814 q2 -20 12 -28"/>
+  </g>
+
+  <rect width="1200" height="900" filter="url(#a-grain)" opacity="0.2"/>
+</svg>

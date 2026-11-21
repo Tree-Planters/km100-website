@@ -21,5 +21,12 @@ export const siteConfig = {
     phoneHref: "tel:+639670935811",
     email: "km100skillsandtrainingcenter@gmail.com",
     facebook: "https://www.facebook.com/profile.php?id=100090317439588",
+    address:
+      "KM Building, Jamoral Ville, Purok 13, Barangay Cogon, Bogo City, Cebu 6010",
+    hours: [
+      { days: "Monday – Friday", time: "8:00 AM – 5:00 PM" },
+      { days: "Saturday", time: "8:00 AM – 12:00 PM" },
+      { days: "Sunday", time: "Closed" },
+    ],
   },
 };
