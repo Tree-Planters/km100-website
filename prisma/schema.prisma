@@ -31,14 +31,28 @@ model PreRegistration {
 
   email      String
   mobile     String
-  address    String?
-  barangay   String?
+  address      String?
+  sitio        String?
+  barangay     String?
+  barangayCode String?
+  district     String?
   municipality String?
-  province   String?
+  cityCode     String?
+  province     String?
+  provinceCode String?
+  region       String?
+  regionCode   String?
 
-  highestAttainment String?
-  lastSchool        String?
-  yearGraduated     String?
+  isCurrentlyEnrolled String?
+  currentSchool       String?
+  currentGradeLevel   String?
+  currentProgram      String?
+  highestAttainment   String?
+  lastSchool          String?
+  yearGraduated       String?
+
+  acknowledgement Boolean @default(false)
+  consent         Boolean @default(false)
 
   // Program slug, e.g. "computer-engineering-technology".
   program String

@@ -2,11 +2,42 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/database";
 import { sendPreRegistrationEmails } from "@/lib/email";
 import { generateReferenceNumber } from "@/lib/utils";
-import { preRegistrationSchema } from "@/lib/validation";
+import { validatePreRegistration } from "@/lib/validation";
+
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const referenceNumber = searchParams.get("referenceNumber");
+
+  if (!referenceNumber) {
+    return NextResponse.json(
+      { message: "KM100 Pre-Registration API is operational." },
+      { status: 200 },
+    );
+  }
+
+  const registration = await prisma.preRegistration.findUnique({
+    where: { referenceNumber },
+    select: {
+      referenceNumber: true,
+      status: true,
+      program: true,
+      createdAt: true,
+    },
+  });
+
+  if (!registration) {
+    return NextResponse.json(
+      { error: "Pre-registration not found." },
+      { status: 404 },
+    );
+  }
+
+  return NextResponse.json(registration, { status: 200 });
+}
 
 export async function POST(request: Request) {
   const body = await request.json().catch(() => null);
-  const parsed = preRegistrationSchema.safeParse(body);
+  const parsed = validatePreRegistration(body);
 
   if (!parsed.success) {
     return NextResponse.json(
