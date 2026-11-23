@@ -191,38 +191,56 @@ export default function DashboardPage() {
   return (
     <div className="min-h-screen bg-km-warm-white/40 pb-16">
       {/* Top Header / Navigation */}
-      <header className="border-b border-km-charcoal/10 bg-white shadow-xs">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-4 py-4 sm:px-6">
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-km-orange text-white font-bold text-lg shadow-xs">
-              KM
-            </div>
+      <header className="border-b border-km-charcoal/10 bg-white/80 backdrop-blur-md">
+        <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6">
+          {/* Top Bar: Back to Home Page at the Upper Top Corner */}
+          <div className="flex items-center pb-3">
+            <Link
+              href="/"
+              className="group inline-flex items-center gap-2 rounded-full border border-km-charcoal/15 bg-white px-3.5 py-1.5 text-xs font-semibold text-km-charcoal shadow-xs transition-all duration-200 hover:-translate-x-0.5 hover:border-km-orange hover:bg-km-orange hover:text-white"
+            >
+              <svg
+                className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-x-0.5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                />
+              </svg>
+              <span>Back to Home</span>
+            </Link>
+          </div>
+
+          {/* Title Row with Export CSV on the right */}
+          <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="font-heading text-xl font-bold text-km-charcoal">
-                    Admin Portal
+                <h1 className="font-heading text-3xl font-bold text-km-charcoal sm:text-4xl">
+                  Admin Portal
                 </h1>
-                
               </div>
-              <p className="text-xs text-km-charcoal/70">
+              <p className="mt-1 text-xs text-km-charcoal/70">
                 Pre-Registration Submissions & Student Inquiries Overview
               </p>
             </div>
-          </div>
 
-          <div className="flex flex-wrap items-center gap-3">
-            
-
-            <button
-              onClick={exportToCSV}
-              disabled={submissions.length === 0}
-              className="inline-flex items-center gap-1.5 rounded-md border border-km-charcoal/20 bg-white px-3 py-1.5 text-xs font-semibold text-km-charcoal hover:bg-km-warm-white transition-colors disabled:opacity-50"
-            >
-              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-              </svg>
-              <span>Export CSV</span>
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={exportToCSV}
+                disabled={submissions.length === 0}
+                className="inline-flex items-center gap-1.5 rounded-md border border-km-charcoal/20 bg-white px-3.5 py-2 text-xs font-semibold text-km-charcoal shadow-xs transition-colors hover:border-km-orange hover:text-km-orange hover:bg-km-warm-white disabled:opacity-50"
+              >
+                <svg className="h-4 w-4 text-km-charcoal/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                <span>Export CSV</span>
+              </button>
+            </div>
           </div>
         </div>
       </header>
