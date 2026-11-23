@@ -62,13 +62,15 @@ export default async function ProgramPage({ params }: ProgramPageProps) {
         <div className="mt-8 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <div>
             <h2 className="font-heading text-2xl leading-snug sm:text-3xl">
-              {program.tagline}
+              {program.tagline ?? program.shortDescription}
             </h2>
-            <div className="mt-6 space-y-4 leading-relaxed text-km-charcoal/70">
-              {program.overview.map((paragraph) => (
-                <p key={paragraph.slice(0, 40)}>{paragraph}</p>
-              ))}
-            </div>
+            {program.overview && program.overview.length > 0 ? (
+              <div className="mt-6 space-y-4 leading-relaxed text-km-charcoal/70">
+                {program.overview.map((paragraph) => (
+                  <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+                ))}
+              </div>
+            ) : null}
           </div>
 
           <aside className="h-fit lg:sticky lg:top-24">
@@ -111,6 +113,7 @@ export default async function ProgramPage({ params }: ProgramPageProps) {
       </Section>
 
       {/* What the field covers */}
+      {program.scope && program.scope.length > 0 ? (
       <Section className="bg-km-warm-white">
         <div className="max-w-2xl">
           <p className="text-xs font-semibold tracking-[0.18em] text-km-orange uppercase">
@@ -140,8 +143,10 @@ export default async function ProgramPage({ params }: ProgramPageProps) {
           ))}
         </div>
       </Section>
+      ) : null}
 
       {/* Where it can lead */}
+      {program.careers && program.careers.length > 0 ? (
       <Section>
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <div>
@@ -173,6 +178,7 @@ export default async function ProgramPage({ params }: ProgramPageProps) {
           </div>
         </div>
       </Section>
+      ) : null}
 
       {/* CTA */}
       <Section className="bg-km-charcoal">
@@ -212,7 +218,7 @@ export default async function ProgramPage({ params }: ProgramPageProps) {
             href="/programs"
             className="text-sm font-semibold text-km-orange hover:underline"
           >
-            View all five
+            View all programs
           </Link>
         </div>
 

@@ -228,16 +228,43 @@ export const programs: Program[] = [
       "Housekeeping and accommodation",
     ],
   },
-  // Added by the team along with their posters. Per-program copy (tagline,
-  // overview, scope, careers) is still to be written with KM100.
   {
     slug: "restaurant-operations-technology",
     name: "Diploma in Restaurant Operations Technology",
     shortName: "Restaurant Operations Technology",
     shortDescription:
       "Food and beverage management, dining service, and restaurant operations.",
+    tagline: "Service, timing and cost — a restaurant run as a business.",
     image: "/programs/restaurant-operations-technology.jpg",
     imageAlt: "KM100 program poster for Restaurant Operations Technology",
+    overview: [
+      "Restaurant Operations Technology looks at the restaurant as a whole: the dining room and the kitchen behind it, the order in which a service runs, and the money and stock that decide whether a good night of service is also a viable one. It brings together guest service, food and beverage management, and the routines that keep a floor working across shifts.",
+      "It is offered at KM100 as a three-year Diploma Program at PQF Level 5. It sits beside Culinary Arts Technology, which covers the kitchen itself, and Hospitality Technology, which covers service standards across hotels and resorts; this program is the operating side where those meet.",
+    ],
+    scope: [
+      {
+        title: "Dining service and floor flow",
+        body: "How a service period is planned and paced — covers, table timing, and keeping the dining room and kitchen working to the same rhythm.",
+      },
+      {
+        title: "Food and beverage cost control",
+        body: "Portions, waste, pricing and the records that show where a restaurant's money is actually going.",
+      },
+      {
+        title: "Menu and stock management",
+        body: "Planning what is sold against what is bought, stored and used, and ordering suppliers to match.",
+      },
+      {
+        title: "Supervision and scheduling",
+        body: "Rosters, briefings and holding a standard steady across staff, shifts and busy periods.",
+      },
+    ],
+    careers: [
+      "Restaurant supervisory roles",
+      "Food and beverage operations",
+      "Dining service and front-of-house coordination",
+      "Restaurant administration and stock control",
+    ],
   },
   {
     slug: "culinary-arts-technology",
@@ -245,8 +272,37 @@ export const programs: Program[] = [
     shortName: "Culinary Arts Technology",
     shortDescription:
       "Culinary techniques, commercial kitchen operations, and gastronomy.",
+    tagline: "Technique first: blade, heat and timing, repeated until it holds.",
     image: "/programs/culinary-arts-technology.jpg",
     imageAlt: "KM100 program poster for Culinary Arts Technology",
+    overview: [
+      "Culinary Arts Technology is the cooking side of the industry: preparation and knife work, the cooking methods that build a dish, seasoning and balance, and the kitchen routines that let all of it be repeated at volume. It treats cooking as a craft with a method behind it, and as work that has to be safe, consistent and quick at the same time.",
+      "It is offered at KM100 as a three-year Diploma Program at PQF Level 5. It pairs with Restaurant Operations Technology — one program works the kitchen, the other runs the floor around it — and with Hospitality Technology, where kitchens serve hotels and resorts.",
+    ],
+    scope: [
+      {
+        title: "Preparation and knife work",
+        body: "Handling, cutting and portioning ingredients accurately, and setting up a station before service rather than during it.",
+      },
+      {
+        title: "Cooking methods",
+        body: "The dry and moist methods that carry most dishes, and how stocks, sauces and seasoning are built and corrected.",
+      },
+      {
+        title: "Kitchen hygiene and safety",
+        body: "Food handling, storage temperatures, cleaning routines and the safe use of a commercial kitchen.",
+      },
+      {
+        title: "Commercial kitchen workflow",
+        body: "Working a station, timing several dishes to one service, and keeping a plate consistent on the busiest ticket.",
+      },
+    ],
+    careers: [
+      "Commis and station cook roles",
+      "Kitchen work in hotels and resorts",
+      "Catering and events food preparation",
+      "Small food business kitchen operations",
+    ],
   },
 ];
 

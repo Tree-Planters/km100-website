@@ -30,12 +30,12 @@ export function ProgramsPreview() {
             Academic Programs
           </p>
           <h2 className="mt-3 font-heading text-3xl sm:text-4xl">
-            Five programs. Three years.
+            Seven programs. Three years.
            
           </h2>
           <p className="mt-4 text-[15px] leading-relaxed text-km-charcoal/55 sm:text-base">
-            Five TESDA-registered, PQF Level 5 diploma tracks — same three-year
-            qualification, five different technical directions.
+            PQF Level 5 diploma tracks — the same three-year qualification,
+            seven different technical directions.
           </p>
         </div>
         <ButtonLink
@@ -101,7 +101,8 @@ export function ProgramsPreview() {
       </ul>
 
       <p className="mt-8 border-t border-km-charcoal/10 pt-6 text-sm text-km-charcoal/55">
-        All five programs are TESDA-registered and PQF Level 5.
+        TESDA registration is held per program; confirm the current status of
+        a program with KM100 before enrolment.
       </p>
     </Section>
   );

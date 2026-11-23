@@ -7,12 +7,11 @@ import { programs } from "@/lib/programs";
 
 export const metadata: Metadata = {
   title: "Academic Programs",
-  description:
-    "Five three-year Diploma Programs at PQF Level 5: Computer, Electronics and Electrical Engineering Technology, Tourism Technology and Hospitality Technology.",
+  description: `${programs.length} three-year Diploma Programs at PQF Level 5, offered in Bogo City, Cebu.`,
 };
 
 const atAGlance = [
-  { value: "05", label: "Diploma Programs" },
+  { value: String(programs.length).padStart(2, "0"), label: "Diploma Programs" },
   { value: "03", label: "Years of study" },
   { value: "PQF 5", label: "Qualification level" },
   { value: "Bogo", label: "City, Cebu" },
@@ -22,7 +21,7 @@ const steps = [
   {
     number: "01",
     title: "Choose a program",
-    body: "Read through the five diploma programs and note the direction that fits you best. You can change your choice later during the official admission process.",
+    body: "Read through the diploma programs and note the direction that fits you best. You can change your choice later during the official admission process.",
   },
   {
     number: "02",
@@ -63,7 +62,7 @@ export default function ProgramsPage() {
     <>
       <PageHeader
         title="Academic Programs"
-        description="Five three-year Diploma Programs at PQF Level 5, offered in Bogo City, Cebu."
+        description={`${programs.length} three-year Diploma Programs at PQF Level 5, offered in Bogo City, Cebu.`}
       />
 
       {/* Introduction */}
@@ -71,10 +70,10 @@ export default function ProgramsPage() {
         <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div>
             <p className="text-xs font-semibold tracking-[0.18em] text-km-orange uppercase">
-              Five programs
+              Diploma programs
             </p>
             <h2 className="mt-3 font-heading text-3xl leading-snug sm:text-4xl">
-              Five programs. Three years. A future full of possibilities.
+              Seven programs. Three years. A future full of possibilities.
             </h2>
             <div className="mt-6 space-y-4 leading-relaxed text-km-charcoal/70">
               <p>
@@ -83,10 +82,10 @@ export default function ProgramsPage() {
                 Framework.
               </p>
               <p>
-                The five programs cover different technical directions, from
-                computer and electronics systems to tourism and hospitality, so
-                that learners in Northern Cebu can choose the field they intend
-                to work in.
+                The programs cover different technical directions, from computer
+                and electronics systems to tourism, hospitality and the kitchen,
+                so that learners in Northern Cebu can choose the field they
+                intend to work in.
               </p>
             </div>
           </div>
@@ -99,7 +98,7 @@ export default function ProgramsPage() {
         </div>
       </Section>
 
-      {/* The five programs */}
+      {/* The programs */}
       <Section className="bg-km-warm-white">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
@@ -111,7 +110,7 @@ export default function ProgramsPage() {
             </h2>
           </div>
           <p className="text-sm text-km-charcoal/60 sm:text-right">
-            All five are 3-Year Diploma Programs
+            All seven are 3-Year Diploma Programs
             <br className="hidden sm:block" /> at PQF Level 5.
           </p>
         </div>
