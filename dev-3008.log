@@ -1,0 +1,58 @@
+   ▲ Next.js 15.5.29
+   - Local:        http://localhost:3008
+   - Network:      http://192.168.56.1:3008
+   - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 2.3s
+ ○ Compiling /gallery ...
+ ✓ Compiled /gallery in 1677ms (650 modules)
+ GET /gallery 200 in 2558ms
+ GET /gallery 200 in 204ms
+ GET /gallery 200 in 156ms
+ GET /gallery 200 in 164ms
+ GET /gallery 200 in 108ms
+ GET /gallery 200 in 203ms
+ ✓ Compiled /icon.png in 371ms (430 modules)
+ GET /icon.png?98f0a88ef0398a7e 200 in 653ms
+ GET /gallery 200 in 487ms
+ ✓ Compiled in 1700ms (664 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /gallery 200 in 901ms
+ GET /gallery 200 in 919ms
+ ✓ Compiled /icon.png in 174ms (430 modules)
+ GET /icon.png?98f0a88ef0398a7e 200 in 405ms
+ GET /gallery 200 in 459ms
+ ✓ Compiled in 547ms (681 modules)
+ GET /gallery 200 in 342ms
+ GET /gallery 200 in 346ms
+ GET /gallery 200 in 92ms
+ ✓ Compiled /_not-found in 423ms (672 modules)
+ GET /icon.png?98f0a88ef0398a7e 200 in 51ms
+ GET /icon.png?98f0a88ef0398a7e 404 in 803ms
+ ✓ Compiled in 703ms (686 modules)
+ GET /gallery 200 in 369ms
+ GET /gallery 200 in 359ms
+ GET /gallery 200 in 94ms
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 3.4s (1029 modules)
+ GET /gallery 200 in 2254ms
+ GET /gallery 200 in 2257ms
+ GET /icon.png?98f0a88ef0398a7e 404 in 5010ms
+ GET /gallery 200 in 474ms
+ GET /icon.png?98f0a88ef0398a7e 200 in 292ms
+ GET /gallery 200 in 550ms
+ GET /gallery 200 in 555ms
+ GET /gallery 200 in 387ms
+ GET /icon.png?98f0a88ef0398a7e 200 in 26ms
+ GET /icon.png?98f0a88ef0398a7e 200 in 14ms
+ ✓ Compiled in 708ms (1043 modules)
+ GET /gallery 200 in 386ms
+ GET /gallery 200 in 385ms
+ GET /gallery 200 in 80ms
+ GET /gallery 200 in 304ms
+ ✓ Compiled in 636ms (1043 modules)
+ GET /gallery 200 in 308ms
+ GET /gallery 200 in 310ms
+ GET /gallery 200 in 72ms
