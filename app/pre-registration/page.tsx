@@ -583,7 +583,7 @@ export default function PreRegistrationPage() {
                       <div>
                         <label className="block text-xs font-medium text-km-charcoal/80">
                           Region <span className="text-red-500">*</span>
-                          {loadingRegions && <span className="ml-1 text-km-orange">(Loading...)</span>}
+                       
                         </label>
                         <select
                           value={selectedRegionCode}
@@ -614,7 +614,6 @@ export default function PreRegistrationPage() {
                       <div>
                         <label className="block text-xs font-medium text-km-charcoal/80">
                           Province <span className="text-red-500">*</span>
-                          {loadingProvinces && <span className="ml-1 text-km-orange">(Loading...)</span>}
                         </label>
                         <select
                           value={selectedProvinceCode}
@@ -649,7 +648,7 @@ export default function PreRegistrationPage() {
                       <div>
                         <label className="block text-xs font-medium text-km-charcoal/80">
                           City / Municipality <span className="text-red-500">*</span>
-                          {loadingCities && <span className="ml-1 text-km-orange">(Loading...)</span>}
+                        
                         </label>
                         <select
                           value={selectedCityCode}
@@ -713,7 +712,6 @@ export default function PreRegistrationPage() {
                       <div>
                         <label className="block text-xs font-medium text-km-charcoal/80">
                           Barangay <span className="text-red-500">*</span>
-                          {loadingBarangays && <span className="ml-1 text-km-orange">(Loading...)</span>}
                         </label>
                         <select
                           value={selectedBarangayCode}
