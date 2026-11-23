@@ -27,6 +27,31 @@ export function SiteHeader() {
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
+  // On /dashboard, display only the logo and KM100 Skills and Training Center, Inc. (no announcement bar or nav items)
+  if (pathname.startsWith("/dashboard")) {
+    return (
+      <header className="sticky top-0 z-50 bg-white/95 shadow-[0_1px_0_rgba(37,37,37,0.08)] backdrop-blur-md">
+        <div className="mx-auto flex h-16 w-full max-w-7xl items-center px-4 sm:px-6 lg:h-[72px]">
+          <Link href="/" className="flex shrink-0 items-center gap-2 sm:gap-2.5">
+            <img
+              src="/logo/km100_logo-transparent.png"
+              alt="KM100 Skills and Training Center, Inc. logo"
+              className="h-11 w-11 object-contain transition-transform duration-300 hover:scale-105 xl:h-12 xl:w-12"
+            />
+            <span className="flex flex-col leading-none">
+              <span className="font-brand text-[20px] font-extrabold tracking-tight text-km-charcoal sm:text-[24px]">
+                <span className="text-km-orange">KM</span>100
+              </span>
+              <span className="mt-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-km-charcoal/70">
+                Skills and Training Center, Inc.
+              </span>
+            </span>
+          </Link>
+        </div>
+      </header>
+    );
+  }
+
   return (
     <header className="sticky top-0 z-50 bg-white/90 shadow-[0_1px_0_rgba(37,37,37,0.08)] backdrop-blur-md">
       <AnnouncementBar />

@@ -200,11 +200,9 @@ export default function DashboardPage() {
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="font-heading text-xl font-bold text-km-charcoal">
-                  KM100 STC Admin Portal
+                    Admin Portal
                 </h1>
-                <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-emerald-700 border border-emerald-200">
-                  Live
-                </span>
+                
               </div>
               <p className="text-xs text-km-charcoal/70">
                 Pre-Registration Submissions & Student Inquiries Overview
@@ -213,16 +211,7 @@ export default function DashboardPage() {
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
-            <Link
-              href="/pre-registration"
-              target="_blank"
-              className="inline-flex items-center gap-1.5 rounded-md border border-km-charcoal/20 bg-white px-3 py-1.5 text-xs font-semibold text-km-charcoal hover:bg-km-warm-white transition-colors"
-            >
-              <span>Pre-Registration Form</span>
-              <svg className="h-3.5 w-3.5 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
-            </Link>
+            
 
             <button
               onClick={exportToCSV}
@@ -233,17 +222,6 @@ export default function DashboardPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
               <span>Export CSV</span>
-            </button>
-
-            <button
-              onClick={fetchSubmissions}
-              disabled={loading}
-              className="inline-flex items-center gap-1.5 rounded-md bg-km-orange px-3.5 py-1.5 text-xs font-semibold text-white shadow-xs hover:bg-km-orange/90 transition-colors disabled:opacity-60"
-            >
-              <svg className={cn("h-3.5 w-3.5", loading && "animate-spin")} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-              </svg>
-              <span>Refresh</span>
             </button>
           </div>
         </div>
@@ -283,7 +261,7 @@ export default function DashboardPage() {
               <span className="font-heading text-3xl font-bold text-km-charcoal">
                 {stats.total}
               </span>
-              <span className="ml-2 text-xs text-km-charcoal/60">students in database</span>
+              <span className="ml-2 text-xs text-km-charcoal/60">Students</span>
             </div>
           </div>
 
@@ -400,7 +378,7 @@ export default function DashboardPage() {
                   <th className="py-3.5 px-4">Ref Number</th>
                   <th className="py-3.5 px-4">Applicant Name</th>
                   <th className="py-3.5 px-4">Program Applied</th>
-                  <th className="py-3.5 px-4">Contact & Location</th>
+                  <th className="py-3.5 px-4">Email</th>
                   <th className="py-3.5 px-4">Status</th>
                   <th className="py-3.5 px-4">Submitted</th>
                   <th className="py-3.5 px-4 text-right">Actions</th>
@@ -454,9 +432,7 @@ export default function DashboardPage() {
                             {item.lastName}, {item.firstName} {item.middleName || ""}{" "}
                             {item.suffix || ""}
                           </div>
-                          <div className="text-[11px] text-km-charcoal/60">
-                            {item.civilStatus || "Not specified"}
-                          </div>
+                           
                         </td>
 
                         {/* Program */}
@@ -464,17 +440,13 @@ export default function DashboardPage() {
                           <span className="inline-block max-w-[220px] truncate font-medium text-km-charcoal" title={progObj?.name || item.program}>
                             {progObj?.name || item.program}
                           </span>
-                          <span className="block text-[11px] text-km-charcoal/60">
-                            3-Year Diploma · Level 5
-                          </span>
+
                         </td>
 
                         {/* Contact & Location */}
                         <td className="py-3 px-4">
                           <div className="font-medium text-km-charcoal">{item.email}</div>
-                          <div className="text-[11px] text-km-charcoal/70">
-                            {item.mobile} • {item.municipality || ""}, {item.province || ""}
-                          </div>
+                           
                         </td>
 
                         {/* Status Badge */}
