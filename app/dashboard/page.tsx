@@ -299,7 +299,7 @@ export default function DashboardPage() {
   const [selectedProgram, setSelectedProgram] = useState("ALL");
   const [selectedStatus, setSelectedStatus] = useState("ALL");
 
-  // Day filter (calendar)
+  // Day filter (calendar) - defaults to today once the client mounts.
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [calendarMonth, setCalendarMonth] = useState(() => monthStart(new Date()));
@@ -332,6 +332,14 @@ export default function DashboardPage() {
 
   useEffect(() => {
     fetchSubmissions();
+  }, []);
+
+  // Default the day filter to today. Set after mount so the prerendered HTML
+  // and the first client render match (no hydration warning).
+  useEffect(() => {
+    const now = new Date();
+    setSelectedDate(toDateKey(now));
+    setCalendarMonth(monthStart(now));
   }, []);
 
   // Any filter change starts the list from page one.
