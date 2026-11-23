@@ -392,20 +392,4 @@ export const galleryPhotos: GalleryPhoto[] = [
     category: "events",
     date: "October 2026",
   },
-  {
-    id: "foundation-day",
-    src: "/images/gallery/foundation-day.jpg",
-    alt: "Students performing on the outdoor stage during the foundation day programme",
-    caption: "Foundation Day programme.",
-    category: "events",
-    date: "February 2026",
-  },
-  {
-    id: "community-clinic",
-    src: "/images/gallery/community-clinic.jpg",
-    alt: "Students repairing appliances at a community skills clinic under a canopy",
-    caption: "Skills clinic, Barangay Cogon.",
-    category: "community",
-    date: "November 2025",
-  },
 ];
