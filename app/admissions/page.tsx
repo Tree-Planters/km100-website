@@ -214,7 +214,7 @@ export default function AdmissionsPage() {
               className="pointer-events-none absolute inset-x-0 top-0 h-16 w-full"
             >
               <path
-                d="M0 32 Q62 6 125 32 T250 32 T375 32 T500 32 T625 32 T750 32 T875 32 T1000 32"
+                d="M0 32 Q65.4 6 130.8 32 T261.6 32 T392.4 32 T523.2 32 T654 32 T784.8 32"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth={1.5}

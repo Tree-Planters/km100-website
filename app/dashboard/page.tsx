@@ -424,11 +424,12 @@ export default function DashboardPage() {
   const pageList = buildPageList(safePage, totalPages);
   const todayKey = toDateKey(new Date());
 
+  // Today's date is the default day view, so it does not count as a filter.
   const hasActiveFilters =
     searchQuery.trim() !== "" ||
     selectedProgram !== "ALL" ||
     selectedStatus !== "ALL" ||
-    selectedDate !== null;
+    (selectedDate !== null && selectedDate !== todayKey);
 
   function stepDate(delta: number) {
     setSelectedDate((current) => {
