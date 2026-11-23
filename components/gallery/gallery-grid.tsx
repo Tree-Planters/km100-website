@@ -13,6 +13,22 @@ type Filter = GalleryCategorySlug | "all";
 /** Photographs per page. Change this one number to show more or fewer. */
 const PAGE_SIZE = 6;
 
+/**
+ * Bento frame. One fixed arrangement of six cells, applied to the same slot on
+ * every page so each page has an identical shape: two large photographs (two
+ * columns by two rows) with two smaller ones stacked beside each. Every cell
+ * lands close to 3:2 — the shape most of the photographs were taken in — so a
+ * photo fills its cell without slicing anyone's head off.
+ */
+const bentoFrame = [
+  "row-span-2 sm:col-span-2 sm:row-span-2",
+  "sm:col-span-1",
+  "sm:col-span-1",
+  "row-span-2 sm:col-span-2 sm:row-span-2",
+  "sm:col-span-1",
+  "sm:col-span-1",
+];
+
 const filters: { value: Filter; label: string }[] = [
   { value: "all", label: "All photographs" },
   ...galleryCategories.map((category) => ({
@@ -154,29 +170,39 @@ export function GalleryGrid() {
         </div>
       </div>
 
-      {/* Photographs */}
-      <div className="mt-9 columns-1 gap-4 sm:mt-10 sm:columns-2 sm:gap-5 lg:columns-3 lg:gap-6">
+      {/* Photographs: one bento frame per page */}
+      <div className="mt-9 grid auto-rows-[150px] grid-cols-1 gap-3 sm:mt-10 sm:auto-rows-[175px] sm:grid-cols-2 sm:gap-4 lg:auto-rows-[240px] lg:grid-cols-3 lg:gap-5">
         {paged.map((item, index) => (
-          <figure key={item.id} className="mb-4 break-inside-avoid sm:mb-5 lg:mb-6">
+          <figure
+            key={item.id}
+            className={cn(
+              "group relative overflow-hidden border border-km-charcoal/10 bg-km-warm-white transition-colors hover:border-km-charcoal/25",
+              bentoFrame[index % bentoFrame.length],
+            )}
+          >
             <button
               type="button"
               onClick={() => setOpenIndex(offset + index)}
               aria-label={`View ${item.caption} full screen`}
-              className="group block w-full cursor-zoom-in overflow-hidden bg-km-warm-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-km-orange"
+              className="block h-full w-full cursor-zoom-in overflow-hidden focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-km-orange"
             >
               <img
                 src={item.src}
                 alt={item.alt}
                 loading="lazy"
                 decoding="async"
-                className="block h-auto w-full transition-opacity duration-300 group-hover:opacity-90"
+                className="h-full w-full object-cover object-[center_25%] transition-opacity duration-300 group-hover:opacity-90"
+              />
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/75 via-black/35 to-transparent"
               />
             </button>
-            <figcaption className="mt-2.5 flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-              <span className="text-[13px] leading-snug text-km-charcoal/70">
+            <figcaption className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between gap-x-3 p-3 sm:p-3.5">
+              <span className="line-clamp-2 text-[12px] leading-snug text-white/95 sm:text-[12.5px]">
                 {item.caption}
               </span>
-              <span className="text-[9.5px] font-semibold uppercase tracking-[0.16em] text-km-charcoal/30 lining-nums">
+              <span className="shrink-0 text-[9px] font-semibold uppercase tracking-[0.16em] text-white/60 lining-nums">
                 {item.date}
               </span>
             </figcaption>
@@ -188,7 +214,7 @@ export function GalleryGrid() {
       {pageCount > 1 ? (
         <nav
           aria-label="Gallery pages"
-          className="mt-10 flex items-center justify-between gap-3 border-t border-km-charcoal/15 pt-4 sm:mt-12 sm:pt-5"
+          className="mt-10 flex items-center justify-between gap-2 border-t border-km-charcoal/15 pt-4 sm:mt-12 sm:gap-3 sm:pt-5"
         >
           <button
             type="button"
@@ -196,14 +222,23 @@ export function GalleryGrid() {
             disabled={current === 1}
             className={cn(
               stepButtonClass,
-              "text-km-charcoal/60 hover:text-km-charcoal disabled:pointer-events-none disabled:text-km-charcoal/20",
+              "shrink-0 text-km-charcoal/60 hover:text-km-charcoal disabled:pointer-events-none disabled:text-km-charcoal/20",
             )}
           >
             <Chevron className="h-3.5 w-3.5" />
             Previous
           </button>
 
-          <ul className="flex items-center gap-1">
+          {/* Phones: a single indicator instead of the number strip. */}
+          <p
+            aria-live="polite"
+            className="text-[10px] font-semibold uppercase tracking-[0.16em] text-km-charcoal/55 lining-nums tabular-nums sm:hidden"
+          >
+            Page {String(current).padStart(2, "0")} /{" "}
+            {String(pageCount).padStart(2, "0")}
+          </p>
+
+          <ul className="hidden min-w-0 flex-1 items-center justify-center gap-1 overflow-x-auto sm:flex">
             {Array.from({ length: pageCount }, (_, i) => i + 1).map((number) => {
               const selected = number === current;
               return (
@@ -233,7 +268,7 @@ export function GalleryGrid() {
             disabled={current === pageCount}
             className={cn(
               stepButtonClass,
-              "text-km-charcoal/60 hover:text-km-charcoal disabled:pointer-events-none disabled:text-km-charcoal/20",
+              "shrink-0 text-km-charcoal/60 hover:text-km-charcoal disabled:pointer-events-none disabled:text-km-charcoal/20",
             )}
           >
             Next
