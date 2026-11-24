@@ -13,9 +13,9 @@ export function AboutPreview() {
       <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
         <div className="order-2 lg:order-1">
           <img
-            src="/images/km100-facade.webp"
+            src="\gallery\ceremony-ribbon-cutting-02.jpg"
             alt="KM100 Skills and Training Center campus"
-            className="aspect-4/3 w-full rounded-2xl object-cover object-center"
+            className="aspect-5/3 w-full rounded-2xl object-cover object-center"
           />
         </div>
 

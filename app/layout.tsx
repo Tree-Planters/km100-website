@@ -111,7 +111,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className="flex min-h-screen flex-col bg-white font-body text-km-charcoal"
+        className="flex min-h-dvh flex-col overflow-x-clip bg-white font-body text-km-charcoal"
         suppressHydrationWarning
       >
         <SiteHeader />

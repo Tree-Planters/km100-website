@@ -32,6 +32,7 @@ export default function PrivacyPolicyPage() {
     <>
       <PageHeader
         title="Privacy Policy"
+        titleClassName="font-body"
         description="Official Privacy Policy and Data Protection Notice in strict compliance with Republic Act No. 10173, otherwise known as the Data Privacy Act of 2012 (DPA) of the Republic of the Philippines."
       />
 
@@ -47,7 +48,7 @@ export default function PrivacyPolicyPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
                     </svg>
                   </span>
-                  <p className="font-heading text-sm font-bold tracking-tight text-km-charcoal">
+                  <p className="font-body text-sm font-bold tracking-tight text-km-charcoal">
                     Table of Contents
                   </p>
                 </div>
@@ -70,7 +71,7 @@ export default function PrivacyPolicyPage() {
                   <svg className="h-4 w-4 shrink-0 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
-                  <p className="font-heading font-bold uppercase tracking-wider text-[11px] text-amber-900">
+                  <p className="font-body font-bold uppercase tracking-wider text-[11px] text-amber-900">
                     Statutory Compliance
                   </p>
                 </div>
@@ -97,7 +98,7 @@ export default function PrivacyPolicyPage() {
                     </svg>
                   </span>
                   <div>
-                    <h2 className="font-heading text-base font-bold text-km-charcoal sm:text-lg">
+                    <h2 className="font-body text-base font-bold text-km-charcoal sm:text-lg">
                       Republic of the Philippines Statutory Compliance
                     </h2>
                     <p className="text-xs text-km-charcoal/60">
@@ -116,7 +117,7 @@ export default function PrivacyPolicyPage() {
 
             {/* SECTION 1 */}
             <section id="institutional-commitment" className="scroll-mt-28 rounded-2xl border border-km-charcoal/10 bg-white p-6 shadow-xs sm:p-8">
-              <h2 className="font-heading text-xl font-bold text-km-charcoal sm:text-2xl">
+              <h2 className="font-body text-xl font-bold text-km-charcoal sm:text-2xl">
                 1. Institutional Commitment &amp; Policy Statement
               </h2>
               <div className="mt-4 space-y-3.5 text-sm leading-relaxed text-km-charcoal/80">
@@ -128,7 +129,7 @@ export default function PrivacyPolicyPage() {
                 </p>
                 <div className="grid gap-3.5 pt-2 sm:grid-cols-3">
                   <div className="rounded-xl border border-km-charcoal/10 bg-km-warm-white/50 p-4">
-                    <p className="font-heading text-xs font-bold uppercase tracking-wider text-km-orange">
+                    <p className="font-body text-xs font-bold uppercase tracking-wider text-km-orange">
                       Transparency
                     </p>
                     <p className="mt-1.5 text-xs text-km-charcoal/70">
@@ -136,7 +137,7 @@ export default function PrivacyPolicyPage() {
                     </p>
                   </div>
                   <div className="rounded-xl border border-km-charcoal/10 bg-km-warm-white/50 p-4">
-                    <p className="font-heading text-xs font-bold uppercase tracking-wider text-km-orange">
+                    <p className="font-body text-xs font-bold uppercase tracking-wider text-km-orange">
                       Legitimate Purpose
                     </p>
                     <p className="mt-1.5 text-xs text-km-charcoal/70">
@@ -144,7 +145,7 @@ export default function PrivacyPolicyPage() {
                     </p>
                   </div>
                   <div className="rounded-xl border border-km-charcoal/10 bg-km-warm-white/50 p-4">
-                    <p className="font-heading text-xs font-bold uppercase tracking-wider text-km-orange">
+                    <p className="font-body text-xs font-bold uppercase tracking-wider text-km-orange">
                       Proportionality
                     </p>
                     <p className="mt-1.5 text-xs text-km-charcoal/70">
@@ -157,7 +158,7 @@ export default function PrivacyPolicyPage() {
 
             {/* SECTION 2 */}
             <section id="scope-and-applicability" className="scroll-mt-28 rounded-2xl border border-km-charcoal/10 bg-white p-6 shadow-xs sm:p-8">
-              <h2 className="font-heading text-xl font-bold text-km-charcoal sm:text-2xl">
+              <h2 className="font-body text-xl font-bold text-km-charcoal sm:text-2xl">
                 2. Scope and Applicability
               </h2>
               <div className="mt-4 space-y-3.5 text-sm leading-relaxed text-km-charcoal/80">
@@ -178,7 +179,7 @@ export default function PrivacyPolicyPage() {
 
             {/* SECTION 3 */}
             <section id="data-we-collect" className="scroll-mt-28 rounded-2xl border border-km-charcoal/10 bg-white p-6 shadow-xs sm:p-8">
-              <h2 className="font-heading text-xl font-bold text-km-charcoal sm:text-2xl">
+              <h2 className="font-body text-xl font-bold text-km-charcoal sm:text-2xl">
                 3. Personal Data We Collect
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-km-charcoal/80">
@@ -187,7 +188,7 @@ export default function PrivacyPolicyPage() {
 
               <div className="mt-6 space-y-4">
                 <div className="rounded-xl border border-km-charcoal/10 bg-km-warm-white/40 p-4 sm:p-5">
-                  <h3 className="font-heading text-sm font-bold text-km-charcoal">
+                  <h3 className="font-body text-sm font-bold text-km-charcoal">
                     A. Online Pre-Registration &amp; Admissions Application
                   </h3>
                   <p className="mt-1 text-xs text-km-charcoal/70">
@@ -222,7 +223,7 @@ export default function PrivacyPolicyPage() {
                 </div>
 
                 <div className="rounded-xl border border-km-charcoal/10 bg-km-warm-white/40 p-4 sm:p-5">
-                  <h3 className="font-heading text-sm font-bold text-km-charcoal">
+                  <h3 className="font-body text-sm font-bold text-km-charcoal">
                     B. General Inquiries &amp; Contact Us Form
                   </h3>
                   <p className="mt-1 text-xs text-km-charcoal/70">
@@ -237,7 +238,7 @@ export default function PrivacyPolicyPage() {
                 </div>
 
                 <div className="rounded-xl border border-km-charcoal/10 bg-km-warm-white/40 p-4 sm:p-5">
-                  <h3 className="font-heading text-sm font-bold text-km-charcoal">
+                  <h3 className="font-body text-sm font-bold text-km-charcoal">
                     C. Technical, Device, and Browsing Metadata
                   </h3>
                   <p className="mt-1 text-xs text-km-charcoal/70">
@@ -255,7 +256,7 @@ export default function PrivacyPolicyPage() {
 
             {/* SECTION 4 */}
             <section id="purpose-of-processing" className="scroll-mt-28 rounded-2xl border border-km-charcoal/10 bg-white p-6 shadow-xs sm:p-8">
-              <h2 className="font-heading text-xl font-bold text-km-charcoal sm:text-2xl">
+              <h2 className="font-body text-xl font-bold text-km-charcoal sm:text-2xl">
                 4. Purpose and Use of Personal Information
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-km-charcoal/80">
@@ -263,7 +264,7 @@ export default function PrivacyPolicyPage() {
               </p>
               <div className="mt-5 grid gap-3 sm:grid-cols-2">
                 <div className="rounded-xl border border-km-charcoal/10 p-4">
-                  <p className="font-heading text-xs font-bold text-km-charcoal">
+                  <p className="font-body text-xs font-bold text-km-charcoal">
                     1. Admissions &amp; Enrollment Evaluation
                   </p>
                   <p className="mt-1.5 text-xs leading-relaxed text-km-charcoal/70">
@@ -271,7 +272,7 @@ export default function PrivacyPolicyPage() {
                   </p>
                 </div>
                 <div className="rounded-xl border border-km-charcoal/10 p-4">
-                  <p className="font-heading text-xs font-bold text-km-charcoal">
+                  <p className="font-body text-xs font-bold text-km-charcoal">
                     2. Official Applicant Communication
                   </p>
                   <p className="mt-1.5 text-xs leading-relaxed text-km-charcoal/70">
@@ -279,7 +280,7 @@ export default function PrivacyPolicyPage() {
                   </p>
                 </div>
                 <div className="rounded-xl border border-km-charcoal/10 p-4">
-                  <p className="font-heading text-xs font-bold text-km-charcoal">
+                  <p className="font-body text-xs font-bold text-km-charcoal">
                     3. Scholarship Assessment
                   </p>
                   <p className="mt-1.5 text-xs leading-relaxed text-km-charcoal/70">
@@ -287,7 +288,7 @@ export default function PrivacyPolicyPage() {
                   </p>
                 </div>
                 <div className="rounded-xl border border-km-charcoal/10 p-4">
-                  <p className="font-heading text-xs font-bold text-km-charcoal">
+                  <p className="font-body text-xs font-bold text-km-charcoal">
                     4. Regulatory &amp; Statutory Compliance
                   </p>
                   <p className="mt-1.5 text-xs leading-relaxed text-km-charcoal/70">
@@ -295,7 +296,7 @@ export default function PrivacyPolicyPage() {
                   </p>
                 </div>
                 <div className="rounded-xl border border-km-charcoal/10 p-4">
-                  <p className="font-heading text-xs font-bold text-km-charcoal">
+                  <p className="font-body text-xs font-bold text-km-charcoal">
                     5. Student Support &amp; Inquiries
                   </p>
                   <p className="mt-1.5 text-xs leading-relaxed text-km-charcoal/70">
@@ -303,7 +304,7 @@ export default function PrivacyPolicyPage() {
                   </p>
                 </div>
                 <div className="rounded-xl border border-km-charcoal/10 p-4">
-                  <p className="font-heading text-xs font-bold text-km-charcoal">
+                  <p className="font-body text-xs font-bold text-km-charcoal">
                     6. Information Security &amp; Fraud Prevention
                   </p>
                   <p className="mt-1.5 text-xs leading-relaxed text-km-charcoal/70">
@@ -315,7 +316,7 @@ export default function PrivacyPolicyPage() {
 
             {/* SECTION 5 */}
             <section id="legal-basis" className="scroll-mt-28 rounded-2xl border border-km-charcoal/10 bg-white p-6 shadow-xs sm:p-8">
-              <h2 className="font-heading text-xl font-bold text-km-charcoal sm:text-2xl">
+              <h2 className="font-body text-xl font-bold text-km-charcoal sm:text-2xl">
                 5. Legal Basis for Processing
               </h2>
               <div className="mt-4 space-y-3.5 text-sm leading-relaxed text-km-charcoal/80">
@@ -341,7 +342,7 @@ export default function PrivacyPolicyPage() {
 
             {/* SECTION 6 */}
             <section id="disclosure-and-sharing" className="scroll-mt-28 rounded-2xl border border-km-charcoal/10 bg-white p-6 shadow-xs sm:p-8">
-              <h2 className="font-heading text-xl font-bold text-km-charcoal sm:text-2xl">
+              <h2 className="font-body text-xl font-bold text-km-charcoal sm:text-2xl">
                 6. Data Disclosure and Third-Party Sharing
               </h2>
               <div className="mt-4 space-y-3.5 text-sm leading-relaxed text-km-charcoal/80">
@@ -370,7 +371,7 @@ export default function PrivacyPolicyPage() {
 
             {/* SECTION 7 */}
             <section id="security-measures" className="scroll-mt-28 rounded-2xl border border-km-charcoal/10 bg-white p-6 shadow-xs sm:p-8">
-              <h2 className="font-heading text-xl font-bold text-km-charcoal sm:text-2xl">
+              <h2 className="font-body text-xl font-bold text-km-charcoal sm:text-2xl">
                 7. Organizational, Physical, and Technical Security Measures
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-km-charcoal/80">
@@ -378,7 +379,7 @@ export default function PrivacyPolicyPage() {
               </p>
               <div className="mt-5 space-y-3.5">
                 <div className="rounded-xl border border-km-charcoal/10 p-4 sm:p-5">
-                  <h3 className="font-heading text-sm font-bold text-km-charcoal flex items-center gap-2">
+                  <h3 className="font-body text-sm font-bold text-km-charcoal flex items-center gap-2">
                     <span className="h-2 w-2 rounded-full bg-km-orange" />
                     Organizational Measures
                   </h3>
@@ -387,7 +388,7 @@ export default function PrivacyPolicyPage() {
                   </p>
                 </div>
                 <div className="rounded-xl border border-km-charcoal/10 p-4 sm:p-5">
-                  <h3 className="font-heading text-sm font-bold text-km-charcoal flex items-center gap-2">
+                  <h3 className="font-body text-sm font-bold text-km-charcoal flex items-center gap-2">
                     <span className="h-2 w-2 rounded-full bg-km-orange" />
                     Physical Measures
                   </h3>
@@ -396,7 +397,7 @@ export default function PrivacyPolicyPage() {
                   </p>
                 </div>
                 <div className="rounded-xl border border-km-charcoal/10 p-4 sm:p-5">
-                  <h3 className="font-heading text-sm font-bold text-km-charcoal flex items-center gap-2">
+                  <h3 className="font-body text-sm font-bold text-km-charcoal flex items-center gap-2">
                     <span className="h-2 w-2 rounded-full bg-km-orange" />
                     Technical Measures
                   </h3>
@@ -409,7 +410,7 @@ export default function PrivacyPolicyPage() {
 
             {/* SECTION 8 */}
             <section id="retention-and-disposal" className="scroll-mt-28 rounded-2xl border border-km-charcoal/10 bg-white p-6 shadow-xs sm:p-8">
-              <h2 className="font-heading text-xl font-bold text-km-charcoal sm:text-2xl">
+              <h2 className="font-body text-xl font-bold text-km-charcoal sm:text-2xl">
                 8. Data Retention, Storage, and Disposal
               </h2>
               <div className="mt-4 space-y-3.5 text-sm leading-relaxed text-km-charcoal/80">
@@ -435,7 +436,7 @@ export default function PrivacyPolicyPage() {
 
             {/* SECTION 9 */}
             <section id="data-subject-rights" className="scroll-mt-28 rounded-2xl border border-km-charcoal/10 bg-white p-6 shadow-xs sm:p-8">
-              <h2 className="font-heading text-xl font-bold text-km-charcoal sm:text-2xl">
+              <h2 className="font-body text-xl font-bold text-km-charcoal sm:text-2xl">
                 9. Your Rights as a Data Subject under RA 10173
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-km-charcoal/80">
@@ -444,7 +445,7 @@ export default function PrivacyPolicyPage() {
 
               <div className="mt-5 grid gap-3 sm:grid-cols-2">
                 <div className="rounded-xl border border-km-charcoal/10 bg-km-warm-white/30 p-4">
-                  <p className="font-heading text-xs font-bold text-km-charcoal">
+                  <p className="font-body text-xs font-bold text-km-charcoal">
                     1. Right to be Informed
                   </p>
                   <p className="mt-1 text-xs text-km-charcoal/70">
@@ -452,7 +453,7 @@ export default function PrivacyPolicyPage() {
                   </p>
                 </div>
                 <div className="rounded-xl border border-km-charcoal/10 bg-km-warm-white/30 p-4">
-                  <p className="font-heading text-xs font-bold text-km-charcoal">
+                  <p className="font-body text-xs font-bold text-km-charcoal">
                     2. Right to Access
                   </p>
                   <p className="mt-1 text-xs text-km-charcoal/70">
@@ -460,7 +461,7 @@ export default function PrivacyPolicyPage() {
                   </p>
                 </div>
                 <div className="rounded-xl border border-km-charcoal/10 bg-km-warm-white/30 p-4">
-                  <p className="font-heading text-xs font-bold text-km-charcoal">
+                  <p className="font-body text-xs font-bold text-km-charcoal">
                     3. Right to Rectification (Correction)
                   </p>
                   <p className="mt-1 text-xs text-km-charcoal/70">
@@ -468,7 +469,7 @@ export default function PrivacyPolicyPage() {
                   </p>
                 </div>
                 <div className="rounded-xl border border-km-charcoal/10 bg-km-warm-white/30 p-4">
-                  <p className="font-heading text-xs font-bold text-km-charcoal">
+                  <p className="font-body text-xs font-bold text-km-charcoal">
                     4. Right to Erasure or Blocking
                   </p>
                   <p className="mt-1 text-xs text-km-charcoal/70">
@@ -476,7 +477,7 @@ export default function PrivacyPolicyPage() {
                   </p>
                 </div>
                 <div className="rounded-xl border border-km-charcoal/10 bg-km-warm-white/30 p-4">
-                  <p className="font-heading text-xs font-bold text-km-charcoal">
+                  <p className="font-body text-xs font-bold text-km-charcoal">
                     5. Right to Object
                   </p>
                   <p className="mt-1 text-xs text-km-charcoal/70">
@@ -484,7 +485,7 @@ export default function PrivacyPolicyPage() {
                   </p>
                 </div>
                 <div className="rounded-xl border border-km-charcoal/10 bg-km-warm-white/30 p-4">
-                  <p className="font-heading text-xs font-bold text-km-charcoal">
+                  <p className="font-body text-xs font-bold text-km-charcoal">
                     6. Right to Data Portability
                   </p>
                   <p className="mt-1 text-xs text-km-charcoal/70">
@@ -492,7 +493,7 @@ export default function PrivacyPolicyPage() {
                   </p>
                 </div>
                 <div className="rounded-xl border border-km-charcoal/10 bg-km-warm-white/30 p-4">
-                  <p className="font-heading text-xs font-bold text-km-charcoal">
+                  <p className="font-body text-xs font-bold text-km-charcoal">
                     7. Right to Damages
                   </p>
                   <p className="mt-1 text-xs text-km-charcoal/70">
@@ -500,7 +501,7 @@ export default function PrivacyPolicyPage() {
                   </p>
                 </div>
                 <div className="rounded-xl border border-km-charcoal/10 bg-km-warm-white/30 p-4">
-                  <p className="font-heading text-xs font-bold text-km-charcoal">
+                  <p className="font-body text-xs font-bold text-km-charcoal">
                     8. Right to File a Complaint
                   </p>
                   <p className="mt-1 text-xs text-km-charcoal/70">
@@ -512,7 +513,7 @@ export default function PrivacyPolicyPage() {
 
             {/* SECTION 10 */}
             <section id="cookies-and-tracking" className="scroll-mt-28 rounded-2xl border border-km-charcoal/10 bg-white p-6 shadow-xs sm:p-8">
-              <h2 className="font-heading text-xl font-bold text-km-charcoal sm:text-2xl">
+              <h2 className="font-body text-xl font-bold text-km-charcoal sm:text-2xl">
                 10. Cookies, Web Storage, and Analytics
               </h2>
               <div className="mt-4 space-y-3.5 text-sm leading-relaxed text-km-charcoal/80">
@@ -531,7 +532,7 @@ export default function PrivacyPolicyPage() {
 
             {/* SECTION 11 */}
             <section id="dpo-contact" className="scroll-mt-28 rounded-2xl border border-km-charcoal/10 bg-white p-6 shadow-xs sm:p-8">
-              <h2 className="font-heading text-xl font-bold text-km-charcoal sm:text-2xl">
+              <h2 className="font-body text-xl font-bold text-km-charcoal sm:text-2xl">
                 11. Data Protection Officer (DPO) Contact Information
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-km-charcoal/80">
@@ -546,7 +547,7 @@ export default function PrivacyPolicyPage() {
                     </svg>
                   </div>
                   <div>
-                    <p className="font-heading text-base font-bold text-km-charcoal">
+                    <p className="font-body text-base font-bold text-km-charcoal">
                       The Data Protection Officer
                     </p>
                     <p className="text-xs text-km-charcoal/60">
@@ -598,7 +599,7 @@ export default function PrivacyPolicyPage() {
 
             {/* SECTION 12 */}
             <section id="policy-updates" className="scroll-mt-28 rounded-2xl border border-km-charcoal/10 bg-white p-6 shadow-xs sm:p-8">
-              <h2 className="font-heading text-xl font-bold text-km-charcoal sm:text-2xl">
+              <h2 className="font-body text-xl font-bold text-km-charcoal sm:text-2xl">
                 12. Amendments and Effectivity
               </h2>
               <div className="mt-4 space-y-3.5 text-sm leading-relaxed text-km-charcoal/80">

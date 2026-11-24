@@ -8,6 +8,18 @@ html {
   font-size: 110%;
 }
 
+/*
+  Keep the page from gaining a horizontal scrollbar. When one appears, the
+  layout viewport gets shorter than 100vh, so the body ends up taller than
+  what you can see and the page scrolls a little past the footer into blank
+  white space. Clipping sideways (rather than `hidden`, which would turn the
+  page into a scroll container and break the sticky header) prevents that.
+*/
+html,
+body {
+  overflow-x: clip;
+}
+
 @theme {
   --color-km-orange: #f47721;
   --color-km-charcoal: #252525;
