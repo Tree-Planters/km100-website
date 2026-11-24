@@ -97,6 +97,56 @@ export function PreRegistrationForm() {
         <div className="mt-4 inline-block rounded-lg border border-km-orange/30 bg-white px-6 py-3 font-mono text-xl font-bold tracking-wider text-km-orange shadow-xs">
           {referenceNumber}
         </div>
+        <div className="mx-auto mt-6 max-w-md rounded-xl border border-km-orange/40 bg-km-orange/5 p-4 text-left">
+          <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.1em] text-km-orange">
+            <svg
+              className="h-4 w-4 shrink-0"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3 8.25A2.25 2.25 0 015.25 6h1.5l1.2-1.8a1.5 1.5 0 011.24-.7h5.62a1.5 1.5 0 011.24.7L17.25 6h1.5A2.25 2.25 0 0121 8.25v9A2.25 2.25 0 0118.75 19.5H5.25A2.25 2.25 0 013 17.25v-9z"
+              />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15 12.75a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+            </svg>
+            Important reminder
+          </p>
+          <ul className="mt-2.5 space-y-2 text-xs leading-relaxed text-km-charcoal/80">
+            <li className="flex gap-2">
+              <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-km-orange" />
+              <span>
+                <strong className="font-semibold text-km-charcoal">
+                  Take a screenshot of this page
+                </strong>{" "}
+                while your reference code is visible. Keep it on your phone or print it —
+                it serves as validation of your identity for this pre-registration.
+              </span>
+            </li>
+            <li className="flex gap-2">
+              <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-km-orange" />
+              <span>
+                Present or send that screenshot when you visit the campus, submit
+                requirements, or coordinate with the admissions team.
+              </span>
+            </li>
+            <li className="flex gap-2">
+              <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-km-orange" />
+              <span>
+                Without your reference code, staff may not be able to locate or verify
+                your pre-registration record.
+              </span>
+            </li>
+          </ul>
+        </div>
+
         <p className="mx-auto mt-4 max-w-md text-xs text-km-charcoal/70">
           This form serves as pre-registration only, not official enrollment. Our
           admissions team will contact you regarding required documents and

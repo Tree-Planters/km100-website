@@ -418,13 +418,13 @@ export function ApplicationsView({
               <col className="w-[112px]" />
             </colgroup>
             <thead>
-              <tr className="border-b border-km-charcoal/10 bg-km-warm-white/80 text-[10px] font-bold uppercase tracking-[0.14em] text-km-charcoal/50">
-                <th scope="col" className="px-5 py-3">Applicant</th>
-                <th scope="col" className="px-5 py-3">Program Applied</th>
-                <th scope="col" className="px-5 py-3">Email</th>
-                <th scope="col" className="px-5 py-3">Status</th>
-                <th scope="col" className="px-5 py-3">Submitted</th>
-                <th scope="col" className="px-5 py-3 text-right">Actions</th>
+              <tr className="border-b border-km-charcoal/15 bg-km-warm-white text-xs font-bold uppercase tracking-[0.09em] text-km-charcoal">
+                <th scope="col" className="px-5 py-4">Applicant</th>
+                <th scope="col" className="px-5 py-4">Program Applied</th>
+                <th scope="col" className="px-5 py-4">Email</th>
+                <th scope="col" className="px-5 py-4">Status</th>
+                <th scope="col" className="px-5 py-4">Submitted</th>
+                <th scope="col" className="px-5 py-4 text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-km-charcoal/[0.07]">
