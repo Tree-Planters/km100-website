@@ -18,6 +18,7 @@ const inputClass =
 
 export function PreRegistrationForm() {
   const [referenceNumber, setReferenceNumber] = useState<string | null>(null);
+  const [emailSent, setEmailSent] = useState(true);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
   const {
@@ -67,6 +68,7 @@ export function PreRegistrationForm() {
       return;
     }
 
+    setEmailSent(data.confirmationEmailSent !== false);
     setReferenceNumber(data.referenceNumber);
   }
 
@@ -98,6 +100,11 @@ export function PreRegistrationForm() {
           {referenceNumber}
         </div>
         <p className="mx-auto mt-4 max-w-md text-xs text-km-charcoal/70">
+          {emailSent
+            ? "A confirmation email with your reference number and the details you submitted has been sent to your email address."
+            : "We could not send the confirmation email, so please keep or screenshot this reference number."}
+        </p>
+        <p className="mx-auto mt-3 max-w-md text-xs text-km-charcoal/70">
           This form serves as pre-registration only, not official enrollment. Our
           admissions team will contact you regarding required documents and
           enrollment schedules.
