@@ -8,7 +8,7 @@ import { campusLifeFacts, campusLifeSections } from "@/lib/campus-life";
 export const metadata: Metadata = {
   title: "Campus Life",
   description:
-    "Student activities, practical training, school events and community involvement at KM100 Skills and Training Center, Inc.",
+    "The 28 October 2026 launching of KM100 Skills and Training Center, Inc.: the ribbon, the laboratories, the first NC II graduates and the partners who signed on.",
 };
 
 export default function CampusLifePage() {
@@ -18,7 +18,7 @@ export default function CampusLifePage() {
     <>
       <PageHeader
         title="Campus Life"
-        description="Student activities, practical training, school events and community involvement."
+        description="The campus opening on 28 October 2026, in four photographs."
       />
 
       {/* Masthead: a newspaper nameplate, then the deck. */}
@@ -30,14 +30,14 @@ export default function CampusLifePage() {
 
           <div className="mt-9 grid gap-8 lg:grid-cols-12 lg:gap-12">
             <h2 className="font-heading text-[1.9rem] leading-[1.09] text-balance sm:text-[2.45rem] lg:col-span-7 lg:text-[2.75rem]">
-              A <span className="whitespace-nowrap lining-nums">KM100</span>{" "}
-              school day runs from eight to five. A good part of it happens
-              outside a classroom.
+              A campus opens once. These are the four moments from the{" "}
+              <span className="whitespace-nowrap lining-nums">KM100</span>{" "}
+              morning it did.
             </h2>
             <p className="text-[15px] leading-[1.75] text-km-charcoal/65 lg:col-span-4 lg:col-start-9 lg:pt-2">
-              The four stories below follow the school year: the organizations
-              students join, the hours they spend at workbenches, the events
-              they put together, and the work they take into nearby barangays.
+              The ribbon at the entrance, the two laboratory doors, the first
+              eleven NC II certificates, and the pledge board our partners
+              signed. Every photograph was taken on 28 October 2026.
             </p>
           </div>
         </div>
