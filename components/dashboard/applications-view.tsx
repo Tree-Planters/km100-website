@@ -403,7 +403,7 @@ export function ApplicationsView({
       </div>
 
       {/* Submissions Table */}
-      <div className={cn("mt-6 overflow-hidden rounded-2xl", GLASS_CARD)}>
+      <div className={cn("mt-6 overflow-hidden rounded-2xl border border-white/70 shadow-sm", GLASS_CARD)}>
         <div className="overflow-x-auto">
           <table
             aria-busy={loading}
@@ -490,25 +490,29 @@ export function ApplicationsView({
                         </div>
                       </td>
 
-                      <td className="px-5 py-3.5">
+                      <td className="px-5 py-4">
                         <span
-                          className="inline-block max-w-[210px] truncate rounded-md border border-km-charcoal/10 bg-km-warm-white/60 px-2 py-1 text-[11px] font-medium text-km-charcoal/80"
+                          className="block w-full truncate rounded-md border border-km-charcoal/10 bg-km-warm-white/60 px-2 py-1 text-[11px] font-medium leading-relaxed text-km-charcoal/80"
                           title={progObj?.name || item.program}
                         >
                           {progObj?.name || item.program}
                         </span>
                       </td>
 
-                      <td className="px-5 py-3.5">
-                        <div className="truncate text-[12px] font-medium text-km-charcoal">
+                      <td className="px-5 py-4">
+                        <a
+                          href={`mailto:${item.email}`}
+                          title={item.email}
+                          className="block truncate text-[12.5px] font-medium text-km-charcoal transition-colors hover:text-km-orange hover:underline"
+                        >
                           {item.email}
-                        </div>
+                        </a>
                       </td>
 
-                      <td className="whitespace-nowrap px-5 py-3.5">
+                      <td className="whitespace-nowrap px-5 py-4">
                         <span
                           className={cn(
-                            "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-semibold",
+                            "inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border px-2.5 py-1 text-[11px] font-semibold",
                             statusInfo.bg
                           )}
                         >
@@ -517,7 +521,7 @@ export function ApplicationsView({
                         </span>
                       </td>
 
-                      <td className="whitespace-nowrap px-5 py-3.5 text-km-charcoal/60">
+                      <td className="whitespace-nowrap px-5 py-4 text-xs text-km-charcoal/60">
                         {new Date(item.createdAt).toLocaleDateString("en-PH", {
                           month: "short",
                           day: "numeric",
@@ -525,7 +529,7 @@ export function ApplicationsView({
                         })}
                       </td>
 
-                      <td className="whitespace-nowrap px-5 py-3.5 text-right">
+                      <td className="whitespace-nowrap py-4 pl-3 pr-5 text-right">
                         <button
                           onClick={() => setActiveItem(item)}
                           className="inline-flex items-center gap-1 rounded-full border border-km-charcoal/12 bg-white px-3 py-1.5 text-[11px] font-semibold text-km-charcoal/80 transition-all hover:border-km-orange hover:bg-km-orange hover:text-white"
