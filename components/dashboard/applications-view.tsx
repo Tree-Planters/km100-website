@@ -405,15 +405,26 @@ export function ApplicationsView({
       {/* Submissions Table */}
       <div className={cn("mt-6 overflow-hidden rounded-2xl", GLASS_CARD)}>
         <div className="overflow-x-auto">
-          <table aria-busy={loading} className="w-full border-collapse text-left text-xs">
+          <table
+            aria-busy={loading}
+            className="w-full min-w-[880px] table-fixed border-collapse text-left text-sm"
+          >
+            <colgroup>
+              <col className="w-[26%]" />
+              <col className="w-[24%]" />
+              <col />
+              <col className="w-[160px]" />
+              <col className="w-[120px]" />
+              <col className="w-[112px]" />
+            </colgroup>
             <thead>
-              <tr className="border-b border-km-charcoal/10 bg-km-warm-white/70 text-[10.5px] font-semibold uppercase tracking-[0.12em] text-km-charcoal/55">
-                <th className="px-5 py-3.5">Applicant</th>
-                <th className="px-5 py-3.5">Program Applied</th>
-                <th className="px-5 py-3.5">Contact</th>
-                <th className="px-5 py-3.5">Status</th>
-                <th className="px-5 py-3.5">Submitted</th>
-                <th className="px-5 py-3.5 text-right">Actions</th>
+              <tr className="border-b border-km-charcoal/10 bg-km-warm-white/80 text-[10px] font-bold uppercase tracking-[0.14em] text-km-charcoal/50">
+                <th scope="col" className="px-5 py-3">Applicant</th>
+                <th scope="col" className="px-5 py-3">Program Applied</th>
+                <th scope="col" className="px-5 py-3">Email</th>
+                <th scope="col" className="px-5 py-3">Status</th>
+                <th scope="col" className="px-5 py-3">Submitted</th>
+                <th scope="col" className="px-5 py-3 text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-km-charcoal/[0.07]">
@@ -466,15 +477,15 @@ export function ApplicationsView({
                   const progObj = getProgramBySlug(item.program);
 
                   return (
-                    <tr key={item.id} className="group transition-colors hover:bg-km-warm-white/50">
-                      <td className="px-5 py-3.5">
+                    <tr
+                      key={item.id}
+                      className="group h-[62px] transition-colors hover:bg-km-orange/[0.045]"
+                    >
+                      <td className="px-5 py-4">
                         <div className="min-w-0">
                           <div className="truncate text-sm font-semibold text-km-charcoal">
                             {item.lastName}, {item.firstName} {item.middleName || ""}{" "}
                             {item.suffix || ""}
-                          </div>
-                          <div className="truncate text-[11px] text-km-charcoal/45">
-                            {item.municipality || "Location not provided"}
                           </div>
                         </div>
                       </td>
@@ -489,8 +500,9 @@ export function ApplicationsView({
                       </td>
 
                       <td className="px-5 py-3.5">
-                        <div className="text-[12px] font-medium text-km-charcoal">{item.email}</div>
-                        <div className="text-[11px] text-km-charcoal/45">{item.mobile}</div>
+                        <div className="truncate text-[12px] font-medium text-km-charcoal">
+                          {item.email}
+                        </div>
                       </td>
 
                       <td className="whitespace-nowrap px-5 py-3.5">
