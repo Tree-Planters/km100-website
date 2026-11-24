@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { PageHeader } from "@/components/layout/page-header";
 import { Section } from "@/components/layout/section";
 import { ButtonLink } from "@/components/ui/button";
@@ -24,12 +24,120 @@ const inputClass =
 const selectClass =
   "mt-1 w-full rounded-md border border-km-charcoal/20 bg-white px-3 py-2 text-sm text-km-charcoal outline-none transition-colors focus:border-km-orange focus:ring-1 focus:ring-km-orange disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-km-charcoal/40";
 
+const DRAFT_STORAGE_KEY = "km100:pre-registration-draft:v1";
+
+type PreRegistrationDraft = {
+  lastName: string;
+  firstName: string;
+  middleName: string;
+  suffix: string;
+  mobile: string;
+  email: string;
+  civilStatus: string;
+  regionCode: string;
+  regionName: string;
+  provinceCode: string;
+  provinceName: string;
+  cityCode: string;
+  cityName: string;
+  district: string;
+  barangayCode: string;
+  barangayName: string;
+  streetAddress: string;
+  isCurrentlyEnrolled: "YES" | "NO" | "";
+  currentSchool: string;
+  currentGradeLevel: string;
+  currentProgram: string;
+  highestAttainment: string;
+  selectedProgram: string;
+  acknowledgement: boolean;
+  consent: boolean;
+};
+
+const EMPTY_DRAFT: PreRegistrationDraft = {
+  lastName: "",
+  firstName: "",
+  middleName: "",
+  suffix: "",
+  mobile: "",
+  email: "",
+  civilStatus: "",
+  regionCode: "",
+  regionName: "",
+  provinceCode: "",
+  provinceName: "",
+  cityCode: "",
+  cityName: "",
+  district: "",
+  barangayCode: "",
+  barangayName: "",
+  streetAddress: "",
+  isCurrentlyEnrolled: "",
+  currentSchool: "",
+  currentGradeLevel: "",
+  currentProgram: "",
+  highestAttainment: "",
+  selectedProgram: "",
+  acknowledgement: false,
+  consent: false,
+};
+
+function isDraftEmpty(draft: PreRegistrationDraft): boolean {
+  const { acknowledgement, consent, ...values } = draft;
+
+  return (
+    !acknowledgement &&
+    !consent &&
+    Object.values(values).every((value) => value === "")
+  );
+}
+
+function readDraftFromStorage(): PreRegistrationDraft | null {
+  if (typeof window === "undefined") return null;
+
+  try {
+    const raw = window.localStorage.getItem(DRAFT_STORAGE_KEY);
+    if (!raw) return null;
+
+    const parsed: unknown = JSON.parse(raw);
+    if (!parsed || typeof parsed !== "object") return null;
+
+    const stored = parsed as Record<string, unknown>;
+    const draft: Record<string, string | boolean> = { ...EMPTY_DRAFT };
+
+    for (const key of Object.keys(EMPTY_DRAFT) as (keyof PreRegistrationDraft)[]) {
+      const value = stored[key];
+      if (typeof EMPTY_DRAFT[key] === "boolean") {
+        draft[key] = value === true;
+      } else if (typeof value === "string") {
+        draft[key] = value;
+      }
+    }
+
+    const result = draft as unknown as PreRegistrationDraft;
+    if (result.isCurrentlyEnrolled !== "YES" && result.isCurrentlyEnrolled !== "NO") {
+      result.isCurrentlyEnrolled = "";
+    }
+
+    return isDraftEmpty(result) ? null : result;
+  } catch (error) {
+    console.error("[pre-registration] failed to read saved draft", error);
+    return null;
+  }
+}
+
 export default function PreRegistrationPage() {
   // Submission & Result States
   const [referenceNumber, setReferenceNumber] = useState<string | null>(null);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+  const [draftRestored, setDraftRestored] = useState(false);
+
+  // While restoring a saved draft, the address cascade must fill the dropdowns
+  // without clearing the restored region/province/city/district/barangay.
+  const isHydratingRef = useRef(true);
+  const submittedRef = useRef(false);
 
   // Form Fields - Personal Info
   const [lastName, setLastName] = useState("");
@@ -84,6 +192,117 @@ export default function PreRegistrationPage() {
   const [acknowledgement, setAcknowledgement] = useState(false);
   const [consent, setConsent] = useState(false);
 
+  // 0. Restore the draft saved on this device, e.g. after a lost connection.
+  useEffect(() => {
+    const draft = readDraftFromStorage();
+    if (!draft) return;
+
+    setLastName(draft.lastName);
+    setFirstName(draft.firstName);
+    setMiddleName(draft.middleName);
+    setSuffix(draft.suffix);
+    setMobile(draft.mobile);
+    setEmail(draft.email);
+    setCivilStatus(draft.civilStatus);
+
+    setSelectedRegionCode(draft.regionCode);
+    setSelectedRegionName(draft.regionName);
+    setSelectedProvinceCode(draft.provinceCode);
+    setSelectedProvinceName(draft.provinceName);
+    setSelectedCityCode(draft.cityCode);
+    setSelectedCityName(draft.cityName);
+    setSelectedDistrict(draft.district);
+    setSelectedBarangayCode(draft.barangayCode);
+    setSelectedBarangayName(draft.barangayName);
+    setStreetAddress(draft.streetAddress);
+
+    setIsCurrentlyEnrolled(draft.isCurrentlyEnrolled);
+    setCurrentSchool(draft.currentSchool);
+    setCurrentGradeLevel(draft.currentGradeLevel);
+    setCurrentProgram(draft.currentProgram);
+    setHighestAttainment(draft.highestAttainment);
+
+    setSelectedProgram(draft.selectedProgram);
+    setAcknowledgement(draft.acknowledgement);
+    setConsent(draft.consent);
+
+    setDraftRestored(true);
+  }, []);
+
+  const draftSnapshot = useMemo<PreRegistrationDraft>(
+    () => ({
+      lastName,
+      firstName,
+      middleName,
+      suffix,
+      mobile,
+      email,
+      civilStatus,
+      regionCode: selectedRegionCode,
+      regionName: selectedRegionName,
+      provinceCode: selectedProvinceCode,
+      provinceName: selectedProvinceName,
+      cityCode: selectedCityCode,
+      cityName: selectedCityName,
+      district: selectedDistrict,
+      barangayCode: selectedBarangayCode,
+      barangayName: selectedBarangayName,
+      streetAddress,
+      isCurrentlyEnrolled,
+      currentSchool,
+      currentGradeLevel,
+      currentProgram,
+      highestAttainment,
+      selectedProgram,
+      acknowledgement,
+      consent,
+    }),
+    [
+      lastName,
+      firstName,
+      middleName,
+      suffix,
+      mobile,
+      email,
+      civilStatus,
+      selectedRegionCode,
+      selectedRegionName,
+      selectedProvinceCode,
+      selectedProvinceName,
+      selectedCityCode,
+      selectedCityName,
+      selectedDistrict,
+      selectedBarangayCode,
+      selectedBarangayName,
+      streetAddress,
+      isCurrentlyEnrolled,
+      currentSchool,
+      currentGradeLevel,
+      currentProgram,
+      highestAttainment,
+      selectedProgram,
+      acknowledgement,
+      consent,
+    ]
+  );
+
+  // 0b. Keep the draft in local storage while the applicant types.
+  useEffect(() => {
+    if (submittedRef.current || referenceNumber) return;
+    if (isDraftEmpty(draftSnapshot)) return;
+
+    const timer = window.setTimeout(() => {
+      if (submittedRef.current) return;
+      try {
+        window.localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify(draftSnapshot));
+      } catch (error) {
+        console.error("[pre-registration] failed to save draft", error);
+      }
+    }, 400);
+
+    return () => window.clearTimeout(timer);
+  }, [draftSnapshot, referenceNumber]);
+
   // 1. Fetch Regions on Mount
   useEffect(() => {
     let isMounted = true;
@@ -113,22 +332,24 @@ export default function PreRegistrationPage() {
 
   // 2. Cascading: When Region changes -> Reset children & Fetch Provinces
   useEffect(() => {
-    // Reset all child levels
-    setSelectedProvinceCode("");
-    setSelectedProvinceName("");
-    setProvinces([]);
+    if (!isHydratingRef.current) {
+      // Reset all child levels
+      setSelectedProvinceCode("");
+      setSelectedProvinceName("");
+      setProvinces([]);
 
-    setSelectedCityCode("");
-    setSelectedCityName("");
-    setCities([]);
+      setSelectedCityCode("");
+      setSelectedCityName("");
+      setCities([]);
 
-    setSelectedDistrict("");
-    setDistricts([]);
+      setSelectedDistrict("");
+      setDistricts([]);
 
-    setSelectedBarangayCode("");
-    setSelectedBarangayName("");
-    setBarangays([]);
-    setAllBarangays([]);
+      setSelectedBarangayCode("");
+      setSelectedBarangayName("");
+      setBarangays([]);
+      setAllBarangays([]);
+    }
 
     if (!selectedRegionCode) return;
 
@@ -185,35 +406,41 @@ export default function PreRegistrationPage() {
 
   // 3. Cascading: When Province changes -> Reset children & Fetch Cities/Municipalities
   useEffect(() => {
+    const isHydrating = isHydratingRef.current;
+
     // If province is empty or was already handled by NCR special case, skip
     if (!selectedProvinceCode) {
-      setSelectedCityCode("");
-      setSelectedCityName("");
-      setCities([]);
-      setSelectedDistrict("");
-      setDistricts([]);
-      setSelectedBarangayCode("");
-      setSelectedBarangayName("");
-      setBarangays([]);
-      setAllBarangays([]);
+      if (!isHydrating) {
+        setSelectedCityCode("");
+        setSelectedCityName("");
+        setCities([]);
+        setSelectedDistrict("");
+        setDistricts([]);
+        setSelectedBarangayCode("");
+        setSelectedBarangayName("");
+        setBarangays([]);
+        setAllBarangays([]);
+      }
       return;
     }
 
     // Skip re-fetching if NCR was already populated
     if (selectedProvinceCode === selectedRegionCode) return;
 
-    // Reset children
-    setSelectedCityCode("");
-    setSelectedCityName("");
-    setCities([]);
+    if (!isHydrating) {
+      // Reset children
+      setSelectedCityCode("");
+      setSelectedCityName("");
+      setCities([]);
 
-    setSelectedDistrict("");
-    setDistricts([]);
+      setSelectedDistrict("");
+      setDistricts([]);
 
-    setSelectedBarangayCode("");
-    setSelectedBarangayName("");
-    setBarangays([]);
-    setAllBarangays([]);
+      setSelectedBarangayCode("");
+      setSelectedBarangayName("");
+      setBarangays([]);
+      setAllBarangays([]);
+    }
 
     let isMounted = true;
     setLoadingCities(true);
@@ -241,13 +468,15 @@ export default function PreRegistrationPage() {
 
   // 4. Cascading: When City changes -> Reset children & Fetch Barangays & Districts
   useEffect(() => {
-    setSelectedDistrict("");
-    setDistricts([]);
+    if (!isHydratingRef.current) {
+      setSelectedDistrict("");
+      setDistricts([]);
 
-    setSelectedBarangayCode("");
-    setSelectedBarangayName("");
-    setBarangays([]);
-    setAllBarangays([]);
+      setSelectedBarangayCode("");
+      setSelectedBarangayName("");
+      setBarangays([]);
+      setAllBarangays([]);
+    }
 
     if (!selectedCityCode) return;
 
@@ -294,8 +523,10 @@ export default function PreRegistrationPage() {
 
   // 5. Cascading: When District changes -> Filter Barangays
   useEffect(() => {
-    setSelectedBarangayCode("");
-    setSelectedBarangayName("");
+    if (!isHydratingRef.current) {
+      setSelectedBarangayCode("");
+      setSelectedBarangayName("");
+    }
 
     if (!selectedDistrict || selectedDistrict === "Lone District") {
       setBarangays(allBarangays);
@@ -307,6 +538,18 @@ export default function PreRegistrationPage() {
     );
     setBarangays(filtered.length > 0 ? filtered : allBarangays);
   }, [selectedDistrict, allBarangays]);
+
+  function handleDiscardDraft() {
+    submittedRef.current = true;
+
+    try {
+      window.localStorage.removeItem(DRAFT_STORAGE_KEY);
+    } catch (error) {
+      console.error("[pre-registration] failed to clear saved draft", error);
+    }
+
+    window.location.reload();
+  }
 
   // Validate and submit form
   async function handleSubmit(e: React.FormEvent) {
@@ -392,6 +635,13 @@ export default function PreRegistrationPage() {
       if (!res.ok) {
         setSubmitError(data.error ?? "Something went wrong. Please try again.");
         return;
+      }
+
+      submittedRef.current = true;
+      try {
+        window.localStorage.removeItem(DRAFT_STORAGE_KEY);
+      } catch (error) {
+        console.error("[pre-registration] failed to clear saved draft", error);
       }
 
       setReferenceNumber(data.referenceNumber);
@@ -494,6 +744,27 @@ export default function PreRegistrationPage() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} noValidate className="space-y-8">
+              {draftRestored && (
+                <div className="flex flex-wrap items-center justify-between gap-3 rounded-md border border-km-orange/30 bg-km-orange/5 px-4 py-3 text-xs text-km-charcoal/80 sm:text-sm">
+                  <p>
+                    <strong className="font-semibold text-km-charcoal">Draft restored.</strong>{" "}
+                    We saved the details you entered earlier on this device, so nothing was lost.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={handleDiscardDraft}
+                    className="text-xs font-semibold text-km-orange underline underline-offset-2 hover:text-km-orange/80"
+                  >
+                    Start over
+                  </button>
+                </div>
+              )}
+
+              <p className="text-xs text-km-charcoal/60">
+                Your answers are saved on this device as you type, so you can continue where you
+                left off if your connection drops.
+              </p>
+
               {/* SECTION I: PERSONAL INFORMATION */}
               <section className="rounded-xl border border-km-charcoal/15 bg-white p-6 shadow-xs sm:p-8">
                 <div className="border-b border-km-charcoal/10 pb-4">
@@ -640,6 +911,7 @@ export default function PreRegistrationPage() {
                         <select
                           value={selectedRegionCode}
                           onChange={(e) => {
+                            isHydratingRef.current = false;
                             const code = e.target.value;
                             setSelectedRegionCode(code);
                             const item = regions.find((r) => r.code === code);
@@ -670,6 +942,7 @@ export default function PreRegistrationPage() {
                         <select
                           value={selectedProvinceCode}
                           onChange={(e) => {
+                            isHydratingRef.current = false;
                             const code = e.target.value;
                             setSelectedProvinceCode(code);
                             const item = provinces.find((p) => p.code === code);
@@ -705,6 +978,7 @@ export default function PreRegistrationPage() {
                         <select
                           value={selectedCityCode}
                           onChange={(e) => {
+                            isHydratingRef.current = false;
                             const code = e.target.value;
                             setSelectedCityCode(code);
                             const item = cities.find((c) => c.code === code);
@@ -738,7 +1012,10 @@ export default function PreRegistrationPage() {
                         </label>
                         <select
                           value={selectedDistrict}
-                          onChange={(e) => setSelectedDistrict(e.target.value)}
+                          onChange={(e) => {
+                            isHydratingRef.current = false;
+                            setSelectedDistrict(e.target.value);
+                          }}
                           disabled={!selectedCityCode || districts.length === 0}
                           className={selectClass}
                         >
@@ -768,6 +1045,7 @@ export default function PreRegistrationPage() {
                         <select
                           value={selectedBarangayCode}
                           onChange={(e) => {
+                            isHydratingRef.current = false;
                             const code = e.target.value;
                             setSelectedBarangayCode(code);
                             const item = barangays.find((b) => b.code === code);

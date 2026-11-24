@@ -16,16 +16,16 @@ export function CampusLifeRow({
       id={section.slug}
       className="scroll-mt-28"
     >
-      <div className="grid gap-7 lg:grid-cols-12 lg:items-center lg:gap-14">
-        <figure
-          className={cn(
-            "lg:col-span-6",
-            featured && "lg:col-span-7",
-            flipped ? "lg:col-start-7" : "lg:col-start-1",
-          )}
-        >
+      <div
+        className={cn(
+          "grid gap-7 lg:items-center lg:gap-14",
+          featured
+            ? "lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]"
+            : "lg:grid-cols-[minmax(0,6fr)_minmax(0,6fr)]",
+        )}
+      >
+        <figure className={cn(flipped ? "lg:order-2" : "lg:order-1")}>
           <div className="overflow-hidden bg-km-charcoal/[0.04]">
-            {/* Mock illustration, swapped for a photograph later. */}
             <img
               src={section.image}
               alt={section.imageAlt}
@@ -48,15 +48,7 @@ export function CampusLifeRow({
 
         {/* Copy sits in its own column beside the image, not underneath it. */}
         <div
-          className={cn(
-            "lg:col-span-5",
-            featured && "lg:col-span-4",
-            flipped
-              ? "lg:col-start-1 lg:row-start-1"
-              : featured
-                ? "lg:col-start-9"
-                : "lg:col-start-7",
-          )}
+          className={cn(flipped ? "lg:order-1" : "lg:order-2")}
         >
           <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-km-charcoal/45">
             {section.label}
@@ -88,11 +80,12 @@ export function CampusLifeRow({
             <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-km-charcoal/40">
               The details
             </p>
-            <dl className="mt-3 space-y-2.5 text-[12.5px]">
+            {/* Each value runs on from its own label — no columns, no empty middle. */}
+            <dl className="mt-2.5 space-y-1.5 text-[12.5px]">
               {section.facts.map((fact) => (
                 <div
                   key={fact.label}
-                  className="flex flex-wrap items-baseline justify-between gap-x-5 gap-y-0.5"
+                  className="flex flex-wrap items-baseline gap-x-[3px] gap-y-0"
                 >
                   <dt className="text-[11px] uppercase leading-[1.5] tracking-[0.1em] text-km-charcoal/45">
                     {fact.label}

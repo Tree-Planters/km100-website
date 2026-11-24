@@ -229,44 +229,6 @@ export const programs: Program[] = [
     ],
   },
   {
-    slug: "restaurant-operations-technology",
-    name: "Diploma in Restaurant Operations Technology",
-    shortName: "Restaurant Operations Technology",
-    shortDescription:
-      "Food and beverage management, dining service, and restaurant operations.",
-    tagline: "Service, timing and cost — a restaurant run as a business.",
-    image: "/programs/restaurant-operations-technology.jpg",
-    imageAlt: "KM100 program poster for Restaurant Operations Technology",
-    overview: [
-      "Restaurant Operations Technology looks at the restaurant as a whole: the dining room and the kitchen behind it, the order in which a service runs, and the money and stock that decide whether a good night of service is also a viable one. It brings together guest service, food and beverage management, and the routines that keep a floor working across shifts.",
-      "It is offered at KM100 as a three-year Diploma Program at PQF Level 5. It sits beside Culinary Arts Technology, which covers the kitchen itself, and Hospitality Technology, which covers service standards across hotels and resorts; this program is the operating side where those meet.",
-    ],
-    scope: [
-      {
-        title: "Dining service and floor flow",
-        body: "How a service period is planned and paced — covers, table timing, and keeping the dining room and kitchen working to the same rhythm.",
-      },
-      {
-        title: "Food and beverage cost control",
-        body: "Portions, waste, pricing and the records that show where a restaurant's money is actually going.",
-      },
-      {
-        title: "Menu and stock management",
-        body: "Planning what is sold against what is bought, stored and used, and ordering suppliers to match.",
-      },
-      {
-        title: "Supervision and scheduling",
-        body: "Rosters, briefings and holding a standard steady across staff, shifts and busy periods.",
-      },
-    ],
-    careers: [
-      "Restaurant supervisory roles",
-      "Food and beverage operations",
-      "Dining service and front-of-house coordination",
-      "Restaurant administration and stock control",
-    ],
-  },
-  {
     slug: "culinary-arts-technology",
     name: "Diploma in Culinary Arts Technology",
     shortName: "Culinary Arts Technology",
@@ -302,6 +264,44 @@ export const programs: Program[] = [
       "Kitchen work in hotels and resorts",
       "Catering and events food preparation",
       "Small food business kitchen operations",
+    ],
+  },
+  {
+    slug: "restaurant-operations-technology",
+    name: "Diploma in Restaurant Operations Technology",
+    shortName: "Restaurant Operations Technology",
+    shortDescription:
+      "Food and beverage management, dining service, and restaurant operations.",
+    tagline: "Service, timing and cost — a restaurant run as a business.",
+    image: "/programs/restaurant-operations-technology.jpg",
+    imageAlt: "KM100 program poster for Restaurant Operations Technology",
+    overview: [
+      "Restaurant Operations Technology looks at the restaurant as a whole: the dining room and the kitchen behind it, the order in which a service runs, and the money and stock that decide whether a good night of service is also a viable one. It brings together guest service, food and beverage management, and the routines that keep a floor working across shifts.",
+      "It is offered at KM100 as a three-year Diploma Program at PQF Level 5. It sits beside Culinary Arts Technology, which covers the kitchen itself, and Hospitality Technology, which covers service standards across hotels and resorts; this program is the operating side where those meet.",
+    ],
+    scope: [
+      {
+        title: "Dining service and floor flow",
+        body: "How a service period is planned and paced — covers, table timing, and keeping the dining room and kitchen working to the same rhythm.",
+      },
+      {
+        title: "Food and beverage cost control",
+        body: "Portions, waste, pricing and the records that show where a restaurant's money is actually going.",
+      },
+      {
+        title: "Menu and stock management",
+        body: "Planning what is sold against what is bought, stored and used, and ordering suppliers to match.",
+      },
+      {
+        title: "Supervision and scheduling",
+        body: "Rosters, briefings and holding a standard steady across staff, shifts and busy periods.",
+      },
+    ],
+    careers: [
+      "Restaurant supervisory roles",
+      "Food and beverage operations",
+      "Dining service and front-of-house coordination",
+      "Restaurant administration and stock control",
     ],
   },
 ];

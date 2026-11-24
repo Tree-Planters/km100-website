@@ -10,16 +10,16 @@ import {
 export function AboutPreview() {
   return (
     <Section className="bg-km-warm-white">
-      <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-        <div className="order-2 lg:order-1">
+      <div className="grid gap-12 lg:grid-cols-[1.3fr_1fr] lg:items-center lg:gap-14">
+        <div>
           <img
-            src="\gallery\ceremony-ribbon-cutting-02.jpg"
+            src="/gallery/ceremony-ribbon-cutting-02.jpg"
             alt="KM100 Skills and Training Center campus"
-            className="aspect-5/3 w-full rounded-2xl object-cover object-center"
+            className="h-auto w-full rounded-2xl object-center"
           />
         </div>
 
-        <div className="order-1 lg:order-2">
+        <div>
           <p className="text-xs font-semibold tracking-[0.18em] text-km-orange uppercase">
             About KM100
           </p>
@@ -37,10 +37,11 @@ export function AboutPreview() {
 
           <ul className="mt-8 space-y-3">
             {philosophyPillars.map((pillar) => (
-              <li key={pillar.number} className="flex items-baseline gap-3">
-                <span className="font-heading text-sm text-km-orange">
-                  {pillar.number}
-                </span>
+              <li key={pillar.number} className="flex items-center gap-3">
+                <span
+                  aria-hidden="true"
+                  className="h-1.5 w-1.5 shrink-0 rounded-full bg-km-orange"
+                />
                 <span className="font-semibold text-km-charcoal">
                   {pillar.title}
                 </span>

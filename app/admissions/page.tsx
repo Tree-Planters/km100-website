@@ -244,7 +244,7 @@ export default function AdmissionsPage() {
                   <p className="mt-2 text-[14px] leading-relaxed text-km-charcoal/70">
                     {step.body}
                   </p>
-                  {step.action}
+                  {step.action ? <div className="mt-auto pt-4">{step.action}</div> : null}
                 </li>
               ))}
             </ol>

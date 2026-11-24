@@ -1,8 +1,9 @@
 /**
  * Campus Life page content.
  *
- * Mock/draft copy for layout preview. Confirm the organizations, dates and
- * service figures with KM100 before publishing.
+ * Every story below is built on a real photograph from the 28 October 2026
+ * launching, held in /public/gallery. Swap `image`, `imageAlt` and `caption`
+ * together with the copy when new campus photographs arrive.
  */
 
 export type CampusLifeSection = {
@@ -18,91 +19,91 @@ export type CampusLifeSection = {
 };
 
 export const campusLifeFacts = [
-  { value: 12, label: "student organizations" },
-  { value: 4, label: "training laboratories" },
-  { value: 15, label: "school events a year" },
-  { value: 1200, label: "service hours logged" },
+  { value: 28, label: "October 2026 launch day" },
+  { value: 11, label: "NC II graduates" },
+  { value: 4, label: "partner sectors on the pledge" },
+  { value: 3, label: "flags at the campus flagpole" },
 ];
 
 export const campusLifeSections: CampusLifeSection[] = [
   {
-    slug: "student-activities",
+    slug: "campus-opening",
     index: "01",
-    label: "Student activities",
-    title: "Twelve organizations, all student-run",
+    label: "The opening",
+    title: "The campus opened on 28 October",
     paragraphs: [
-      "Every program has its own organizations, and each one keeps a calendar, a budget and a set of officers. A faculty adviser signs off on plans. Students book the rooms, write the proposals and run the meetings.",
-      "Meetings start after the last class block, between four and six, so they don't cut into shop time.",
+      "Guests from the Bogo City local government, TESDA Region VII and DOLE joined the KM100 management, the Board of Directors, the academe and industry partners under the school banner for the official launching of the PQF Level 5 Diploma Programs.",
+      "The morning began with a flag raising and the national anthem, a blessing of the building, and messages from the guests of honour. The ribbon went up between two balloon towers at the entrance, where the programme photographs were taken.",
     ],
     facts: [
-      { label: "Student Council", value: "Mondays, 4:30 PM" },
-      { label: "Robotics and Automation Club", value: "Tuesdays, Lab 2" },
-      { label: "Culinary and Hospitality Society", value: "Thursdays, kitchen" },
-      { label: "The Workbench, campus paper", value: "Fridays, Room 204" },
+      { label: "Date", value: "28 October 2026" },
+      { label: "Opening", value: "Flag raising, 8:00 AM" },
+      { label: "Ribbon", value: "Cut at the main entrance" },
+      { label: "Guests", value: "Bogo City LGU, TESDA, DOLE" },
     ],
-    image: "/images/campus-life/student-activities.svg",
+    image: "/gallery/ceremony-ribbon-cutting-02.jpg",
     imageAlt:
-      "Illustration of students at club booths in the KM100 courtyard",
-    caption: "Organization fair, main courtyard.",
+      "Four guests cutting the red ribbon between two balloon towers in front of the KM100 building, with the school banner overhead",
+    caption: "The ribbon cutting at the campus entrance, 28 October 2026.",
   },
   {
-    slug: "practical-training",
+    slug: "laboratories",
     index: "02",
-    label: "Practical training",
-    title: "Half of every day is bench time",
+    label: "The laboratories",
+    title: "Two laboratory doors opened the same morning",
     paragraphs: [
-      "First and second year students split the day between general education and their trade. The trade half happens at a workstation with a task card, using the same format as industry immersion. Instructors check the work at the bench, not at the end of the term.",
-      "In their final year, students spend 480 hours with a partner employer in Bogo City or metro Cebu. The training office arranges the placement and visits the site twice.",
+      "The Computer Systems Servicing NC II and Bread & Pastry Production NC II laboratories sit on the ground floor of the main building. Each one was blessed and opened with its own ribbon, cut by the guests of honour while the rest of the party looked on.",
+      "These are the rooms the diploma programs train in: the benches, the ovens and the service areas students will use from their first week. Tours ran through the building after the programme so guests could see the training areas set up.",
     ],
     facts: [
-      { label: "Bench sessions", value: "Daily, 8:00 AM to 12:00 PM" },
-      { label: "Industry immersion", value: "480 hours, final year" },
-      { label: "Mock assessment", value: "Once per semester" },
-      { label: "Open laboratory", value: "Saturdays, 8:00 AM" },
+      { label: "Laboratory A", value: "Computer Systems Servicing NC II" },
+      { label: "Laboratory B", value: "Bread & Pastry Production NC II" },
+      { label: "Location", value: "Ground floor, main building" },
+      { label: "Ribbon", value: "Cut by four guests" },
     ],
-    image: "/images/campus-life/practical-training.svg",
+    image: "/gallery/ceremony-ribbon-cutting-01.jpg",
     imageAlt:
-      "Illustration of a student at an electronics workbench with an instructor",
-    caption: "Electronics laboratory, second year bench session.",
+      "Four guests holding a red ribbon with a large bow in front of the Bread & Pastry Production NC II laboratory doorway",
+    caption: "The Bread & Pastry Production NC II laboratory doorway.",
   },
   {
-    slug: "school-events",
+    slug: "first-graduates",
     index: "03",
-    label: "School events",
-    title: "Foundation Day, skills olympics, intramurals",
+    label: "The graduates",
+    title: "Eleven graduates collected the first NC II certificates",
     paragraphs: [
-      "Foundation Day in February fills the grounds with program booths and an evening programme. The skills olympics in October puts students from all five diploma tracks on the same floor for timed trade tests. Intramurals close the first semester in September.",
-      "Students do most of the work. The Student Council drafts the programme, hospitality students handle food service, and electronics students run the sound and lights.",
+      "Before the diploma programs opened, the school's Sugbo Kahanas trainees finished their National Certificate II in Computer Systems Servicing. Eleven of them posed with their certificates in front of the launching backdrop, and the awards were made through the office of PB Celestino Martinez III.",
+      "The same afternoon, DOLE turned over its Job Placement Office to the school, so graduates can be matched with partner employers from inside the building.",
     ],
     facts: [
-      { label: "Foundation Day", value: "February 12" },
-      { label: "Skills olympics", value: "October" },
-      { label: "Intramurals", value: "September" },
-      { label: "Recognition rites", value: "April" },
+      { label: "Award", value: "National Certificate II" },
+      { label: "Qualification", value: "Computer Systems Servicing NC II" },
+      { label: "Graduates", value: "Eleven at the launch" },
+      { label: "Awarded through", value: "Office of PB Celestino Martinez III" },
     ],
-    image: "/images/campus-life/school-events.svg",
+    image: "/gallery/ceremony-nc2-graduates-03.jpg",
     imageAlt:
-      "Illustration of the Foundation Day programme on the KM100 stage",
-    caption: "Foundation Day programme, campus stage.",
+      "Eleven graduates holding their National Certificate II certificates in front of the PQF Level 5 Diploma Programs launching backdrop",
+    caption: "The first NC II graduates at the launching backdrop.",
   },
   {
-    slug: "community-involvement",
+    slug: "partners",
     index: "04",
-    label: "Community involvement",
-    title: "Saturdays in Barangay Cogon",
+    label: "The partners",
+    title: "Industry, academe and community partners signed the pledge",
     paragraphs: [
-      "The outreach programme began with a request from Barangay Cogon to help rewire its barangay hall. It now runs as a monthly clinic. Students take on repair jobs, computer literacy sessions and food-handling demonstrations in partner barangays around Bogo City.",
-      "Service is documented. Each student logs at least 40 hours before graduation, and the training office files the record with their immersion documents.",
+      "The Pledge of Commitment and Support board stood beside the launching backdrop all morning. Representatives from industry, the academe, private sponsors and community partners added their names to it, alongside the school's own commitment to technical-vocational education and the diploma programs.",
+      "The signatures are the part of the launch that carries past the ceremony: they are the partners the school will place students with for immersion, and the offices that will take its graduates on.",
     ],
     facts: [
-      { label: "Skills clinic", value: "Second Saturday, monthly" },
-      { label: "Computer literacy", value: "Saturdays, 9:00 AM" },
-      { label: "Coastal cleanup", value: "September and March" },
-      { label: "Service requirement", value: "40 hours" },
+      { label: "Document", value: "Pledge of Commitment and Support" },
+      { label: "Sectors", value: "Industry, academe, sponsors, community" },
+      { label: "Also turned over", value: "DOLE Job Placement Office" },
+      { label: "Signed at", value: "The launching, 28 October 2026" },
     ],
-    image: "/images/campus-life/community-involvement.svg",
+    image: "/gallery/ceremony-pledge-signing-08.jpg",
     imageAlt:
-      "Illustration of students handing out supplies at a barangay outreach",
-    caption: "Monthly skills clinic, Barangay Cogon.",
+      "A partner signing the Pledge of Commitment and Support board in front of the PQF Level 5 launching backdrop",
+    caption: "Adding a signature to the Pledge of Commitment and Support.",
   },
 ];
