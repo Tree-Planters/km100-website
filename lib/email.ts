@@ -82,31 +82,179 @@ function escapeHtml(value: string): string {
   });
 }
 
+function present(value?: string | null): string | undefined {
+  const trimmed = value?.trim();
+  return trimmed ? trimmed : undefined;
+}
+
 type PreRegistrationEmail = PreRegistrationInput & {
   referenceNumber: string;
 };
 
+type DetailRow = { label: string; value: string };
+
+function applicantDetails(
+  submission: PreRegistrationEmail
+): DetailRow[] {
+  const fullName =
+    [
+      present(submission.firstName),
+      present(submission.middleName),
+      present(submission.lastName),
+      present(submission.suffix),
+    ]
+      .filter(Boolean)
+      .join(" ") || "—";
+
+  const address =
+    [
+      present(submission.address),
+      present(submission.sitio),
+      present(submission.barangay),
+      present(submission.district),
+      present(submission.municipality),
+      present(submission.province),
+      present(submission.region),
+    ]
+      .filter(Boolean)
+      .join(", ") || "—";
+
+  const education =
+    submission.isCurrentlyEnrolled === "YES"
+      ? [
+          present(submission.currentSchool)
+            ? `Currently enrolled at ${present(submission.currentSchool)}`
+            : "Currently enrolled",
+          present(submission.currentGradeLevel),
+          present(submission.currentProgram),
+        ]
+          .filter(Boolean)
+          .join(" · ")
+      : present(submission.highestAttainment)
+        ? `Highest attainment: ${present(submission.highestAttainment)}`
+        : "—";
+
+  return [
+    { label: "Reference number", value: submission.referenceNumber },
+    { label: "Program", value: getProgramBySlug(submission.program)?.name ?? submission.program },
+    { label: "Full name", value: fullName },
+    { label: "Email address", value: submission.email },
+    { label: "Mobile number", value: submission.mobile },
+    { label: "Civil status", value: submission.civilStatus },
+    { label: "Complete address", value: address },
+    { label: "Educational background", value: education },
+  ];
+}
+
 export async function sendPreRegistrationEmails(
   submission: PreRegistrationEmail
-) {
+): Promise<boolean> {
+  const programName =
+    getProgramBySlug(submission.program)?.name ?? submission.program;
+  const rows = applicantDetails(submission);
+  const { phone, email: contactEmail, address } = siteConfig.contact;
+
+  const text = [
+    `Hello ${submission.firstName},`,
+    "",
+    `Thank you for pre-registering with ${siteConfig.name}. We received your submission and it is now on file.`,
+    "",
+    "Your reference number",
+    submission.referenceNumber,
+    "",
+    "The details you provided",
+    ...rows.map((row) => `${row.label}: ${row.value}`),
+    "",
+    "Please keep your reference number — quote it whenever you contact our admissions office.",
+    "This is pre-registration only, not official enrollment. Our team will reach out to guide you through the next steps.",
+    "",
+    `If anything above looks wrong, reply to this email or call us at ${phone}.`,
+    "",
+    siteConfig.name,
+    address,
+    `${phone} · ${contactEmail}`,
+  ].join("\n");
+
+  const tableRows = rows
+    .map(
+      (row, index) => `
+          <tr>
+            <td style="padding:8px 0;color:#6b6b6b;vertical-align:top;${
+              index === 0 ? "" : "border-top:1px solid #eceae5;"
+            }">${escapeHtml(row.label)}</td>
+            <td style="padding:8px 0;text-align:right;font-weight:600;${
+              index === 0 ? "" : "border-top:1px solid #eceae5;"
+            }">${escapeHtml(row.value)}</td>
+          </tr>`
+    )
+    .join("");
+
+  const html = `<!doctype html>
+<html>
+  <body style="margin:0;padding:32px 16px;background:#f5f3ef;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;color:#252525;">
+    <div style="max-width:560px;margin:0 auto;background:#ffffff;border-radius:12px;overflow:hidden;border-top:4px solid #f47721;">
+      <div style="padding:32px;">
+        <p style="margin:0 0 8px;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#f47721;font-weight:600;">KM100 Skills and Training Center, Inc.</p>
+        <h1 style="margin:0 0 20px;font-size:24px;line-height:1.3;">We received your pre-registration</h1>
+        <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">Hello ${escapeHtml(
+          submission.firstName
+        )},</p>
+        <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">Thank you for pre-registering for <strong>${escapeHtml(
+          programName
+        )}</strong>. Your submission is now on file.</p>
+        <div style="margin:24px 0;padding:16px 20px;background:#fff6ef;border-radius:10px;border:1px solid #f6d8bf;">
+          <p style="margin:0 0 4px;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#8a5a2b;">Your reference number</p>
+          <p style="margin:0;font-size:22px;font-weight:700;letter-spacing:0.04em;">${escapeHtml(
+            submission.referenceNumber
+          )}</p>
+        </div>
+        <h2 style="margin:0 0 8px;font-size:16px;">The details you provided</h2>
+        <table role="presentation" style="width:100%;border-collapse:collapse;margin:0 0 24px;font-size:14px;">${tableRows}
+        </table>
+        <p style="margin:0 0 16px;font-size:15px;line-height:1.6;">Please keep your reference number — quote it whenever you contact our admissions office.</p>
+        <p style="margin:0 0 16px;font-size:15px;line-height:1.6;"><strong>This is pre-registration only, not official enrollment.</strong> Our team will reach out to guide you through the next steps.</p>
+        <p style="margin:0 0 24px;font-size:15px;line-height:1.6;">If anything above looks wrong, reply to this email or call us at <a href="${
+          siteConfig.contact.phoneHref
+        }" style="color:#252525;">${escapeHtml(phone)}</a>.</p>
+      </div>
+      <div style="padding:20px 32px;background:#252525;color:#ffffff;font-size:12px;line-height:1.6;">
+        <p style="margin:0 0 4px;font-weight:600;">${escapeHtml(siteConfig.name)}</p>
+        <p style="margin:0 0 4px;color:#c9c9c9;">${escapeHtml(address)}</p>
+        <p style="margin:0;color:#c9c9c9;">${escapeHtml(phone)} · ${escapeHtml(
+          contactEmail
+        )}</p>
+      </div>
+    </div>
+  </body>
+</html>`;
+
   const results = await Promise.all([
     sendMail({
       from,
       to: submission.email,
-      subject: `KM100 pre-registration received (${submission.referenceNumber})`,
-      text: `Hello ${submission.firstName},\n\nWe received your pre-registration for ${submission.program}.\nYour reference number is ${submission.referenceNumber}.\n\nThis is pre-registration only, not official enrollment.`,
+      subject: `Your KM100 pre-registration (${submission.referenceNumber})`,
+      text,
+      html,
     }),
     sendMail({
       from,
       to: schoolEmail,
       subject: `New pre-registration: ${submission.firstName} ${submission.lastName}`,
-      text: `Reference: ${submission.referenceNumber}\nProgram: ${submission.program}\nEmail: ${submission.email}\nMobile: ${submission.mobile}`,
+      text: [
+        `Reference: ${submission.referenceNumber}`,
+        ...rows.map((row) => `${row.label}: ${row.value}`),
+        "",
+        `Submitted: ${new Date().toISOString()}`,
+      ].join("\n"),
+      replyTo: submission.email,
     }),
   ]);
 
   if (results.some((sent) => !sent)) {
     console.error("[email] one or more pre-registration notifications failed");
   }
+
+  return results[0];
 }
 
 export async function sendContactInquiryEmail(submission: ContactInquiryInput) {

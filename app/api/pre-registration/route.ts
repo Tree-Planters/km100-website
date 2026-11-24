@@ -82,7 +82,13 @@ export async function POST(request: Request) {
   }
 
   // Email is best effort: a delivery failure must not lose the submission.
-  await sendPreRegistrationEmails({ ...parsed.data, referenceNumber });
+  const confirmationEmailSent = await sendPreRegistrationEmails({
+    ...parsed.data,
+    referenceNumber,
+  });
 
-  return NextResponse.json({ referenceNumber }, { status: 201 });
+  return NextResponse.json(
+    { referenceNumber, confirmationEmailSent },
+    { status: 201 },
+  );
 }
