@@ -1,10 +1,10 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useEffect, useMemo, useState } from "react";
 import { programs, getProgramBySlug } from "@/lib/programs";
 import { cn } from "@/lib/utils";
 import { useSubmissions } from "@/components/dashboard/use-submissions";
-import { SubmissionDrawer } from "@/components/dashboard/submission-drawer";
 import {
   GLASS_CARD,
   GLASS_PANEL,
@@ -20,6 +20,15 @@ import {
   toDateKey,
 } from "@/lib/dashboard";
 import type { DashboardSubmission } from "@/app/api/dashboard/route";
+
+// Loaded on first row click instead of with the applications table.
+const SubmissionDrawer = dynamic(
+  () =>
+    import("@/components/dashboard/submission-drawer").then(
+      (mod) => mod.SubmissionDrawer
+    ),
+  { ssr: false }
+);
 
 export function ApplicationsView({
   initialProgram = "ALL",

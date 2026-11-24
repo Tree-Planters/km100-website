@@ -1,5 +1,4 @@
 import { getProgramBySlug } from "@/lib/programs";
-import { createXlsx } from "@/lib/xlsx";
 import type { DashboardSubmission } from "@/app/api/dashboard/route";
 
 export type SubmissionStatus = DashboardSubmission["status"];
@@ -201,8 +200,10 @@ export function exportToCSV(submissions: DashboardSubmission[]) {
   downloadFile("\ufeff" + csv, exportFileName("csv"), "text/csv;charset=utf-8");
 }
 
-export function exportToExcel(submissions: DashboardSubmission[]) {
+export async function exportToExcel(submissions: DashboardSubmission[]) {
   if (submissions.length === 0) return;
+
+  const { createXlsx } = await import("@/lib/xlsx");
 
   const workbook = createXlsx({
     sheetName: "Pre-Registrations",

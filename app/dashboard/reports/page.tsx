@@ -74,7 +74,7 @@ export default function ReportsPage() {
               {loading ? "Loading records…" : `${submissions.length} records included`}
             </span>
             <button
-              onClick={() => exportToExcel(submissions)}
+              onClick={() => void exportToExcel(submissions)}
               disabled={disabled}
               className="inline-flex items-center gap-1.5 rounded-full bg-km-orange px-4 py-2 text-[11.5px] font-semibold text-white shadow-sm transition-all hover:bg-km-orange/90 disabled:cursor-not-allowed disabled:opacity-40"
             >

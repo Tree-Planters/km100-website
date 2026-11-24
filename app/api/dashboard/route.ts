@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/database";
 
+// The dashboard always reads live records; caching is handled on the client.
+export const dynamic = "force-dynamic";
+
+const NO_STORE = { "Cache-Control": "private, no-store" };
+
 export type DashboardSubmission = {
   id: string;
   referenceNumber: string;
@@ -65,10 +70,13 @@ export async function GET(request: Request) {
       },
     });
 
-    return NextResponse.json({
-      submissions: records,
-      total: records.length,
-    });
+    return NextResponse.json(
+      {
+        submissions: records,
+        total: records.length,
+      },
+      { headers: NO_STORE }
+    );
   } catch (error) {
     console.error("[dashboard-api] Database query error:", error);
     return NextResponse.json(
@@ -77,7 +85,7 @@ export async function GET(request: Request) {
         submissions: [],
         total: 0,
       },
-      { status: 500 }
+      { status: 500, headers: NO_STORE }
     );
   }
 }
@@ -88,7 +96,7 @@ export async function PATCH(request: Request) {
     if (!body || !body.id || !body.status) {
       return NextResponse.json(
         { error: "Submission ID and new status are required." },
-        { status: 400 }
+        { status: 400, headers: NO_STORE }
       );
     }
 
@@ -99,12 +107,15 @@ export async function PATCH(request: Request) {
       data: { status },
     });
 
-    return NextResponse.json({ success: true, submission: updated });
+    return NextResponse.json(
+      { success: true, submission: updated },
+      { headers: NO_STORE }
+    );
   } catch (err) {
     console.error("[dashboard-api] Error updating submission status:", err);
     return NextResponse.json(
       { error: "Failed to update submission status in database." },
-      { status: 500 }
+      { status: 500, headers: NO_STORE }
     );
   }
 }

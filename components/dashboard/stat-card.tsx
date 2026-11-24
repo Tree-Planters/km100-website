@@ -50,6 +50,7 @@ export function StatCard({
   share,
   icon,
   href,
+  loading = false,
 }: {
   tone: keyof typeof STAT_TONES;
   label: string;
@@ -59,6 +60,7 @@ export function StatCard({
   share: number;
   icon: ReactNode;
   href?: string;
+  loading?: boolean;
 }) {
   const palette = STAT_TONES[tone];
 
@@ -77,9 +79,13 @@ export function StatCard({
             {label}
           </span>
           <div className="mt-3 flex items-end gap-1.5">
-            <span className="font-body text-[2.9rem] font-bold leading-none tracking-tight text-km-charcoal tabular-nums">
-              {value}
-            </span>
+            {loading ? (
+              <span className="h-10 w-16 animate-pulse rounded-lg bg-km-charcoal/10 inline-block mb-1" />
+            ) : (
+              <span className="font-body text-[2.9rem] font-bold leading-none tracking-tight text-km-charcoal tabular-nums">
+                {value}
+              </span>
+            )}
             <span className="pb-1 text-[11px] font-medium text-km-charcoal/45">{unit}</span>
           </div>
         </div>
