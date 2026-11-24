@@ -27,13 +27,6 @@ const STATUS_UNIT: Record<SubmissionStatus, string> = {
   ARCHIVED: "closed",
 };
 
-const STATUS_NOTE: Record<SubmissionStatus, string> = {
-  PENDING: "Awaiting first contact",
-  CONTACTED: "In active follow-up",
-  ENROLLED: "Officially admitted",
-  ARCHIVED: "No longer active",
-};
-
 const STATUS_ICON: Record<SubmissionStatus, ReactNode> = {
   PENDING: (
     <path
@@ -146,7 +139,6 @@ export default function DashboardPage() {
               label={STATUS_CONFIG[status].label}
               value={statusCounts[status]}
               unit={STATUS_UNIT[status]}
-              note={STATUS_NOTE[status]}
               share={share(statusCounts[status])}
               href={`/dashboard/applications?status=${status}`}
               icon={

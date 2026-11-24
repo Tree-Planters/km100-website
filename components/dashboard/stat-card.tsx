@@ -55,7 +55,7 @@ export function StatCard({
   label: string;
   value: number;
   unit: string;
-  note: string;
+  note?: string;
   share: number;
   icon: ReactNode;
   href?: string;
@@ -105,11 +105,13 @@ export function StatCard({
         </span>
       </div>
 
-      <div className="relative mt-3 flex items-center justify-between gap-2">
-        <p className="flex min-w-0 items-center gap-1.5 text-[11px] text-km-charcoal/45">
-          <span className={cn("h-1.5 w-1.5 shrink-0 rounded-full", palette.dot)} />
-          <span className="truncate">{note}</span>
-        </p>
+      <div className={cn("relative mt-3 flex items-center gap-2", note ? "justify-between" : "justify-end")}>
+        {note && (
+          <p className="flex min-w-0 items-center gap-1.5 text-[11px] text-km-charcoal/45">
+            <span className={cn("h-1.5 w-1.5 shrink-0 rounded-full", palette.dot)} />
+            <span className="truncate">{note}</span>
+          </p>
+        )}
         {href && (
           <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-white/70 px-2.5 py-1 text-[10.5px] font-semibold text-km-charcoal/60 transition-colors group-hover:bg-km-orange/10 group-hover:text-km-orange">
             View
