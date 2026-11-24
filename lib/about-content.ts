@@ -44,6 +44,18 @@ export const philosophyPillars = [
   },
 ];
 
+// Draft mission and vision statements, written from KM100's own published
+// commitments (quality technical education, skills training, social service;
+// "Be Practical, Get Technical"; PQF Level 5 diplomas in Northern Cebu).
+// These are drafts for KM100 to review and adopt — they are not yet official
+// institutional policy.
+
+export const mission =
+  "Our mission is to provide quality technical education, skills training and social service to the people of Bogo City and Northern Cebu. We teach trades by practising them — giving every learner the time, the supervision and the facilities to do the work correctly, safely and to a standard employers recognise. And we keep that training within reach, through PQF Level 5 diploma programs, TESDA-registered short courses and scholarship-supported skills training, so that a qualification depends on a learner's effort rather than their circumstances.";
+
+export const vision =
+  "To be Northern Cebu's first choice for technical education: an institution known for graduates who can do the work from their first day, and for making that training available to learners whoever they are and wherever they start. We work toward a region where technical competence is a source of pride and a reliable route to a stable livelihood — and where KM100 graduates are the ones building, wiring, repairing, cooking, hosting and serving in the communities they come from.";
+
 // Derived from the institution's own statement — offered as guiding principles,
 // not as published policy.
 export const guidingPrinciples = [
