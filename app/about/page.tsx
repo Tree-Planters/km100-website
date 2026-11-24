@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/layout/page-header";
 import { Section } from "@/components/layout/section";
 import { ButtonLink } from "@/components/ui/button";
-import { Placeholder } from "@/components/ui/placeholder";
 import {
   aboutIntro,
   guidingPrinciples,
   institutionalStatement,
   milestone,
+  mission,
   philosophyPillars,
+  vision,
 } from "@/lib/about-content";
 
 export const metadata: Metadata = {
@@ -137,7 +138,7 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      {/* Mission and vision - official text still to be supplied by KM100 */}
+      {/* Mission and vision — draft statements pending KM100's official adoption */}
       <Section>
         <div className="max-w-2xl">
           <p className="text-xs font-semibold tracking-[0.18em] text-km-orange uppercase">
@@ -146,10 +147,21 @@ export default function AboutPage() {
           <h2 className="mt-3 font-heading text-3xl leading-snug sm:text-4xl">
             Where we are going.
           </h2>
+          <p className="mt-5 leading-relaxed text-km-charcoal/70">
+            What we do every day, and what we are working toward.
+          </p>
         </div>
         <div className="mt-10 grid gap-8 lg:grid-cols-2">
-          <Placeholder label="Official mission statement" />
-          <Placeholder label="Official vision statement" />
+          <div className="rounded-2xl border border-km-charcoal/10 bg-km-warm-white p-8 sm:p-10">
+            <h3 className="font-heading text-2xl">Our mission</h3>
+            <div aria-hidden="true" className="mt-4 h-0.5 w-12 bg-km-orange" />
+            <p className="mt-6 leading-relaxed text-km-charcoal/70">{mission}</p>
+          </div>
+          <div className="rounded-2xl border border-km-charcoal/10 bg-km-warm-white p-8 sm:p-10">
+            <h3 className="font-heading text-2xl">Our vision</h3>
+            <div aria-hidden="true" className="mt-4 h-0.5 w-12 bg-km-orange" />
+            <p className="mt-6 leading-relaxed text-km-charcoal/70">{vision}</p>
+          </div>
         </div>
       </Section>
 
