@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/database";
+import { sendApplicationConfirmedEmail } from "@/lib/email";
 
 // The dashboard always reads live records; caching is handled on the client.
 export const dynamic = "force-dynamic";
@@ -90,6 +91,13 @@ export async function GET(request: Request) {
   }
 }
 
+const STATUS_VALUES: DashboardSubmission["status"][] = [
+  "PENDING",
+  "CONTACTED",
+  "ENROLLED",
+  "ARCHIVED",
+];
+
 export async function PATCH(request: Request) {
   try {
     const body = await request.json().catch(() => null);
@@ -100,15 +108,43 @@ export async function PATCH(request: Request) {
       );
     }
 
-    const { id, status } = body;
+    const { id, status } = body as { id: string; status: string };
+
+    if (!STATUS_VALUES.includes(status as DashboardSubmission["status"])) {
+      return NextResponse.json(
+        { error: `Unknown status "${status}".` },
+        { status: 400, headers: NO_STORE }
+      );
+    }
+
+    const existing = await prisma.preRegistration.findUnique({ where: { id } });
+    if (!existing) {
+      return NextResponse.json(
+        { error: "Submission not found." },
+        { status: 404, headers: NO_STORE }
+      );
+    }
 
     const updated = await prisma.preRegistration.update({
       where: { id },
-      data: { status },
+      data: { status: status as DashboardSubmission["status"] },
     });
 
+    // Confirmation email fires only on the transition into ENROLLED, so
+    // re-saving an already-enrolled application does not send it again.
+    let confirmationEmailSent: boolean | null = null;
+    if (updated.status === "ENROLLED" && existing.status !== "ENROLLED") {
+      confirmationEmailSent = await sendApplicationConfirmedEmail({
+        firstName: updated.firstName,
+        lastName: updated.lastName,
+        email: updated.email,
+        referenceNumber: updated.referenceNumber,
+        program: updated.program,
+      });
+    }
+
     return NextResponse.json(
-      { success: true, submission: updated },
+      { success: true, submission: updated, confirmationEmailSent },
       { headers: NO_STORE }
     );
   } catch (err) {
