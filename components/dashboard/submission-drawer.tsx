@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { getProgramBySlug } from "@/lib/programs";
 import { cn } from "@/lib/utils";
 import {
@@ -21,19 +22,46 @@ export function SubmissionDrawer({
   onClose: () => void;
   onStatusChange: (id: string, status: SubmissionStatus) => void;
 }) {
-  // Close the drawer with Escape
+  // Status change awaiting admin confirmation
+  const [pendingStatus, setPendingStatus] = useState<SubmissionStatus | null>(null);
+
+  // Close the confirmation first, then the drawer, with Escape
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") onClose();
+      if (event.key !== "Escape") return;
+      if (pendingStatus) {
+        setPendingStatus(null);
+        return;
+      }
+      onClose();
     }
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [onClose]);
+  }, [onClose, pendingStatus]);
 
   const activeStatus =
     STATUS_CONFIG[item.status as keyof typeof STATUS_CONFIG] || STATUS_CONFIG.PENDING;
+  const pendingConfig = pendingStatus ? STATUS_CONFIG[pendingStatus] : null;
+
+  function confirmPendingStatus() {
+    if (!pendingStatus) return;
+    onStatusChange(item.id, pendingStatus);
+    setPendingStatus(null);
+  }
+
+  const STATUS_CONFIRM_COPY: Record<SubmissionStatus, string> = {
+    PENDING:
+      "The applicant goes back to Pending Review. Use this when the submission still needs to be reassessed.",
+    CONTACTED:
+      "The applicant is marked as Contacted. Use this once you have reached out to them about their pre-registration.",
+    ENROLLED:
+      "The applicant is marked as officially Enrolled. Confirm this only after the enrollment requirements are complete.",
+    ARCHIVED:
+      "The applicant is moved to Archived and leaves the active queue. Use this for closed or withdrawn applications.",
+  };
 
   return (
+    <>
     <div
       className="fixed inset-0 z-[60] flex items-center justify-center bg-km-charcoal/55 p-4 backdrop-blur-sm"
       onClick={onClose}
@@ -78,23 +106,37 @@ export function SubmissionDrawer({
           <div className="mt-5 rounded-2xl border border-km-charcoal/10 bg-km-warm-white/60 p-4">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <div className="flex items-center gap-2">
-                <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-km-charcoal/50">
+                <span className="text-[10.5px] font-semibold uppercase tracking-[0.12em] text-km-charcoal/45">
                   Current Status
                 </span>
                 <span
                   className={cn(
-                    "rounded-full border px-2.5 py-0.5 text-[11px] font-semibold",
+                    "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[11px] font-semibold",
                     activeStatus.bg
                   )}
                 >
+                  <span className={cn("h-1.5 w-1.5 rounded-full", activeStatus.dot)} />
                   {activeStatus.label}
                 </span>
               </div>
 
-              <span className="text-[11px] font-medium text-km-charcoal/45">
-                {updatingId === item.id
-                  ? "Saving changes…"
-                  : "Select a status below to update this applicant"}
+              <span
+                className={cn(
+                  "inline-flex items-center gap-1.5 text-[11px] font-medium",
+                  updatingId === item.id ? "text-km-orange" : "text-km-charcoal/45"
+                )}
+              >
+                {updatingId === item.id ? (
+                  <>
+                    <svg className="h-3 w-3 animate-spin" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
+                    </svg>
+                    Saving changes…
+                  </>
+                ) : (
+                  "Tap a status to update this applicant"
+                )}
               </span>
             </div>
 
@@ -108,27 +150,36 @@ export function SubmissionDrawer({
                   <button
                     key={st}
                     type="button"
-                    onClick={() => onStatusChange(item.id, st)}
+                    onClick={() => setPendingStatus(st)}
                     disabled={isSaving || isCurrent}
                     aria-pressed={isCurrent}
-                    title={`Set status to ${st.toLowerCase()}`}
+                    aria-label={
+                      isCurrent
+                        ? `${config.label} — current status`
+                        : `Change status to ${config.label}`
+                    }
+                    title={
+                      isCurrent
+                        ? `${config.label} is the current status`
+                        : `Change status to ${config.label}`
+                    }
                     className={cn(
-                      "flex items-center justify-center gap-1.5 rounded-xl border px-2 py-2 text-[11px] font-semibold capitalize transition-all",
+                      "flex min-h-11 w-full items-center justify-center gap-1.5 rounded-xl border px-2 py-2.5 text-xs font-semibold transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-km-orange/40 focus-visible:ring-offset-1",
                       isCurrent
                         ? cn(config.bg, "cursor-default shadow-sm")
-                        : "border-km-charcoal/12 bg-white text-km-charcoal/70 hover:-translate-y-0.5 hover:border-km-orange/50 hover:text-km-orange hover:shadow-sm",
-                      isSaving && "opacity-60"
+                        : "cursor-pointer border-km-charcoal/15 bg-white text-km-charcoal/75 shadow-[0_1px_2px_rgba(37,37,37,0.06)] hover:-translate-y-0.5 hover:border-km-orange/60 hover:bg-km-orange/5 hover:text-km-orange hover:shadow-md active:translate-y-0 active:scale-[0.97]",
+                      isSaving && !isCurrent && "cursor-wait opacity-60 hover:translate-y-0 hover:shadow-none"
                     )}
                   >
                     <span
                       className={cn(
-                        "h-1.5 w-1.5 rounded-full",
+                        "h-2 w-2 rounded-full",
                         isCurrent ? config.dot : "bg-km-charcoal/25"
                       )}
                     />
-                    {st.toLowerCase()}
+                    {st.charAt(0) + st.slice(1).toLowerCase()}
                     {isCurrent && (
-                      <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                       </svg>
                     )}
@@ -137,8 +188,13 @@ export function SubmissionDrawer({
               })}
             </div>
 
-            <p className="mt-2.5 text-[10.5px] text-km-charcoal/40">
-              Changes are saved to the database immediately.
+            <p className="mt-3 flex items-start gap-1.5 text-[10.5px] leading-relaxed text-km-charcoal/45">
+              <svg className="mt-px h-3 w-3 shrink-0 text-km-orange/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v3.75m0 3.75h.008M12 21a9 9 0 110-18 9 9 0 010 18z" />
+              </svg>
+              <span>
+                Pick any status to open a confirmation first — the applicant stays unchanged until you confirm.
+              </span>
             </p>
           </div>
 
@@ -268,5 +324,122 @@ export function SubmissionDrawer({
         </div>
       </div>
     </div>
+
+    {/* Status change confirmation — ported so the overlay covers the whole viewport */}
+    {typeof document !== "undefined" &&
+      pendingStatus &&
+      pendingConfig &&
+      createPortal(
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="status-confirm-title"
+          aria-describedby="status-confirm-description"
+          className="fixed inset-0 z-[70] flex items-center justify-center bg-km-charcoal/60 p-4 backdrop-blur-sm"
+          onClick={() => setPendingStatus(null)}
+        >
+          <div
+            onClick={(event) => event.stopPropagation()}
+            className="w-full max-w-lg rounded-3xl border border-white/70 bg-white p-6 shadow-2xl sm:p-8"
+          >
+            <div className="flex items-start gap-4">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-km-orange/10 text-km-orange">
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 9v3.75m0 3.75h.008M10.34 3.94l-7.5 12.99A1.75 1.75 0 004.35 19.5h15.3a1.75 1.75 0 001.51-2.57l-7.5-12.99a1.75 1.75 0 00-3.02 0z"
+                  />
+                </svg>
+              </span>
+
+              <div className="min-w-0">
+                <h4
+                  id="status-confirm-title"
+                  className="font-heading text-lg font-bold leading-tight text-km-charcoal sm:text-xl"
+                >
+                  Confirm status change
+                </h4>
+                <p
+                  id="status-confirm-description"
+                  className="mt-1.5 text-sm leading-relaxed text-km-charcoal/60"
+                >
+                  You are about to change the application status of
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-5">
+              <p className="font-heading text-base font-bold leading-snug text-km-charcoal sm:text-lg">
+                {item.firstName} {item.middleName || ""} {item.lastName}{" "}
+                {item.suffix || ""}
+              </p>
+              <p className="mt-0.5 truncate text-xs text-km-charcoal/50">
+                {getProgramBySlug(item.program)?.name || item.program}
+              </p>
+
+              <div className="mt-5 flex flex-wrap items-center justify-center gap-3 border-t border-km-charcoal/10 pt-4">
+                <div className="flex flex-col items-center">
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-km-charcoal/45">
+                    Current
+                  </span>
+                  <span
+                    className={cn(
+                      "mt-1.5 inline-flex rounded-full border px-3 py-1 text-xs font-semibold",
+                      activeStatus.bg
+                    )}
+                  >
+                    {activeStatus.label}
+                  </span>
+                </div>
+                <svg className="mt-4 h-4 w-4 shrink-0 text-km-charcoal/35" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                </svg>
+                <div className="flex flex-col items-center">
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-km-charcoal/45">
+                    New
+                  </span>
+                  <span
+                    className={cn(
+                      "mt-1.5 inline-flex rounded-full border px-3 py-1 text-xs font-semibold",
+                      pendingConfig.bg
+                    )}
+                  >
+                    {pendingConfig.label}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <p className="mt-5 text-[10.5px] font-semibold uppercase tracking-[0.12em] text-km-charcoal/45">
+              What this means
+            </p>
+            <p className="mt-1.5 text-sm leading-relaxed text-km-charcoal/75 sm:text-[15px]">
+              {STATUS_CONFIRM_COPY[pendingStatus]}
+            </p>
+
+
+            <div className="mt-6 flex items-center justify-end gap-2.5">
+              <button
+                type="button"
+                onClick={() => setPendingStatus(null)}
+                className="rounded-full border border-km-charcoal/15 bg-white px-5 py-2 text-xs font-semibold text-km-charcoal/70 transition-colors hover:border-km-charcoal/30 hover:text-km-charcoal"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={confirmPendingStatus}
+                className="rounded-full bg-km-orange px-5 py-2 text-xs font-semibold text-white shadow-[0_10px_24px_-12px_rgba(234,88,12,0.9)] transition-colors hover:bg-km-orange/90"
+              >
+                Confirm change
+              </button>
+            </div>
+          </div>
+        </div>,
+        document.body
+      )}
+    </>
   );
 }
