@@ -1,69 +1,65 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
-import type { DashboardSubmission } from "@/app/api/dashboard/route";
+import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import type { SubmissionStatus } from "@/lib/dashboard";
+import {
+  applyStatus,
+  getServerSnapshot,
+  getSnapshot,
+  load,
+  subscribe,
+} from "@/components/dashboard/submission-cache";
 
-/** Single source of dashboard submissions with status updates. */
+/**
+ * Single source of dashboard submissions with status updates.
+ * All dashboard pages share one cached fetch (stale-while-revalidate).
+ */
 export function useSubmissions() {
-  const [submissions, setSubmissions] = useState<DashboardSubmission[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const snapshot = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    getServerSnapshot
+  );
   const [updatingId, setUpdatingId] = useState<string | null>(null);
 
-  const fetchSubmissions = useCallback(async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const res = await fetch("/api/dashboard");
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.error || "Failed to fetch submissions from database.");
-      }
-      setSubmissions(data.submissions || []);
-    } catch (err: any) {
-      console.error("Failed to load dashboard submissions:", err);
-      setError(err.message || "Failed to connect to the database.");
-      setSubmissions([]);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
   useEffect(() => {
-    fetchSubmissions();
-  }, [fetchSubmissions]);
-
-  const updateStatus = useCallback(async (id: string, newStatus: SubmissionStatus) => {
-    setUpdatingId(id);
-    try {
-      const res = await fetch("/api/dashboard", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id, status: newStatus }),
-      });
-      const data = await res.json();
-      if (res.ok && data.submission) {
-        setSubmissions((prev) =>
-          prev.map((s) => (s.id === id ? { ...s, status: newStatus } : s))
-        );
-      } else {
-        alert(data.error || "Failed to update status in database.");
-      }
-    } catch (err) {
-      console.error("Failed to update status:", err);
-      alert("Error updating status. Please verify database connection.");
-    } finally {
-      setUpdatingId(null);
-    }
+    void load();
   }, []);
+
+  const refetch = useCallback(() => load({ force: true }), []);
+
+  const updateStatus = useCallback(
+    async (id: string, newStatus: SubmissionStatus) => {
+      setUpdatingId(id);
+      try {
+        const res = await fetch("/api/dashboard", {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id, status: newStatus }),
+        });
+        const data = await res.json().catch(() => null);
+
+        if (res.ok) {
+          applyStatus(id, newStatus);
+        } else {
+          alert(data?.error || "Failed to update status in database.");
+        }
+      } catch (err) {
+        console.error("Failed to update status:", err);
+        alert("Error updating status. Please verify database connection.");
+      } finally {
+        setUpdatingId(null);
+      }
+    },
+    []
+  );
 
   return {
-    submissions,
-    loading,
-    error,
+    submissions: snapshot.submissions,
+    loading: snapshot.status === "idle" || snapshot.status === "loading",
+    error: snapshot.error,
     updatingId,
-    refetch: fetchSubmissions,
+    refetch,
     updateStatus,
   };
 }
