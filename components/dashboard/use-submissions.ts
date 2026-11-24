@@ -41,6 +41,11 @@ export function useSubmissions() {
 
         if (res.ok) {
           applyStatus(id, newStatus);
+          if (newStatus === "ENROLLED" && data?.confirmationEmailSent === false) {
+            alert(
+              "Status saved, but the confirmation email could not be sent. Check the SMTP settings in .env."
+            );
+          }
         } else {
           alert(data?.error || "Failed to update status in database.");
         }
