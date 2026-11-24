@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { programs } from "@/lib/programs";
+import { siteConfig } from "@/lib/site-config";
 
 const quickLinks = [
   { href: "/about", label: "About KM100" },
@@ -80,10 +81,7 @@ export function SiteFooter() {
         <div className="min-w-0">
           <p className="font-semibold text-white">Contact</p>
           <ul className="mt-3 space-y-2 break-words">
-            <li>
-              KM Building, Jamoral Ville, Purok 13, Barangay Cogon, Bogo City,
-              Cebu 6010
-            </li>
+            <li>{siteConfig.contact.address}</li>
             <li>0967 093 5811</li>
             <li>km100skillsandtrainingcenter@gmail.com</li>
             <li>
