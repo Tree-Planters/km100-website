@@ -403,17 +403,28 @@ export function ApplicationsView({
       </div>
 
       {/* Submissions Table */}
-      <div className={cn("mt-6 overflow-hidden rounded-2xl", GLASS_CARD)}>
+      <div className={cn("mt-6 overflow-hidden rounded-2xl border border-white/70 shadow-sm", GLASS_CARD)}>
         <div className="overflow-x-auto">
-          <table aria-busy={loading} className="w-full border-collapse text-left text-xs">
+          <table
+            aria-busy={loading}
+            className="w-full min-w-[880px] table-fixed border-collapse text-left text-sm"
+          >
+            <colgroup>
+              <col className="w-[26%]" />
+              <col className="w-[24%]" />
+              <col />
+              <col className="w-[160px]" />
+              <col className="w-[120px]" />
+              <col className="w-[112px]" />
+            </colgroup>
             <thead>
-              <tr className="border-b border-km-charcoal/10 bg-km-warm-white/70 text-[10.5px] font-semibold uppercase tracking-[0.12em] text-km-charcoal/55">
-                <th className="px-5 py-3.5">Applicant</th>
-                <th className="px-5 py-3.5">Program Applied</th>
-                <th className="px-5 py-3.5">Contact</th>
-                <th className="px-5 py-3.5">Status</th>
-                <th className="px-5 py-3.5">Submitted</th>
-                <th className="px-5 py-3.5 text-right">Actions</th>
+              <tr className="border-b border-km-charcoal/15 bg-km-warm-white text-xs font-bold uppercase tracking-[0.09em] text-km-charcoal">
+                <th scope="col" className="px-5 py-4">Applicant</th>
+                <th scope="col" className="px-5 py-4">Program Applied</th>
+                <th scope="col" className="px-5 py-4">Email</th>
+                <th scope="col" className="px-5 py-4">Status</th>
+                <th scope="col" className="px-5 py-4">Submitted</th>
+                <th scope="col" className="px-5 py-4 text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-km-charcoal/[0.07]">
@@ -466,37 +477,42 @@ export function ApplicationsView({
                   const progObj = getProgramBySlug(item.program);
 
                   return (
-                    <tr key={item.id} className="group transition-colors hover:bg-km-warm-white/50">
-                      <td className="px-5 py-3.5">
+                    <tr
+                      key={item.id}
+                      className="group h-[62px] transition-colors hover:bg-km-orange/[0.045]"
+                    >
+                      <td className="px-5 py-4">
                         <div className="min-w-0">
                           <div className="truncate text-sm font-semibold text-km-charcoal">
                             {item.lastName}, {item.firstName} {item.middleName || ""}{" "}
                             {item.suffix || ""}
                           </div>
-                          <div className="truncate text-[11px] text-km-charcoal/45">
-                            {item.municipality || "Location not provided"}
-                          </div>
                         </div>
                       </td>
 
-                      <td className="px-5 py-3.5">
+                      <td className="px-5 py-4">
                         <span
-                          className="inline-block max-w-[210px] truncate rounded-md border border-km-charcoal/10 bg-km-warm-white/60 px-2 py-1 text-[11px] font-medium text-km-charcoal/80"
+                          className="block w-full truncate rounded-md border border-km-charcoal/10 bg-km-warm-white/60 px-2 py-1 text-[11px] font-medium leading-relaxed text-km-charcoal/80"
                           title={progObj?.name || item.program}
                         >
                           {progObj?.name || item.program}
                         </span>
                       </td>
 
-                      <td className="px-5 py-3.5">
-                        <div className="text-[12px] font-medium text-km-charcoal">{item.email}</div>
-                        <div className="text-[11px] text-km-charcoal/45">{item.mobile}</div>
+                      <td className="px-5 py-4">
+                        <a
+                          href={`mailto:${item.email}`}
+                          title={item.email}
+                          className="block truncate text-[12.5px] font-medium text-km-charcoal transition-colors hover:text-km-orange hover:underline"
+                        >
+                          {item.email}
+                        </a>
                       </td>
 
-                      <td className="whitespace-nowrap px-5 py-3.5">
+                      <td className="whitespace-nowrap px-5 py-4">
                         <span
                           className={cn(
-                            "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-semibold",
+                            "inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border px-2.5 py-1 text-[11px] font-semibold",
                             statusInfo.bg
                           )}
                         >
@@ -505,7 +521,7 @@ export function ApplicationsView({
                         </span>
                       </td>
 
-                      <td className="whitespace-nowrap px-5 py-3.5 text-km-charcoal/60">
+                      <td className="whitespace-nowrap px-5 py-4 text-xs text-km-charcoal/60">
                         {new Date(item.createdAt).toLocaleDateString("en-PH", {
                           month: "short",
                           day: "numeric",
@@ -513,7 +529,7 @@ export function ApplicationsView({
                         })}
                       </td>
 
-                      <td className="whitespace-nowrap px-5 py-3.5 text-right">
+                      <td className="whitespace-nowrap py-4 pl-3 pr-5 text-right">
                         <button
                           onClick={() => setActiveItem(item)}
                           className="inline-flex items-center gap-1 rounded-full border border-km-charcoal/12 bg-white px-3 py-1.5 text-[11px] font-semibold text-km-charcoal/80 transition-all hover:border-km-orange hover:bg-km-orange hover:text-white"

@@ -74,10 +74,15 @@ export function SubmissionDrawer({
         <div className="sticky top-0 z-10 rounded-t-3xl border-b border-white/60 bg-white/80 px-6 py-5 backdrop-blur-xl">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <span className="font-mono text-[11px] font-bold uppercase tracking-wide text-km-orange">
-                {item.referenceNumber}
-              </span>
-              <h3 className="font-brand text-xl font-semibold leading-tight text-km-charcoal">
+              <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                <span className="font-brand text-base font-bold uppercase tracking-[0.06em] text-black sm:text-lg">
+                  Ref Code:
+                </span>
+                <span className="select-all font-mono text-base font-bold uppercase leading-none tracking-[0.08em] text-km-orange sm:text-lg">
+                  {item.referenceNumber}
+                </span>
+              </div>
+              <h3 className="mt-3 font-brand text-xl font-semibold leading-tight text-km-charcoal">
                 {item.lastName}, {item.firstName} {item.middleName || ""} {item.suffix || ""}
               </h3>
               <p className="mt-0.5 text-[11px] text-km-charcoal/55">
@@ -201,8 +206,8 @@ export function SubmissionDrawer({
           {/* Modal Body Sections */}
           <div className="mt-6 space-y-4 text-sm text-km-charcoal">
             {/* Section I: Personal Info */}
-            <section className="rounded-2xl border border-km-charcoal/10 p-4">
-              <h4 className="font-brand text-[11px] font-semibold uppercase tracking-[0.14em] text-km-charcoal/45">
+            <section className="rounded-2xl border border-white bg-white/40 p-4 shadow-[0_1px_3px_rgba(37,37,37,0.05)]">
+              <h4 className="font-brand text-sm font-bold uppercase tracking-[0.1em] text-km-charcoal/70 sm:text-[15px]">
                 I. Personal Information
               </h4>
               <div className="mt-3 grid gap-3 text-xs sm:grid-cols-2">
@@ -230,8 +235,8 @@ export function SubmissionDrawer({
             </section>
 
             {/* Section II: Complete Address */}
-            <section className="rounded-2xl border border-km-charcoal/10 p-4">
-              <h4 className="font-brand text-[11px] font-semibold uppercase tracking-[0.14em] text-km-charcoal/45">
+            <section className="rounded-2xl border border-white bg-white/40 p-4 shadow-[0_1px_3px_rgba(37,37,37,0.05)]">
+              <h4 className="font-brand text-sm font-bold uppercase tracking-[0.1em] text-km-charcoal/70 sm:text-[15px]">
                 II. Complete Address (PSGC)
               </h4>
               <div className="mt-3 grid gap-2 text-xs sm:grid-cols-2">
@@ -263,8 +268,8 @@ export function SubmissionDrawer({
             </section>
 
             {/* Section III: Educational Information */}
-            <section className="rounded-2xl border border-km-charcoal/10 p-4">
-              <h4 className="font-brand text-[11px] font-semibold uppercase tracking-[0.14em] text-km-charcoal/45">
+            <section className="rounded-2xl border border-white bg-white/40 p-4 shadow-[0_1px_3px_rgba(37,37,37,0.05)]">
+              <h4 className="font-brand text-sm font-bold uppercase tracking-[0.1em] text-km-charcoal/70 sm:text-[15px]">
                 III. Educational Background
               </h4>
               <div className="mt-3 grid gap-2 text-xs sm:grid-cols-2">
@@ -297,8 +302,8 @@ export function SubmissionDrawer({
             </section>
 
             {/* Section IV: Program Applied */}
-            <section className="rounded-2xl border border-km-orange/25 bg-gradient-to-br from-km-orange/5 to-km-warm-white/60 p-4">
-              <h4 className="font-brand text-[11px] font-semibold uppercase tracking-[0.14em] text-km-charcoal/45">
+            <section className="rounded-2xl border border-white bg-gradient-to-br from-km-orange/5 to-km-warm-white/60 p-4 shadow-[0_1px_3px_rgba(37,37,37,0.05)]">
+              <h4 className="font-brand text-sm font-bold uppercase tracking-[0.1em] text-km-charcoal/70 sm:text-[15px]">
                 IV. Program Applied
               </h4>
               <div className="mt-2 text-lg font-bold leading-snug text-km-orange">
@@ -310,7 +315,7 @@ export function SubmissionDrawer({
             </section>
 
             {/* Section V: Consent & Acknowledgement */}
-            <section className="rounded-2xl bg-km-warm-white/70 p-4 text-[11px] text-km-charcoal/65">
+            <section className="rounded-2xl border border-white bg-km-warm-white/70 p-4 text-[11px] text-km-charcoal/65 shadow-[0_1px_3px_rgba(37,37,37,0.05)]">
               <div className="flex items-start gap-2">
                 <span className="mt-0.5 font-bold text-emerald-600">✓</span>
                 <span>Student acknowledged that this form serves as pre-registration only.</span>
