@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { programs } from "@/lib/programs";
 import { siteConfig } from "@/lib/site-config";
 
@@ -12,8 +15,14 @@ const quickLinks = [
 ];
 
 export function SiteFooter() {
+  const pathname = usePathname();
   const portalUrl = process.env.NEXT_PUBLIC_STUDENT_PORTAL_URL;
   const year = new Date().getFullYear();
+
+  // The dashboard has its own full-height shell, so the marketing footer is hidden.
+  if (pathname.startsWith("/dashboard")) {
+    return null;
+  }
 
   return (
     <footer className="bg-km-charcoal text-sm text-white/70">

@@ -26,8 +26,6 @@ model PreRegistration {
   middleName  String?
   lastName    String
   suffix      String?
-  dateOfBirth DateTime?
-  sex         String?
   civilStatus String?
 
   email      String
@@ -49,8 +47,6 @@ model PreRegistration {
   currentGradeLevel   String?
   currentProgram      String?
   highestAttainment   String?
-  lastSchool          String?
-  yearGraduated       String?
 
   acknowledgement Boolean @default(false)
   consent         Boolean @default(false)

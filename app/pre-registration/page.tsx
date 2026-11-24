@@ -105,7 +105,7 @@ export default function PreRegistrationPage() {
       .finally(() => {
         if (isMounted) setLoadingRegions(false);
       });
-
+      
     return () => {
       isMounted = false;
     };
