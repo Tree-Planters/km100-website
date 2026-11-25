@@ -18,8 +18,8 @@ import {
   monthStart,
   shiftDateKey,
   toDateKey,
+  type DashboardSubmission,
 } from "@/lib/dashboard";
-import type { DashboardSubmission } from "@/app/api/dashboard/route";
 
 // Loaded on first row click instead of with the applications table.
 const SubmissionDrawer = dynamic(

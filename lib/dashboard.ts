@@ -1,5 +1,38 @@
 import { getProgramBySlug } from "@/lib/programs";
-import type { DashboardSubmission } from "@/app/api/dashboard/route";
+
+export type DashboardSubmission = {
+  id: string;
+  referenceNumber: string;
+  status: "PENDING" | "CONTACTED" | "ENROLLED" | "ARCHIVED";
+  firstName: string;
+  middleName?: string | null;
+  lastName: string;
+  suffix?: string | null;
+  email: string;
+  mobile: string;
+  civilStatus?: string | null;
+  address?: string | null;
+  sitio?: string | null;
+  barangay?: string | null;
+  district?: string | null;
+  municipality?: string | null;
+  province?: string | null;
+  region?: string | null;
+  regionCode?: string | null;
+  provinceCode?: string | null;
+  cityCode?: string | null;
+  barangayCode?: string | null;
+  isCurrentlyEnrolled?: string | null;
+  currentSchool?: string | null;
+  currentGradeLevel?: string | null;
+  currentProgram?: string | null;
+  highestAttainment?: string | null;
+  program: string;
+  acknowledgement: boolean;
+  consent: boolean;
+  createdAt: string | Date;
+  updatedAt: string | Date;
+};
 
 export type SubmissionStatus = DashboardSubmission["status"];
 
