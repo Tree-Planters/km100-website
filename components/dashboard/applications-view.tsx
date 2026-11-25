@@ -57,6 +57,8 @@ export function ApplicationsView({
 
   // Selected submission for the detail drawer
   const [activeItem, setActiveItem] = useState<DashboardSubmission | null>(null);
+  // Opened straight into the registration form from the Actions column.
+  const [openFormOnMount, setOpenFormOnMount] = useState(false);
 
   // Any filter change starts the list from page one.
   useEffect(() => {
@@ -413,7 +415,7 @@ export function ApplicationsView({
               <col />
               <col className="w-[160px]" />
               <col className="w-[120px]" />
-              <col className="w-[112px]" />
+              <col className="w-[136px]" />
             </colgroup>
             <thead>
               <tr className="border-b border-km-charcoal/15 bg-km-warm-white text-xs font-bold uppercase tracking-[0.09em] text-km-charcoal">
@@ -528,15 +530,51 @@ export function ApplicationsView({
                       </td>
 
                       <td className="whitespace-nowrap py-4 pl-3 pr-5 text-right">
-                        <button
-                          onClick={() => setActiveItem(item)}
-                          className="inline-flex items-center gap-1 rounded-full border border-km-charcoal/12 bg-white px-3 py-1.5 text-[11px] font-semibold text-km-charcoal/80 transition-all hover:border-km-orange hover:bg-km-orange hover:text-white"
-                        >
-                          View
-                          <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </button>
+                        <div className="flex items-center justify-end gap-1.5">
+                          <button
+                            onClick={() => {
+                              setActiveItem(item);
+                              setOpenFormOnMount(true);
+                            }}
+                            aria-label={`View registration form for ${item.firstName} ${item.lastName}`}
+                            title="View registration form"
+                            className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-km-charcoal/12 bg-white text-km-charcoal/70 transition-all hover:border-km-orange hover:bg-km-orange hover:text-white"
+                          >
+                            <svg
+                              className="h-4 w-4"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              aria-hidden="true"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={1.8}
+                                d="M7 3.75h6.19a1.5 1.5 0 0 1 1.06.44l3.56 3.56a1.5 1.5 0 0 1 .44 1.06v10.44a1.5 1.5 0 0 1-1.5 1.5H7a1.5 1.5 0 0 1-1.5-1.5V5.25a1.5 1.5 0 0 1 1.5-1.5Z"
+                              />
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={1.8}
+                                d="M13 4v4.25h4.25M9 13h6M9 16.25h4"
+                              />
+                            </svg>
+                          </button>
+
+                          <button
+                            onClick={() => {
+                              setActiveItem(item);
+                              setOpenFormOnMount(false);
+                            }}
+                            className="inline-flex items-center gap-1 rounded-full border border-km-charcoal/12 bg-white px-3 py-1.5 text-[11px] font-semibold text-km-charcoal/80 transition-all hover:border-km-orange hover:bg-km-orange hover:text-white"
+                          >
+                            View
+                            <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                            </svg>
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   );
@@ -628,6 +666,7 @@ export function ApplicationsView({
       {activeItemLive && (
         <SubmissionDrawer
           item={activeItemLive}
+          startWithForm={openFormOnMount}
           updatingId={updatingId}
           onClose={() => setActiveItem(null)}
           onStatusChange={updateStatus}

@@ -17,16 +17,19 @@ export function SubmissionDrawer({
   updatingId,
   onClose,
   onStatusChange,
+  startWithForm = false,
 }: {
   item: DashboardSubmission;
   updatingId: string | null;
   onClose: () => void;
   onStatusChange: (id: string, status: SubmissionStatus) => void;
+  /** Opens the drawer straight into the A4 registration form. */
+  startWithForm?: boolean;
 }) {
   // Status change awaiting admin confirmation
   const [pendingStatus, setPendingStatus] = useState<SubmissionStatus | null>(null);
   // Full A4 Learners Profile Form (TESDA MIS 03-01)
-  const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState(startWithForm);
 
   const formUrl = tesdaPdfPath(item.referenceNumber);
 
@@ -212,23 +215,93 @@ export function SubmissionDrawer({
             </p>
           </div>
 
-          {/* A4 Learners Profile Form */}
-          <button
-            type="button"
-            onClick={() => setShowForm(true)}
-            className="mt-4 flex w-full items-center justify-center gap-2 rounded-2xl border border-km-orange/40 bg-km-orange/5 px-4 py-3 text-sm font-semibold text-km-orange transition-colors hover:border-km-orange hover:bg-km-orange/10"
-          >
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6.75 3.75h7.5l4.5 4.5v11.25a.75.75 0 01-.75.75H6.75a.75.75 0 01-.75-.75V4.5a.75.75 0 01.75-.75zM13.5 3.75V9h5.25"
-              />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 13.5h6M9 16.5h4.5" />
-            </svg>
-            View / Print Learners Profile Form (A4)
-          </button>
+          {/* A4 Pre-Registration Form */}
+          <div className="mt-4 overflow-hidden rounded-2xl border border-km-orange/25 bg-gradient-to-br from-km-orange/[0.09] via-white to-km-warm-white/80 p-4 shadow-[0_16px_40px_-30px_rgba(234,88,12,0.75)]">
+            <div className="flex items-start gap-3">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-km-orange text-white shadow-[0_10px_22px_-12px_rgba(234,88,12,0.95)]">
+                <svg
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.9}
+                    d="M7 3.75h6.19a1.5 1.5 0 0 1 1.06.44l3.56 3.56a1.5 1.5 0 0 1 .44 1.06v10.44a1.5 1.5 0 0 1-1.5 1.5H7a1.5 1.5 0 0 1-1.5-1.5V5.25a1.5 1.5 0 0 1 1.5-1.5Z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.9}
+                    d="M13 4v4.25h4.25M9 13h6M9 16.25h4"
+                  />
+                </svg>
+              </span>
+
+              <div className="min-w-0 flex-1">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-km-orange/80">
+                  TESDA MIS 03 – 01
+                </p>
+                <p className="font-brand text-sm font-bold leading-tight text-km-charcoal">
+                  Pre-Registration Form
+                </p>
+                <p className="mt-0.5 text-[11px] leading-relaxed text-km-charcoal/55">
+                  A4 &middot; answers already filled in from this application
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-3 flex flex-col gap-2 sm:flex-row">
+              <button
+                type="button"
+                onClick={() => setShowForm(true)}
+                className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-km-orange px-4 py-2.5 text-xs font-semibold text-white shadow-[0_12px_26px_-14px_rgba(234,88,12,0.95)] transition-all hover:-translate-y-0.5 hover:bg-km-orange/90 hover:shadow-[0_16px_30px_-14px_rgba(234,88,12,0.95)] active:translate-y-0 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-km-orange/40 focus-visible:ring-offset-1"
+              >
+                <svg
+                  className="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M2.25 12s3.75-6.75 9.75-6.75S21.75 12 21.75 12s-3.75 6.75-9.75 6.75S2.25 12 2.25 12Z"
+                  />
+                  <circle cx="12" cy="12" r="2.75" strokeWidth={2} />
+                </svg>
+                View form
+              </button>
+
+              <a
+                href={formUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-km-charcoal/15 bg-white px-4 py-2.5 text-xs font-semibold text-km-charcoal/75 transition-colors hover:border-km-orange/50 hover:text-km-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-km-orange/30 focus-visible:ring-offset-1"
+              >
+                <svg
+                  className="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13.5 5.25H18a.75.75 0 0 1 .75.75v4.5M18 6l-7.5 7.5M10.5 4.5H6.75a2.25 2.25 0 0 0-2.25 2.25v10.5a2.25 2.25 0 0 0 2.25 2.25h10.5a2.25 2.25 0 0 0 2.25-2.25V13.5"
+                  />
+                </svg>
+                Open in new tab
+              </a>
+            </div>
+          </div>
 
           {/* Modal Body Sections */}
           <div className="mt-6 space-y-4 text-sm text-km-charcoal">
@@ -563,6 +636,28 @@ export function SubmissionDrawer({
             <span className="hidden text-[11px] text-km-charcoal/50 sm:inline">
               Two A4 pages · print at 100% scale, margins none
             </span>
+            <a
+              href={formUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full border border-km-charcoal/15 bg-white px-4 py-2 text-xs font-semibold text-km-charcoal/75 transition-colors hover:border-km-orange/50 hover:text-km-orange"
+            >
+              <svg
+                className="h-3.5 w-3.5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13.5 5.25H18a.75.75 0 0 1 .75.75v4.5M18 6l-7.5 7.5M10.5 4.5H6.75a2.25 2.25 0 0 0-2.25 2.25v10.5a2.25 2.25 0 0 0 2.25 2.25h10.5a2.25 2.25 0 0 0 2.25-2.25V13.5"
+                />
+              </svg>
+              Open in new tab
+            </a>
             <button
               type="button"
               onClick={() => setShowForm(false)}

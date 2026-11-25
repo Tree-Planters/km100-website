@@ -464,6 +464,12 @@ export default function PreRegistrationPage() {
   const [previewPdfUrl, setPreviewPdfUrl] = useState<string | null>(null);
   const [previewError, setPreviewError] = useState<string | null>(null);
 
+  // Duplicate-email cross-check for step 1.
+  const [emailCheck, setEmailCheck] = useState<{
+    state: "idle" | "checking" | "available" | "taken" | "error";
+    message: string;
+  }>({ state: "idle", message: "" });
+  const emailCheckSeq = useRef(0);
   // PSGC lists
   const [regions, setRegions] = useState<PsgcItem[]>([]);
   const [provinces, setProvinces] = useState<PsgcItem[]>([]);
@@ -842,6 +848,66 @@ export default function PreRegistrationPage() {
   }, []);
 
   // ---------- validation ----------
+  /**
+   * Cross-checks the typed email against saved pre-registrations so a
+   * duplicate is caught on step 1 rather than only when submitting.
+   */
+  async function checkEmailAvailability(value?: string) {
+    const email = (value ?? form.email).trim();
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setEmailCheck({ state: "idle", message: "" });
+      return "idle" as const;
+    }
+
+    const seq = emailCheckSeq.current + 1;
+    emailCheckSeq.current = seq;
+    setEmailCheck({ state: "checking", message: "Checking this email address…" });
+
+    try {
+      const res = await fetch(
+        `/api/pre-registration/check-email?email=${encodeURIComponent(email)}`,
+        { cache: "no-store" }
+      );
+      if (!res.ok) throw new Error(`email check failed: ${res.status}`);
+
+      const data = (await res.json()) as {
+        exists?: boolean;
+        referenceNumber?: string | null;
+      };
+      if (seq !== emailCheckSeq.current) return "stale" as const;
+
+      if (data.exists) {
+        const message = data.referenceNumber
+          ? `This email is already pre-registered (${data.referenceNumber}). Use a different email address.`
+          : "This email is already pre-registered. Use a different email address.";
+        setEmailCheck({ state: "taken", message });
+        setErrors((current) => ({ ...current, email: message }));
+        return "taken" as const;
+      }
+
+      setEmailCheck({
+        state: "available",
+        message: "This email is not yet pre-registered.",
+      });
+      setErrors((current) => {
+        if (!current.email) return current;
+        const next = { ...current };
+        delete next.email;
+        return next;
+      });
+      return "available" as const;
+    } catch (error) {
+      console.error("[pre-registration] email check failed", error);
+      setEmailCheck({
+        state: "error",
+        message:
+          "We couldn't verify this email right now. You can still continue.",
+      });
+      return "error" as const;
+    }
+  }
+
   function validateStep(index: number): Record<string, string> {
     const next: Record<string, string> = {};
 
@@ -857,6 +923,9 @@ export default function PreRegistrationPage() {
         next.streetAddress = "House number / street is required.";
       if (!form.email.trim() || !form.email.includes("@"))
         next.email = "Enter a valid email address.";
+      else if (emailCheck.state === "taken")
+        next.email =
+          emailCheck.message || "This email is already pre-registered.";
       if (form.mobile.trim().length < 7)
         next.mobile = "Enter a valid contact number.";
       if (!form.nationality.trim())
@@ -925,13 +994,22 @@ export default function PreRegistrationPage() {
     });
   }
 
-  function goNext() {
+  async function goNext() {
     const nextErrors = validateStep(step);
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) {
       focusFirstError(nextErrors);
       return;
     }
+
+    if (step === 0) {
+      const result = await checkEmailAvailability();
+      if (result === "taken") {
+        focusFirstError({ email: "" });
+        return;
+      }
+    }
+
     const target = Math.min(step + 1, STEPS.length - 1);
     setStep(target);
     setMaxStep((current) => Math.max(current, target));
@@ -944,7 +1022,26 @@ export default function PreRegistrationPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  function goToStep(index: number) {
+  /** Wipes every answer, the saved draft and any email check result. */
+  function clearForm() {
+    setForm(EMPTY_FORM);
+    setErrors({});
+    setSubmitError(null);
+    setEmailCheck({ state: "idle", message: "" });
+    emailCheckSeq.current += 1;
+    setStep(0);
+    setMaxStep(0);
+
+    try {
+      window.localStorage.removeItem(DRAFT_STORAGE_KEY);
+    } catch (error) {
+      console.error("[pre-registration] failed to clear draft", error);
+    }
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  async function goToStep(index: number) {
     if (index > maxStep) return;
 
     // Moving forward is only allowed while every earlier step is still valid,
@@ -958,6 +1055,14 @@ export default function PreRegistrationPage() {
           focusFirstError(stepErrors);
           return;
         }
+      }
+
+      // The same duplicate-email guard applies when jumping ahead.
+      const result = await checkEmailAvailability();
+      if (result === "taken") {
+        setStep(0);
+        focusFirstError({ email: "" });
+        return;
       }
     }
 
@@ -997,6 +1102,14 @@ export default function PreRegistrationPage() {
 
   async function handleSubmit() {
     setSubmitError(null);
+
+    // Always cross-check the email before a record is created.
+    const emailResult = await checkEmailAvailability();
+    if (emailResult === "taken") {
+      setStep(0);
+      focusFirstError({ email: "" });
+      return;
+    }
 
     const allErrors: Record<string, string> = {};
     for (let index = 0; index < STEPS.length - 1; index += 1) {
@@ -1300,14 +1413,38 @@ export default function PreRegistrationPage() {
   return (
     <Section>
       <div className="mx-auto max-w-3xl">
-        <div className="mb-6">
-          <h1 className="mt-2 font-brand text-2xl font-bold tracking-tight text-km-charcoal sm:text-3xl">
-            Pre-Registration
-          </h1>
-          <p className="mt-2 max-w-xl text-sm leading-relaxed text-km-charcoal/70">
-            Answer honestly, based on your own details. What you enter fills your
-            Learners Profile Form, and our admissions team will review it.
-          </p>
+        <div className="mb-6 flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <h1 className="mt-2 font-brand text-2xl font-bold tracking-tight text-km-charcoal sm:text-3xl">
+              Pre-Registration
+            </h1>
+            <p className="mt-2 max-w-xl text-sm leading-relaxed text-km-charcoal/70">
+              Answer honestly, based on your own details. What you enter fills your
+              Learners Profile Form, and our admissions team will review it.
+            </p>
+          </div>
+
+          <button
+            type="button"
+            onClick={clearForm}
+            className="inline-flex items-center gap-1.5 rounded-md border border-km-charcoal/20 bg-white px-3 py-2 text-xs font-semibold text-km-charcoal/70 transition-colors hover:border-red-300 hover:bg-red-50 hover:text-red-700"
+          >
+            <svg
+              className="h-3.5 w-3.5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2.2}
+                d="M6 7h12M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7m-7 0 .6 11.1A1.5 1.5 0 0 0 10.1 19.5h3.8a1.5 1.5 0 0 0 1.5-1.4L16 7"
+              />
+            </svg>
+            Clear form
+          </button>
         </div>
 
         {/* Step rail */}
@@ -1729,19 +1866,51 @@ export default function PreRegistrationPage() {
                         htmlFor="field-email"
                         className="text-xs font-medium text-km-charcoal/80"
                       >
-                        Email Address / Facebook Account{" "}
+                        Email Address{" "}
                         <span className="text-red-500">*</span>
                       </label>
                       <input
                         id="field-email"
                         type="email"
                         value={form.email}
-                        onChange={(event) => set("email", event.target.value)}
+                        onChange={(event) => {
+                          set("email", event.target.value);
+                          emailCheckSeq.current += 1;
+                          setEmailCheck({ state: "idle", message: "" });
+                        }}
+                        onBlur={() => void checkEmailAvailability()}
                         placeholder="name@example.com"
                         className={inputClass}
                       />
                       {errors.email ? (
                         <p className="mt-1 text-xs text-red-600">{errors.email}</p>
+                      ) : emailCheck.state === "checking" ? (
+                        <p className="mt-1 flex items-center gap-1.5 text-[11px] font-medium text-km-charcoal/55">
+                          <Spinner className="h-3 w-3" />
+                          Checking this email address…
+                        </p>
+                      ) : emailCheck.state === "available" ? (
+                        <p className="mt-1 flex items-center gap-1.5 text-[11px] font-medium text-emerald-600">
+                          <svg
+                            className="h-3 w-3 shrink-0"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            aria-hidden="true"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={3}
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                          This email is not yet pre-registered.
+                        </p>
+                      ) : emailCheck.state === "error" ? (
+                        <p className="mt-1 text-[11px] font-medium text-amber-600">
+                          {emailCheck.message}
+                        </p>
                       ) : null}
                     </div>
                     <div>

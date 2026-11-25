@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { AnnouncementBar } from "@/components/navigation/announcement-bar";
+import { StudentPortalTrigger } from "@/components/navigation/student-portal-trigger";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -20,9 +21,6 @@ const navItems = [
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-
-  // Point this at the real portal with NEXT_PUBLIC_STUDENT_PORTAL_URL in .env.
-  const portalUrl = process.env.NEXT_PUBLIC_STUDENT_PORTAL_URL || "#";
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
@@ -80,12 +78,9 @@ export function SiteHeader() {
             className="mx-1 hidden h-6 w-px bg-km-charcoal/10 xl:block"
           />
 
-          <Link
-            href={portalUrl}
-            className="hidden items-center whitespace-nowrap rounded-full border border-km-charcoal/15 bg-white px-4 py-2 text-[13px] font-semibold text-km-charcoal shadow-[0_1px_2px_rgba(37,37,37,0.06)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-km-charcoal hover:bg-km-charcoal hover:text-white hover:shadow-md hover:shadow-km-charcoal/20 active:translate-y-0 active:scale-[0.98] lg:inline-flex"
-          >
+          <StudentPortalTrigger className="hidden items-center whitespace-nowrap rounded-full border border-km-charcoal/15 bg-white px-4 py-2 text-[13px] font-semibold text-km-charcoal shadow-[0_1px_2px_rgba(37,37,37,0.06)] transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-km-charcoal hover:bg-km-charcoal hover:text-white hover:shadow-md hover:shadow-km-charcoal/20 active:translate-y-0 active:scale-[0.98] lg:inline-flex">
             Student Portal
-          </Link>
+          </StudentPortalTrigger>
 
           <Link
             href="/pre-registration"
@@ -147,13 +142,12 @@ export function SiteHeader() {
               </li>
             ))}
             <li className="pt-2">
-              <Link
-                href={portalUrl}
+              <StudentPortalTrigger
                 onClick={() => setOpen(false)}
-                className="flex items-center justify-center rounded-full border border-km-charcoal/15 bg-white px-4 py-2.5 text-sm font-semibold text-km-charcoal shadow-[0_1px_2px_rgba(37,37,37,0.06)] transition-all duration-200 hover:border-km-charcoal hover:bg-km-charcoal hover:text-white"
+                className="flex w-full items-center justify-center rounded-full border border-km-charcoal/15 bg-white px-4 py-2.5 text-sm font-semibold text-km-charcoal shadow-[0_1px_2px_rgba(37,37,37,0.06)] transition-all duration-200 hover:border-km-charcoal hover:bg-km-charcoal hover:text-white"
               >
                 Student Portal
-              </Link>
+              </StudentPortalTrigger>
             </li>
           </ul>
         </nav>

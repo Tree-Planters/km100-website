@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { StudentPortalTrigger } from "@/components/navigation/student-portal-trigger";
 import { programs } from "@/lib/programs";
 import { siteConfig } from "@/lib/site-config";
 
@@ -16,7 +17,6 @@ const quickLinks = [
 
 export function SiteFooter() {
   const pathname = usePathname();
-  const portalUrl = process.env.NEXT_PUBLIC_STUDENT_PORTAL_URL;
   const year = new Date().getFullYear();
 
   // The dashboard has its own full-height shell, so the marketing footer is hidden.
@@ -92,13 +92,11 @@ export function SiteFooter() {
                 Facebook
               </a>
             </li>
-            {portalUrl ? (
-              <li>
-                <a href={portalUrl} className="hover:text-km-orange">
-                  Student Portal
-                </a>
-              </li>
-            ) : null}
+            <li>
+              <StudentPortalTrigger className="hover:text-km-orange">
+                Student Portal
+              </StudentPortalTrigger>
+            </li>
           </ul>
         </div>
       </div>

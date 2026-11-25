@@ -57,17 +57,16 @@ export async function POST(request: Request) {
   const referenceNumber = generateReferenceNumber();
 
   try {
-    // Duplicate submission detection.
+    // Duplicate submission detection — one pre-registration per email address.
     const existing = await prisma.preRegistration.findFirst({
-      where: { email, program },
+      where: { email: { equals: email, mode: "insensitive" } },
       select: { referenceNumber: true },
     });
 
     if (existing) {
       return NextResponse.json(
         {
-          error:
-            "A pre-registration with this email already exists for this program.",
+          error: "This email address is already pre-registered.",
           referenceNumber: existing.referenceNumber,
         },
         { status: 409 },
