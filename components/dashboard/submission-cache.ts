@@ -1,7 +1,6 @@
 "use client";
 
-import type { DashboardSubmission } from "@/app/api/dashboard/route";
-import type { SubmissionStatus } from "@/lib/dashboard";
+import type { DashboardSubmission, SubmissionStatus } from "@/lib/dashboard";
 
 const STORAGE_KEY = "km100:dashboard-submissions:v1";
 
@@ -132,7 +131,7 @@ export function load(options: { force?: boolean } = {}): Promise<void> {
 
   inFlight = (async () => {
     try {
-      const res = await fetch("/api/dashboard", { cache: "no-store" });
+      const res = await fetch("/api/applications", { cache: "no-store" });
       const data = await res.json().catch(() => null);
 
       if (!res.ok) {
