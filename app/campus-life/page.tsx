@@ -59,26 +59,41 @@ export default function CampusLifePage() {
         {/* In this issue: a plain contents line, no numbers, no rules. */}
         <nav
           aria-label="Campus life stories"
-          className="mt-9 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-3"
+          className="mt-9 border-t border-km-charcoal/10 pt-5"
         >
-          <ul className="flex flex-1 flex-wrap items-baseline gap-x-7 gap-y-2">
-            <li className="text-[9.5px] font-semibold uppercase tracking-[0.22em] text-km-charcoal/40">
+          <div className="flex items-baseline justify-between gap-4">
+            <p className="text-[9.5px] font-semibold uppercase tracking-[0.22em] text-km-charcoal/40">
               In this issue
-            </li>
+            </p>
+            <p className="text-[9.5px] uppercase tracking-[0.2em] text-km-charcoal/30">
+              {campusLifeSections.length} stories
+            </p>
+          </div>
+
+          <ul className="mt-4 grid grid-cols-1 gap-2 sm:flex sm:flex-wrap sm:items-center sm:gap-2.5">
             {campusLifeSections.map((section) => (
-              <li key={section.slug}>
+              <li key={section.slug} className="min-w-0">
                 <a
                   href={`#${section.slug}`}
-                  className="text-[13.5px] text-km-charcoal/75 underline-offset-[5px] transition-colors hover:text-km-charcoal hover:underline hover:decoration-km-charcoal/30"
+                  className="group flex items-center justify-between gap-3 rounded-xl border border-km-charcoal/12 bg-white px-4 py-3 text-[14px] font-medium text-km-charcoal/80 shadow-[0_1px_2px_rgba(37,37,37,0.04)] transition-all duration-200 outline-none hover:border-km-orange/45 hover:bg-km-orange/5 hover:text-km-orange hover:shadow-[0_6px_18px_-12px_rgba(37,37,37,0.5)] focus-visible:border-km-orange/60 focus-visible:ring-2 focus-visible:ring-km-orange/30 active:bg-km-orange/10 sm:inline-flex sm:justify-center sm:gap-1.5 sm:rounded-full sm:px-3.5 sm:py-1.5 sm:text-[13px] sm:shadow-none"
                 >
-                  {section.label}
+                  <span className="truncate">{section.label}</span>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                    className="size-3.5 shrink-0 text-km-charcoal/35 transition-transform duration-300 ease-out group-hover:translate-y-0.5 group-hover:text-km-orange sm:size-3"
+                  >
+                    <path d="M12 5v13M6 12l6 6 6-6" />
+                  </svg>
                 </a>
               </li>
             ))}
           </ul>
-          <p className="text-[9.5px] uppercase tracking-[0.2em] text-km-charcoal/30">
-            {campusLifeSections.length} stories
-          </p>
         </nav>
       </Section>
 
