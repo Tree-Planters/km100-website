@@ -227,7 +227,7 @@ export default async function ProgramPage({ params }: ProgramPageProps) {
             <li key={item.slug}>
               <Link
                 href={`/programs/${item.slug}`}
-                className="group flex h-full flex-col gap-3 rounded-xl border border-km-charcoal/10 p-5 transition-colors hover:border-km-orange/50 hover:bg-km-warm-white"
+                className="group relative flex h-full flex-col gap-3 rounded-xl border border-km-charcoal/10 p-5 transition-colors hover:border-km-orange/50 hover:bg-km-warm-white"
               >
                 <img
                   src={item.image}
@@ -237,8 +237,24 @@ export default async function ProgramPage({ params }: ProgramPageProps) {
                 <span className="font-heading text-base leading-snug">
                   {item.shortName}
                 </span>
-                <span className="mt-auto text-xs font-semibold tracking-[0.12em] text-km-charcoal/40 uppercase">
+                <span className="mt-auto pr-10 text-xs font-semibold tracking-[0.12em] text-km-charcoal/40 uppercase">
                   3-Year Diploma
+                </span>
+                <span
+                  aria-hidden="true"
+                  className="absolute right-4 bottom-4 inline-flex size-7 items-center justify-center rounded-full bg-km-orange text-white transition-transform duration-300 ease-out group-hover:translate-x-0.5"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="size-3.5 shrink-0"
+                  >
+                    <path d="M4 12h13M12 6l6 6-6 6" />
+                  </svg>
                 </span>
               </Link>
             </li>
