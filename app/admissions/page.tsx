@@ -214,7 +214,7 @@ export default function AdmissionsPage() {
               className="pointer-events-none absolute inset-x-0 top-0 h-16 w-full"
             >
               <path
-                d="M0 32 Q65.4 6 130.8 32 T261.6 32 T392.4 32 T523.2 32 T654 32 T784.8 32"
+                d="M107 32 Q172 6 238 32 Q303.5 58 369 32 Q434.5 6 500 32 Q565.5 58 631 32 Q696.5 6 762 32 Q827.5 58 893 32"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth={1.5}
@@ -227,12 +227,12 @@ export default function AdmissionsPage() {
 
             <ol className="relative grid grid-cols-4 gap-x-14">
               {steps.map((step, index) => (
-                <li key={step.title} className="flex flex-col">
+                <li key={step.title} className="flex flex-col items-center text-center">
                   <div className="relative z-10 flex size-16 items-center justify-center bg-white text-km-charcoal/70">
                     {step.art}
                   </div>
 
-                  <div className="mt-5 flex items-start gap-2.5">
+                  <div className="mt-5 flex items-start justify-center gap-2.5">
                     <span className="grid size-8 shrink-0 place-items-center rounded-full bg-km-orange font-brand text-[12px] font-bold text-white">
                       {index + 1}
                     </span>
@@ -244,7 +244,11 @@ export default function AdmissionsPage() {
                   <p className="mt-2 text-[14px] leading-relaxed text-km-charcoal/70">
                     {step.body}
                   </p>
-                  {step.action ? <div className="mt-auto pt-4">{step.action}</div> : null}
+                  {step.action ? (
+                    <div className="mt-auto flex justify-center pt-4">
+                      {step.action}
+                    </div>
+                  ) : null}
                 </li>
               ))}
             </ol>
