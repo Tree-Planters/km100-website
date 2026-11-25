@@ -5,6 +5,7 @@ import { PageHeader } from "@/components/layout/page-header";
 import { Section } from "@/components/layout/section";
 import { ButtonLink } from "@/components/ui/button";
 import { getProgramBySlug, programs } from "@/lib/programs";
+import { siteConfig } from "@/lib/site-config";
 
 type ProgramPageProps = { params: Promise<{ slug: string }> };
 
@@ -97,7 +98,9 @@ export default async function ProgramPage({ params }: ProgramPageProps) {
                 <dt className="text-[11px] font-semibold tracking-[0.12em] text-km-charcoal/50 uppercase">
                   Where
                 </dt>
-                <dd className="mt-1 text-km-charcoal/70">Bogo City, Cebu</dd>
+                <dd className="mt-1 text-km-charcoal/70">
+                  {siteConfig.contact.address}
+                </dd>
               </div>
             </dl>
 
