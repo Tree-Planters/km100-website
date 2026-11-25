@@ -10,7 +10,7 @@ const NO_STORE = { "Cache-Control": "private, no-store" };
 /**
  * GET /api/applications
  *
- * Returns every pre-registration application, newest first.
+ * Returns every pre-registration application as JSON, newest first.
  * Optional filters: ?status=PENDING|CONTACTED|ENROLLED|ARCHIVED, ?program=<slug>, ?q=<search>
  */
 export async function GET(request: Request) {
