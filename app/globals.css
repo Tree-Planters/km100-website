@@ -5,6 +5,12 @@
   containers all grow together - the page reads like the browser at 110% zoom.
 */
 html {
+  /*
+    The site is light-only. Without this, Chromium paints native UI in the OS
+    dark theme: the <datalist> suggestion popup on the birthplace fields came
+    out as a black panel over a white form, and scrollbars went dark too.
+  */
+  color-scheme: only light;
   font-size: 110%;
 }
 

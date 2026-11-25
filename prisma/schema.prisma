@@ -27,6 +27,29 @@ model PreRegistration {
   lastName    String
   suffix      String?
   civilStatus String?
+  sex         String?
+  nationality String?
+
+  // MIS 03-01 §3.3 - §3.5
+  employmentStatus String?
+  employmentType   String?
+  birthMonth       Int?
+  birthDay         Int?
+  birthYear        Int?
+  age              Int?
+  birthCity        String?
+  birthProvince    String?
+  birthRegion      String?
+
+  // MIS 03-01 §3.6 - §4
+  educationalAttainment String?
+  parentName            String?
+  parentAddress         String?
+  classification        String[]
+  classificationOthers  String?
+
+  // MIS 03-01 §8
+  scholarshipPackage String?
 
   email      String
   mobile     String
@@ -42,6 +65,7 @@ model PreRegistration {
   region       String?
   regionCode   String?
 
+  // Derived from educationalAttainment; kept for existing exports/emails.
   isCurrentlyEnrolled String?
   currentSchool       String?
   currentGradeLevel   String?

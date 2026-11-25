@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/database";
 import { sendPreRegistrationEmails } from "@/lib/email";
+import {
+  ageFromBirthDate,
+  isCurrentlyEnrolledFromAttainment,
+} from "@/lib/tesda-form";
 import { generateReferenceNumber } from "@/lib/utils";
 import { validatePreRegistration } from "@/lib/validation";
 
@@ -70,8 +74,29 @@ export async function POST(request: Request) {
       );
     }
 
+    const computedAge = Number(
+      ageFromBirthDate(
+        parsed.data.birthMonth,
+        parsed.data.birthDay,
+        parsed.data.birthYear
+      )
+    );
+    const age =
+      parsed.data.age ??
+      (Number.isFinite(computedAge) && computedAge > 0 ? computedAge : null);
+
     await prisma.preRegistration.create({
-      data: { ...parsed.data, referenceNumber },
+      data: {
+        ...parsed.data,
+        age,
+        isCurrentlyEnrolled:
+          parsed.data.isCurrentlyEnrolled ??
+          isCurrentlyEnrolledFromAttainment(parsed.data.educationalAttainment),
+        highestAttainment:
+          parsed.data.highestAttainment ??
+          parsed.data.educationalAttainment,
+        referenceNumber,
+      },
     });
   } catch (error) {
     console.error("[pre-registration] failed to store submission", error);

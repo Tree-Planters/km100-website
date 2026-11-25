@@ -11,6 +11,23 @@ export type DashboardSubmission = {
   email: string;
   mobile: string;
   civilStatus?: string | null;
+  sex?: string | null;
+  nationality?: string | null;
+  employmentStatus?: string | null;
+  employmentType?: string | null;
+  birthMonth?: number | null;
+  birthDay?: number | null;
+  birthYear?: number | null;
+  age?: number | null;
+  birthCity?: string | null;
+  birthProvince?: string | null;
+  birthRegion?: string | null;
+  educationalAttainment?: string | null;
+  parentName?: string | null;
+  parentAddress?: string | null;
+  classification?: string[] | null;
+  classificationOthers?: string | null;
+  scholarshipPackage?: string | null;
   address?: string | null;
   sitio?: string | null;
   barangay?: string | null;
@@ -164,16 +181,27 @@ export const EXPORT_HEADERS = [
   "Status",
   "Email",
   "Contact Number",
+  "Sex",
   "Civil Status",
+  "Nationality",
+  "Date of Birth",
+  "Age",
+  "Employment Status",
+  "Employment Type",
+  "Birthplace",
   "Region",
   "Province",
   "City/Municipality",
   "District",
   "Barangay",
   "Street/Sitio",
+  "Educational Attainment",
   "Currently Enrolled",
   "School Name",
-  "Highest Attainment",
+  "Parent/Guardian",
+  "Parent/Guardian Address",
+  "Classification",
+  "Scholarship Package",
   "Date Submitted",
 ];
 
@@ -185,16 +213,34 @@ export function buildExportRows(submissions: DashboardSubmission[]): string[][] 
     s.status,
     s.email,
     s.mobile,
+    s.sex || "",
     s.civilStatus || "",
+    s.nationality || "",
+    s.birthMonth && s.birthDay && s.birthYear
+      ? `${s.birthMonth}/${s.birthDay}/${s.birthYear}`
+      : "",
+    s.age != null ? String(s.age) : "",
+    s.employmentStatus || "",
+    s.employmentType || "",
+    [s.birthCity, s.birthProvince, s.birthRegion].filter(Boolean).join(", "),
     s.region || "",
     s.province || "",
     s.municipality || "",
     s.district || "",
     s.barangay || "",
     s.address || s.sitio || "",
+    s.educationalAttainment || s.highestAttainment || "",
     s.isCurrentlyEnrolled || "",
     s.currentSchool || "",
-    s.highestAttainment || "",
+    s.parentName || "",
+    s.parentAddress || "",
+    [
+      ...(s.classification || []),
+      s.classificationOthers ? `Others: ${s.classificationOthers}` : "",
+    ]
+      .filter(Boolean)
+      .join("; "),
+    s.scholarshipPackage || "",
     new Date(s.createdAt).toLocaleString("en-PH"),
   ]);
 }
@@ -242,7 +288,10 @@ export async function exportToExcel(submissions: DashboardSubmission[]) {
     sheetName: "Pre-Registrations",
     headers: EXPORT_HEADERS,
     rows: buildExportRows(submissions),
-    columnWidths: [20, 30, 34, 14, 30, 16, 14, 14, 16, 20, 12, 16, 26, 16, 26, 20, 22],
+    columnWidths: [
+      20, 30, 34, 14, 30, 16, 10, 14, 16, 14, 7, 16, 16, 30, 16, 16, 20, 12,
+      16, 26, 30, 16, 26, 24, 30, 40, 20, 22,
+    ],
   });
 
   downloadFile(

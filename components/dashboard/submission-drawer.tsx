@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { getProgramBySlug } from "@/lib/programs";
+import { tesdaPdfPath } from "@/lib/tesda-form";
 import { cn } from "@/lib/utils";
 import {
   STATUS_CONFIG,
@@ -24,8 +25,12 @@ export function SubmissionDrawer({
 }) {
   // Status change awaiting admin confirmation
   const [pendingStatus, setPendingStatus] = useState<SubmissionStatus | null>(null);
+  // Full A4 Learners Profile Form (TESDA MIS 03-01)
+  const [showForm, setShowForm] = useState(false);
 
-  // Close the confirmation first, then the drawer, with Escape
+  const formUrl = tesdaPdfPath(item.referenceNumber);
+
+  // Close the confirmation first, then the form, then the drawer, with Escape
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key !== "Escape") return;
@@ -33,11 +38,15 @@ export function SubmissionDrawer({
         setPendingStatus(null);
         return;
       }
+      if (showForm) {
+        setShowForm(false);
+        return;
+      }
       onClose();
     }
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [onClose, pendingStatus]);
+  }, [onClose, pendingStatus, showForm]);
 
   const activeStatus =
     STATUS_CONFIG[item.status as keyof typeof STATUS_CONFIG] || STATUS_CONFIG.PENDING;
@@ -203,6 +212,24 @@ export function SubmissionDrawer({
             </p>
           </div>
 
+          {/* A4 Learners Profile Form */}
+          <button
+            type="button"
+            onClick={() => setShowForm(true)}
+            className="mt-4 flex w-full items-center justify-center gap-2 rounded-2xl border border-km-orange/40 bg-km-orange/5 px-4 py-3 text-sm font-semibold text-km-orange transition-colors hover:border-km-orange hover:bg-km-orange/10"
+          >
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6.75 3.75h7.5l4.5 4.5v11.25a.75.75 0 01-.75.75H6.75a.75.75 0 01-.75-.75V4.5a.75.75 0 01.75-.75zM13.5 3.75V9h5.25"
+              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 13.5h6M9 16.5h4.5" />
+            </svg>
+            View / Print Learners Profile Form (A4)
+          </button>
+
           {/* Modal Body Sections */}
           <div className="mt-6 space-y-4 text-sm text-km-charcoal">
             {/* Section I: Personal Info */}
@@ -228,8 +255,32 @@ export function SubmissionDrawer({
                   </div>
                 </div>
                 <div>
+                  <span className="text-km-charcoal/55">Sex</span>
+                  <div className="font-semibold">{item.sex || "N/A"}</div>
+                </div>
+                <div>
                   <span className="text-km-charcoal/55">Civil Status</span>
                   <div className="font-semibold">{item.civilStatus || "N/A"}</div>
+                </div>
+                <div>
+                  <span className="text-km-charcoal/55">Nationality</span>
+                  <div className="font-semibold">{item.nationality || "N/A"}</div>
+                </div>
+                <div>
+                  <span className="text-km-charcoal/55">Birthdate</span>
+                  <div className="font-semibold">
+                    {item.birthMonth && item.birthDay && item.birthYear
+                      ? `${item.birthMonth}/${item.birthDay}/${item.birthYear}`
+                      : "N/A"}
+                    {item.age != null ? ` · ${item.age} yrs old` : ""}
+                  </div>
+                </div>
+                <div>
+                  <span className="text-km-charcoal/55">Employment Status</span>
+                  <div className="font-semibold">
+                    {item.employmentStatus || "N/A"}
+                    {item.employmentType ? ` · ${item.employmentType}` : ""}
+                  </div>
                 </div>
               </div>
             </section>
@@ -295,16 +346,65 @@ export function SubmissionDrawer({
                 ) : (
                   <div>
                     <span className="text-km-charcoal/55">Highest Attainment:</span>{" "}
-                    <span className="font-semibold">{item.highestAttainment || "N/A"}</span>
+                    <span className="font-semibold">
+                      {item.educationalAttainment || item.highestAttainment || "N/A"}
+                    </span>
                   </div>
                 )}
               </div>
             </section>
 
-            {/* Section IV: Program Applied */}
+            {/* Section IV: Birthplace, Classification & Scholarship */}
+            <section className="rounded-2xl border border-white bg-white/40 p-4 shadow-[0_1px_3px_rgba(37,37,37,0.05)]">
+              <h4 className="font-brand text-sm font-bold uppercase tracking-[0.1em] text-km-charcoal/70 sm:text-[15px]">
+                IV. Birthplace, Classification & Scholarship
+              </h4>
+              <div className="mt-3 grid gap-2 text-xs sm:grid-cols-2">
+                <div>
+                  <span className="text-km-charcoal/55">Birthplace:</span>{" "}
+                  <span className="font-semibold">
+                    {[item.birthCity, item.birthProvince, item.birthRegion]
+                      .filter(Boolean)
+                      .join(", ") || "N/A"}
+                  </span>
+                </div>
+                <div>
+                  <span className="text-km-charcoal/55">Scholarship Package:</span>{" "}
+                  <span className="font-semibold">
+                    {item.scholarshipPackage || "Not a scholar"}
+                  </span>
+                </div>
+                <div className="sm:col-span-2">
+                  <span className="text-km-charcoal/55">Classification:</span>{" "}
+                  <span className="font-semibold">
+                    {[
+                      ...(item.classification || []).map((entry) =>
+                        entry === "Others" && item.classificationOthers
+                          ? `Others: ${item.classificationOthers}`
+                          : entry
+                      ),
+                    ].join("; ") || "N/A"}
+                  </span>
+                </div>
+                <div>
+                  <span className="text-km-charcoal/55">Parent/Guardian:</span>{" "}
+                  <span className="font-semibold">{item.parentName || "N/A"}</span>
+                </div>
+                <div>
+                  <span className="text-km-charcoal/55">
+                    Parent/Guardian Address:
+                  </span>{" "}
+                  <span className="font-semibold">
+                    {item.parentAddress || "N/A"}
+                  </span>
+                </div>
+              </div>
+            </section>
+
+            {/* Section V: Program Applied */}
             <section className="rounded-2xl border border-white bg-gradient-to-br from-km-orange/5 to-km-warm-white/60 p-4 shadow-[0_1px_3px_rgba(37,37,37,0.05)]">
               <h4 className="font-brand text-sm font-bold uppercase tracking-[0.1em] text-km-charcoal/70 sm:text-[15px]">
-                IV. Program Applied
+                V. Program Applied
               </h4>
               <div className="mt-2 text-lg font-bold leading-snug text-km-orange">
                 {getProgramBySlug(item.program)?.name || item.program}
@@ -314,7 +414,7 @@ export function SubmissionDrawer({
               </div>
             </section>
 
-            {/* Section V: Consent & Acknowledgement */}
+            {/* Section VI: Consent & Acknowledgement */}
             <section className="rounded-2xl border border-white bg-km-warm-white/70 p-4 text-[11px] text-km-charcoal/65 shadow-[0_1px_3px_rgba(37,37,37,0.05)]">
               <div className="flex items-start gap-2">
                 <span className="mt-0.5 font-bold text-emerald-600">✓</span>
@@ -445,6 +545,40 @@ export function SubmissionDrawer({
         </div>,
         document.body
       )}
+
+    {/* Full A4 Learners Profile Form (TESDA MIS 03-01) */}
+    {showForm ? (
+      <div className="fixed inset-0 z-[80] flex flex-col bg-km-charcoal/70 backdrop-blur-sm">
+        <div className="flex flex-wrap items-center justify-between gap-3 bg-white px-4 py-3 shadow-sm sm:px-6">
+          <div>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-km-charcoal/45">
+              TESDA MIS 03 – 01 · Learners Profile Form
+            </p>
+            <p className="font-brand text-sm font-semibold text-km-charcoal">
+              {item.lastName}, {item.firstName} ·{" "}
+              <span className="font-mono text-km-orange">{item.referenceNumber}</span>
+            </p>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="hidden text-[11px] text-km-charcoal/50 sm:inline">
+              Two A4 pages · print at 100% scale, margins none
+            </span>
+            <button
+              type="button"
+              onClick={() => setShowForm(false)}
+              className="rounded-full border border-km-charcoal/15 bg-white px-5 py-2 text-xs font-semibold text-km-charcoal/70 transition-colors hover:border-km-charcoal/30 hover:text-km-charcoal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+        <iframe
+          src={formUrl}
+          title={`Learners Profile Form for ${item.referenceNumber}`}
+          className="min-h-0 w-full flex-1 bg-stone-300"
+        />
+      </div>
+    ) : null}
     </>
   );
 }
