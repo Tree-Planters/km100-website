@@ -7,9 +7,9 @@ import { cn } from "@/lib/utils";
 import {
   STATUS_CONFIG,
   STATUS_ORDER,
+  type DashboardSubmission,
   type SubmissionStatus,
 } from "@/lib/dashboard";
-import type { DashboardSubmission } from "@/app/api/dashboard/route";
 
 export function SubmissionDrawer({
   item,
