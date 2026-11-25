@@ -158,7 +158,7 @@ export default function ProgramsPage() {
       <Section>
         <dl className="grid grid-cols-2 gap-8 sm:grid-cols-4">
           {atAGlance.map((item) => (
-            <div key={item.label}>
+            <div key={item.label} className="text-center">
               <dt className="font-heading text-3xl text-km-orange sm:text-4xl">
                 {item.value}
               </dt>

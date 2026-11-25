@@ -45,6 +45,10 @@ export default function AboutPage() {
               aria-hidden="true"
               className="absolute -top-4 -left-4 hidden h-32 w-32 rounded-tl-3xl border-t-2 border-l-2 border-km-orange/40 sm:block"
             />
+            <div
+              aria-hidden="true"
+              className="absolute -right-4 -bottom-4 hidden h-32 w-32 rounded-br-3xl border-r-2 border-b-2 border-km-orange/40 sm:block"
+            />
             <img
               src="/images/campus-launch.jpg"
               alt="KM100 faculty and guests at the school's PQF Level 5 Diploma Program launch"
