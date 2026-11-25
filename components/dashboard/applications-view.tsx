@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils";
 import { useSubmissions } from "@/components/dashboard/use-submissions";
 import {
   GLASS_CARD,
-  GLASS_PANEL,
   PAGE_SIZE,
   STATUS_CONFIG,
   WEEKDAYS,
@@ -163,7 +162,7 @@ export function ApplicationsView({
       )}
 
       {/* Filter and Search Bar */}
-      <div className={cn("mt-6 rounded-2xl p-4", GLASS_CARD)}>
+      <div className={cn("relative z-30 mt-6 rounded-2xl p-4", GLASS_CARD)}>
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="relative min-w-[260px] flex-1">
             <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-km-charcoal/40">
@@ -267,8 +266,7 @@ export function ApplicationsView({
                   <div className="fixed inset-0 z-40" onClick={() => setCalendarOpen(false)} />
                   <div
                     className={cn(
-                      "absolute left-0 z-50 mt-2 w-[276px] max-w-[calc(100vw-2rem)] rounded-2xl p-3 sm:left-auto sm:right-0",
-                      GLASS_PANEL
+                      "absolute left-0 z-50 mt-2 w-[276px] max-w-[calc(100vw-2rem)] rounded-2xl border border-km-charcoal/10 bg-white p-3 shadow-[0_20px_50px_-18px_rgba(37,37,37,0.35)] sm:left-auto sm:right-0"
                     )}
                   >
                     <div className="flex items-center justify-between">
