@@ -538,7 +538,7 @@ export function ApplicationsView({
                             }}
                             aria-label={`View registration form for ${item.firstName} ${item.lastName}`}
                             title="View registration form"
-                            className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-km-charcoal/12 bg-white text-km-charcoal/70 transition-all hover:border-km-orange hover:bg-km-orange hover:text-white"
+                            className="inline-flex h-8 w-8 items-center justify-center rounded-full text-km-charcoal/55 transition-colors hover:bg-km-orange/10 hover:text-km-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-km-orange/40"
                           >
                             <svg
                               className="h-4 w-4"
@@ -567,11 +567,29 @@ export function ApplicationsView({
                               setActiveItem(item);
                               setOpenFormOnMount(false);
                             }}
-                            className="inline-flex items-center gap-1 rounded-full border border-km-charcoal/12 bg-white px-3 py-1.5 text-[11px] font-semibold text-km-charcoal/80 transition-all hover:border-km-orange hover:bg-km-orange hover:text-white"
+                            aria-label={`View details for ${item.firstName} ${item.lastName}`}
+                            title="View details"
+                            className="inline-flex h-8 w-8 items-center justify-center rounded-full text-km-charcoal/55 transition-colors hover:bg-km-orange/10 hover:text-km-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-km-orange/40"
                           >
-                            View
-                            <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                            <svg
+                              className="h-[18px] w-[18px]"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              aria-hidden="true"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={1.8}
+                                d="M2.25 12S5.5 5.25 12 5.25 21.75 12 21.75 12 18.5 18.75 12 18.75 2.25 12 2.25 12Z"
+                              />
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={1.8}
+                                d="M12 14.75a2.75 2.75 0 1 0 0-5.5 2.75 2.75 0 0 0 0 5.5Z"
+                              />
                             </svg>
                           </button>
                         </div>
