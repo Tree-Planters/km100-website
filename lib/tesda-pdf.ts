@@ -18,7 +18,7 @@ import type { TesdaFormData } from "@/lib/tesda-form";
  */
 
 const MM = 72 / 25.4;
-const TEMPLATE_PATH = path.join(process.cwd(), "assets", "tesda-dpa-form-1.pdf");
+const TEMPLATE_PATH = path.join(process.cwd(), "assets", "tesda-dpa-form-1-template.pdf");
 
 type Rect = { x: number; y: number; w: number; h: number };
 

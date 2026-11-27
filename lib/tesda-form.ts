@@ -3,7 +3,7 @@ import { getProgramBySlug, programs } from "@/lib/programs";
 import type { PreRegistrationInput } from "@/lib/validation";
 
 /**
- * Data contract for the TESDA DPA Form 1 PDF (`assets/tesda-dpa-form-1.pdf`).
+ * Data contract for the TESDA DPA Form 1 PDF (`assets/tesda-dpa-form-1-template.pdf`).
  *
  * Keys match the boxes the PDF filler (`lib/tesda-pdf.ts`) writes into.
  * Anything missing stays an empty box, exactly like the blank paper form.
